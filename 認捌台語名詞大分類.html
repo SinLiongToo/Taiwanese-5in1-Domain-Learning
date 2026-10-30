@@ -584,195 +584,143 @@
 
                     <!-- Subcategory 1: Bicycle Visual -->
                     <div id="machinery-bike-area" class="machinery-panel active">
-                        <svg viewBox="0 0 280 200" class="machinery-svg" xmlns="http://www.w3.org/2000/svg">
-                            <!-- Frame & Wheels -->
-                            <circle id="part-m_tire" class="clickable-part machine-part" cx="70" cy="130" r="32" stroke="#4A5568" stroke-width="8" fill="none" onclick="handlePartClick('m_tire')" />
-                            <circle cx="210" cy="130" r="32" stroke="#4A5568" stroke-width="8" fill="none" />
-                            
-                            <!-- Spokes/Hubs -->
-                            <circle cx="70" cy="130" r="6" fill="#A0AEC0" />
-                            <circle cx="210" cy="130" r="6" fill="#A0AEC0" />
-                            
-                            <!-- Frame paths -->
-                            <path d="M 70,130 L 120,130 L 180,85 L 110,85 L 70,130 M 120,130 L 145,75 M 180,85 L 210,130 M 145,75 L 130,75 L 160,75" stroke="#718096" stroke-width="4" stroke-linecap="round" fill="none" />
-                            
-                            <!-- Handlebar (馬角仔) -->
-                            <path id="part-m_handlebar" class="clickable-part machine-part" d="M 180,85 L 195,55 L 175,48 M 195,55 L 210,55" stroke="#E2E8F0" stroke-width="5" stroke-linecap="round" fill="none" onclick="handlePartClick('m_handlebar')" />
-                            
-                            <!-- Chain (鏈仔) -->
-                            <path id="part-m_chain" class="clickable-part machine-part" d="M 70,130 L 120,130 L 110,115 Z" stroke="#F5D0A9" stroke-width="3" fill="none" onclick="handlePartClick('m_chain')" />
-                            
-                            <!-- Brake (手擋) -->
-                            <path id="part-m_brake" class="clickable-part machine-part" d="M 188,72 L 205,108" stroke="#E53E3E" stroke-width="4.5" stroke-linecap="round" fill="none" onclick="handlePartClick('m_brake')" />
+                        <div class="anatomy-container">
+                            <div class="svg-container-map anatomy-map-card" style="max-width: 680px;">
+                                <svg id="bicycle-svg" viewBox="0 0 720 420" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <clipPath id="bike-img-clip">
+                                            <rect x="20" y="20" width="680" height="380" rx="14" ry="14"/>
+                                        </clipPath>
+                                        <filter id="bikePillShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+                                        </filter>
+                                    </defs>
 
-                            <!-- Bicycle Labels and Leader Lines -->
-                            <g class="machine-labels" opacity="0.85" font-size="9" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
-                                <!-- Tires (外奶/內奶) -->
-                                <text x="10" y="185" text-anchor="start">外奶/內奶 (Gōa-leng / Lāi-leng)</text>
-                                <line x1="45" y1="172" x2="60" y2="155" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- Handlebar (馬角仔) -->
-                                <text x="270" y="25" text-anchor="end">馬角仔 (Bé-kak-á)</text>
-                                <line x1="225" y1="28" x2="195" y2="48" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- Brakes (手擋) -->
-                                <text x="270" y="65" text-anchor="end">手擋 (Chhiú-tòng)</text>
-                                <line x1="225" y1="68" x2="192" y2="80" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- Chain (鏈仔) -->
-                                <text x="140" y="185" text-anchor="middle">鏈仔 (Liān-á)</text>
-                                <line x1="130" y1="172" x2="105" y2="130" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                            </g>
-                        </svg>
+                                    <!-- Central Bicycle Technical Illustration -->
+                                    <image href="images/bicycle_mechanics.jpg" x="20" y="20" width="680" height="380" clip-path="url(#bike-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                    <rect x="20" y="20" width="680" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
+
+                                    <!-- 1. 馬角仔 (Bé-kak-á) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_handlebar" onclick="handlePartClick('m_handlebar')">
+                                        <path class="leader-line" d="M 545,48 L 482,48 L 482,115" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="482" cy="115" r="14" fill="#6366f1" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="482" cy="115" r="6" fill="#6366f1" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="30" width="155" height="36" rx="18" fill="var(--bg-card)" stroke="#6366f1" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="52" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">馬角仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Bé-kak-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 手擋 (Tshiú-tòng) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_brake" onclick="handlePartClick('m_brake')">
+                                        <path class="leader-line" d="M 545,138 L 496,138 L 496,141" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="496" cy="141" r="14" fill="#ef4444" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="496" cy="141" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="120" width="155" height="36" rx="18" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="142" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手擋 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú-tòng)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 外奶/內奶 (Guā-ling / Lāi-ling) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_tire" onclick="handlePartClick('m_tire')">
+                                        <path class="leader-line" d="M 125,350 L 190,350 L 190,265" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="190" cy="265" r="16" fill="#f59e0b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="190" cy="265" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="35" y="335" width="180" height="36" rx="18" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="125" y="357" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">外奶/內奶 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Guā/Lāi)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 鏈仔 (Liān-á) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_chain" onclick="handlePartClick('m_chain')">
+                                        <path class="leader-line" d="M 427,350 L 346,350 L 346,275" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="346" cy="275" r="14" fill="#10b981" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="346" cy="275" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="355" y="335" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="427" y="357" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鏈仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Liān-á)</tspan></text>
+                                    </g>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
 
                     <!-- Subcategory 2: Motorbike/Car Parts Visual -->
                     <div id="machinery-car-area" class="machinery-panel">
-                        <!-- Interactive Car SVG Diagram (Shows locations of parts) -->
-                        <svg viewBox="0 0 280 145" class="machinery-svg" xmlns="http://www.w3.org/2000/svg" style="max-width: 280px; width: 100%; height: auto;">
-                            <!-- Car Body Outline Silhouette -->
-                            <path class="car-body-path" d="M 240,105 L 215,105 A 20,20 0 0,1 175,105 L 105,105 A 20,20 0 0,1 65,105 L 35,105 C 28,105 25,100 25,93 L 27,80 C 27,75 35,75 45,75 L 75,75 C 80,75 85,72 88,68 L 108,48 C 112,42 120,42 125,42 L 180,42 C 187,42 193,45 197,52 L 217,75 L 238,75 C 245,75 248,80 248,86 L 246,95 C 246,102 243,105 240,105 Z" />
-                            
-                            <!-- Windows -->
-                            <path d="M 122,48 L 150,48 L 150,70 L 102,70 Z" fill="rgba(186, 230, 253, 0.4)" stroke="var(--text-muted)" stroke-width="1.5" />
-                            <path d="M 155,48 L 178,48 L 195,70 L 155,70 Z" fill="rgba(186, 230, 253, 0.4)" stroke="var(--text-muted)" stroke-width="1.5" />
-                            
-                            <!-- Wheels -->
-                            <!-- Front Wheel -->
-                            <circle cx="85" cy="105" r="18" fill="#2d3748" stroke="#1a202c" stroke-width="2" />
-                            <circle cx="85" cy="105" r="8" fill="#a0aec0" stroke="#cbd5e0" stroke-width="1.5" />
-                            <!-- Rear Wheel -->
-                            <circle cx="195" cy="105" r="18" fill="#2d3748" stroke="#1a202c" stroke-width="2" />
-                            <circle cx="195" cy="105" r="8" fill="#a0aec0" stroke="#cbd5e0" stroke-width="1.5" />
+                        <div class="anatomy-container">
+                            <div class="svg-container-map anatomy-map-card" style="max-width: 680px;">
+                                <svg id="car-mechanics-svg" viewBox="0 0 720 420" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                                    <defs>
+                                        <clipPath id="car-img-clip">
+                                            <rect x="20" y="20" width="680" height="380" rx="14" ry="14"/>
+                                        </clipPath>
+                                        <filter id="carPillShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                            <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
+                                        </filter>
+                                    </defs>
 
-                            <!-- Interactive Part Hotspots -->
-                            <!-- Engine (引擎) -->
-                            <g id="car-part-m_engine" class="clickable-part machine-part" onclick="handlePartClick('m_engine')">
-                                <circle cx="55" cy="88" r="18" class="hotspot-glow" />
-                                <rect x="42" y="78" width="26" height="20" rx="3" fill="#4A5568" stroke="#cbd5e0" stroke-width="1" />
-                                <rect x="47" y="73" width="16" height="5" fill="#718096" />
-                                <circle cx="55" cy="88" r="5" fill="#E2E8F0" />
-                            </g>
-                            
-                            <!-- Battery (電瓶) -->
-                            <g id="car-part-m_battery" class="clickable-part machine-part" onclick="handlePartClick('m_battery')">
-                                <circle cx="82" cy="86" r="14" class="hotspot-glow" />
-                                <rect x="72" y="78" width="20" height="16" rx="2" fill="#2B6CB0" stroke="#cbd5e0" stroke-width="1" />
-                                <rect x="75" y="74" width="4" height="4" fill="#1A202C" />
-                                <rect x="85" y="74" width="4" height="4" fill="#E53E3E" />
-                            </g>
-                            
-                            <!-- Spark Plug (火星塞) -->
-                            <g id="car-part-m_sparkplug" class="clickable-part machine-part" onclick="handlePartClick('m_sparkplug')">
-                                <circle cx="55" cy="68" r="10" class="hotspot-glow" />
-                                <rect x="52" y="60" width="6" height="12" rx="1" fill="#E2E8F0" stroke="#1A202C" stroke-width="0.5" />
-                                <rect x="51" y="72" width="8" height="4" fill="#4A5568" />
-                                <line x1="55" y1="56" x2="55" y2="60" stroke="#e53e3e" stroke-width="1.5" />
-                            </g>
-                            
-                            <!-- Shock Absorber (避震器) -->
-                            <g id="car-part-m_shock" class="clickable-part machine-part" onclick="handlePartClick('m_shock')">
-                                <circle cx="85" cy="80" r="12" class="hotspot-glow" />
-                                <circle cx="195" cy="80" r="12" class="hotspot-glow" />
-                                <!-- Front Shock Spring -->
-                                <path d="M 81,70 C 89,72 89,74 81,76 C 89,78 89,80 81,82 C 89,84 89,86 85,88" fill="none" stroke="#E53E3E" stroke-width="2.5" stroke-linecap="round" />
-                                <line x1="85" y1="64" x2="85" y2="70" stroke="#A0AEC0" stroke-width="2" />
-                                <!-- Rear Shock Spring -->
-                                <path d="M 191,70 C 199,72 199,74 191,76 C 199,78 199,80 191,82 C 199,84 199,86 195,88" fill="none" stroke="#E53E3E" stroke-width="2.5" stroke-linecap="round" />
-                                <line x1="195" y1="64" x2="195" y2="70" stroke="#A0AEC0" stroke-width="2" />
-                            </g>
-                            
-                            <!-- Exhaust Pipe (排氣管) -->
-                            <g id="car-part-m_exhaust" class="clickable-part machine-part" onclick="handlePartClick('m_exhaust')">
-                                <circle cx="245" cy="98" r="15" class="hotspot-glow" />
-                                <path d="M 215,98 L 235,98 Q 245,98 250,104 L 262,104" fill="none" stroke="#718096" stroke-width="4" stroke-linecap="round" />
-                                <rect x="222" y="92" width="20" height="12" rx="2" fill="#4A5568" stroke="#cbd5e0" stroke-width="1" />
-                                <!-- Smoke Puffs -->
-                                <circle cx="268" cy="102" r="3" fill="#A0AEC0" opacity="0.6" style="pointer-events: none;" />
-                                <circle cx="274" cy="100" r="2" fill="#A0AEC0" opacity="0.4" style="pointer-events: none;" />
-                            </g>
+                                    <!-- Central Car/Motor Technical Cutaway Illustration -->
+                                    <image href="images/car_mechanics.jpg" x="20" y="20" width="680" height="380" clip-path="url(#car-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                    <rect x="20" y="20" width="680" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
-                            <!-- Car Labels and Dotted Lines -->
-                            <g class="machine-labels" opacity="0.85" font-size="9" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
-                                <!-- 引擎 (Ián-jín) -->
-                                <text x="15" y="25" text-anchor="start">引擎 (Ián-jín)</text>
-                                <line x1="35" y1="28" x2="55" y2="78" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- 火星塞 (Hué-tshenn-sai) -->
-                                <text x="80" y="18" text-anchor="middle">火星塞 (Hué-tshenn-sai)</text>
-                                <line x1="80" y1="22" x2="56" y2="60" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- 避震器 (Pī-tsín-khì) -->
-                                <text x="145" y="18" text-anchor="middle">避震器 (Pī-tsín-khì)</text>
-                                <line x1="145" y1="22" x2="195" y2="64" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                <line x1="145" y1="22" x2="85" y2="64" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- 電瓶 (Tiān-pân) -->
-                                <text x="230" y="25" text-anchor="end">電瓶 (Tiān-pân)</text>
-                                <line x1="210" y1="28" x2="82" y2="78" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                                
-                                <!-- 排氣管 (Pâi-khì-kńg) -->
-                                <text x="270" y="130" text-anchor="end">排氣管 (Pâi-khì-kńg)</text>
-                                <line x1="225" y1="127" x2="235" y2="100" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
-                            </g>
-                        </svg>
+                                    <!-- 1. 火星塞 (Hué-tshenn-sai) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_sparkplug" onclick="handlePartClick('m_sparkplug')">
+                                        <path class="leader-line" d="M 180,48 L 292,48 L 292,126" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="292" cy="126" r="14" fill="#f59e0b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="292" cy="126" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="35" y="30" width="155" height="36" rx="18" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="112" y="52" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">火星塞 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Tshenn-sai)</tspan></text>
+                                    </g>
 
-                        <!-- Card Grid (Kept below the diagram as requested) -->
-                        <div class="grid-visual text-center">
-                            <!-- Engine -->
-                            <div class="svg-card clickable-part" id="part-m_engine" onclick="handlePartClick('m_engine')">
-                                <svg viewBox="0 0 100 100" class="mini-svg">
-                                    <rect x="25" y="30" width="50" height="40" rx="6" fill="#4A5568" />
-                                    <rect x="35" y="20" width="30" height="10" fill="#718096" />
-                                    <circle cx="50" cy="50" r="12" fill="#E2E8F0" />
-                                    <path d="M 50,38 L 50,62 M 38,50 L 62,50" stroke="#1A202C" stroke-width="3" />
+                                    <!-- 2. 引擎 (Ián-jín) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_engine" onclick="handlePartClick('m_engine')">
+                                        <path class="leader-line" d="M 360,48 L 305,48 L 305,210" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="305" cy="210" r="16" fill="#ef4444" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="305" cy="210" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="285" y="30" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="357" y="52" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">引擎 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ián-jín)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 避震器 (Pī-tsìn-khì) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_shock" onclick="handlePartClick('m_shock')">
+                                        <path class="leader-line" d="M 535,48 L 496,48 L 496,195" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="496" cy="195" r="14" fill="#dc2626" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="496" cy="195" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="535" y="30" width="150" height="36" rx="18" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="610" y="52" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">避震器 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pī-tsìn)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 電瓶 (Tiān-pân) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_battery" onclick="handlePartClick('m_battery')">
+                                        <path class="leader-line" d="M 180,350 L 170,350 L 170,225" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="170" cy="225" r="14" fill="#2563eb" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="170" cy="225" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="35" y="335" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="107" y="357" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">電瓶 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiān-pân)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 排氣管 (Pâi-khì-kńg) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_exhaust" onclick="handlePartClick('m_exhaust')">
+                                        <path class="leader-line" d="M 535,350 L 550,350 L 550,278" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="550" cy="278" r="14" fill="#64748b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="550" cy="278" r="6" fill="#64748b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="535" y="335" width="150" height="36" rx="18" fill="var(--bg-card)" stroke="#64748b" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="610" y="357" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">排氣管 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pâi-khì)</tspan></text>
+                                    </g>
                                 </svg>
+                            </div>
+                        </div>
+
+                        <!-- Card Grid for Car components -->
+                        <div class="grid-visual text-center" style="margin-top: 15px;">
+                            <div class="svg-card clickable-part" id="part-m_engine" onclick="handlePartClick('m_engine')">
                                 <span class="card-label">引擎 (Ián-jín)</span>
                             </div>
-                            <!-- Spark Plug -->
                             <div class="svg-card clickable-part" id="part-m_sparkplug" onclick="handlePartClick('m_sparkplug')">
-                                <svg viewBox="0 0 100 100" class="mini-svg">
-                                    <rect x="42" y="20" width="16" height="40" rx="3" fill="#E2E8F0" />
-                                    <rect x="38" y="60" width="24" height="15" fill="#4A5568" />
-                                    <path d="M 50,75 L 50,88 L 44,88" stroke="#718096" stroke-width="3" stroke-linecap="round" fill="none" />
-                                    <line x1="42" y1="35" x2="58" y2="35" stroke="#CBD5E0" stroke-width="2" />
-                                    <line x1="42" y1="45" x2="58" y2="45" stroke="#CBD5E0" stroke-width="2" />
-                                </svg>
                                 <span class="card-label">火星塞 (Hué-tshenn-sai)</span>
                             </div>
-                            <!-- Shock Absorber -->
                             <div class="svg-card clickable-part" id="part-m_shock" onclick="handlePartClick('m_shock')">
-                                <svg viewBox="0 0 100 100" class="mini-svg">
-                                    <circle cx="50" cy="20" r="6" fill="#4A5568" />
-                                    <circle cx="50" cy="80" r="6" fill="#4A5568" />
-                                    <line x1="50" y1="26" x2="50" y2="74" stroke="#A0AEC0" stroke-width="4" />
-                                    <!-- Spring shape -->
-                                    <path d="M 42,32 C 58,36 58,40 42,44 C 58,48 58,52 42,56 C 58,60 58,64 42,68 C 58,72 58,74 50,74" fill="none" stroke="#E53E3E" stroke-width="4.5" stroke-linecap="round" />
-                                </svg>
-                                <span class="card-label">避震器 (Pī-tsín-khì)</span>
+                                <span class="card-label">避震器 (Pī-tsìn-khì)</span>
                             </div>
-                            <!-- Exhaust Pipe -->
                             <div class="svg-card clickable-part" id="part-m_exhaust" onclick="handlePartClick('m_exhaust')">
-                                <svg viewBox="0 0 100 100" class="mini-svg">
-                                    <path d="M 15,30 Q 35,30 45,50 L 80,50" stroke="#718096" stroke-width="6" fill="none" stroke-linecap="round" />
-                                    <rect x="52" y="42" width="28" height="16" rx="4" fill="#4A5568" />
-                                    <circle cx="80" cy="50" r="3" fill="#1A202C" />
-                                    <!-- Smoke puffs -->
-                                    <circle cx="88" cy="46" r="3" fill="#A0AEC0" opacity="0.6" />
-                                    <circle cx="94" cy="52" r="2" fill="#A0AEC0" opacity="0.4" />
-                                </svg>
                                 <span class="card-label">排氣管 (Pâi-khì-kńg)</span>
                             </div>
-                            <!-- Battery -->
                             <div class="svg-card clickable-part" id="part-m_battery" onclick="handlePartClick('m_battery')">
-                                <svg viewBox="0 0 100 100" class="mini-svg">
-                                    <rect x="25" y="32" width="50" height="42" rx="4" fill="#2B6CB0" />
-                                    <rect x="32" y="24" width="10" height="8" fill="#1A202C" />
-                                    <rect x="58" y="24" width="10" height="8" fill="#E53E3E" />
-                                    <!-- Plus & Minus signs -->
-                                    <text x="35" y="48" fill="#E2E8F0" font-size="16" font-weight="bold" text-anchor="middle">-</text>
-                                    <text x="63" y="48" fill="#E2E8F0" font-size="14" font-weight="bold" text-anchor="middle">+</text>
-                                </svg>
                                 <span class="card-label">電瓶 (Tiān-pân)</span>
                             </div>
                         </div>
