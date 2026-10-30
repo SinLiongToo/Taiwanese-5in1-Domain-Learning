@@ -454,6 +454,214 @@ const dataSource = {
                 description: "A long, fertile valley between the Central and Coastal mountain ranges, situated on the tectonic collision suture line."
             }
         }
+,
+        // 擴充：海域與離島海岸特寫 (Islands & Coasts)
+        g_green_island: {
+            tw: { 
+                name: "綠島 (火燒島)", 
+                sub: "Li̍k-tó / Hué-sio-tó", 
+                phonetic: "Li̍k-tó (Hué-sio-tó)", 
+                speech: "綠島", 
+                description: "臺灣東南方太平洋上的火山島嶼，擁有舉世罕見的朝日海底鹹水溫泉與美麗壯麗的珊瑚礁裙生態。",
+                audioSegments: ["綠", "島"]
+            },
+            en: { 
+                name: "Green Island", 
+                sub: "綠島", 
+                phonetic: "Green Island (Lyudao)", 
+                speech: "Green Island", 
+                description: "A volcanic island off Taiwan's eastern coast, world-famous for its rare saltwater hot springs and coral reefs."
+            }
+        },
+        g_orchid_island: {
+            tw: { 
+                name: "蘭嶼 (紅頭嶼)", 
+                sub: "Lân-sū / Âng-thâu-sū", 
+                phonetic: "Lân-sū (Âng-thâu-sū)", 
+                speech: "蘭嶼", 
+                description: "達悟族（雅美族）世居的熱帶島嶼，保留獨特的拼板舟造船技術、飛魚祭典傳統與地下石穴屋文化。",
+                audioSegments: ["蘭", "嶼_島"]
+            },
+            en: { 
+                name: "Orchid Island (Lanyu)", 
+                sub: "蘭嶼", 
+                phonetic: "Orchid Island", 
+                speech: "Orchid Island", 
+                description: "A tropical island home to the Indigenous Tao people, celebrated for handcrafted tatala canoes and flying fish festivals."
+            }
+        },
+        g_guishan_island: {
+            tw: { 
+                name: "龜山島", 
+                sub: "Ku-suann-tó", 
+                phonetic: "Ku-suann-tó", 
+                speech: "龜山島", 
+                description: "宜蘭頭城外海的活火山島，外形宛如海中浮龜。周圍有海底溫泉噴湧形成的 Tiffany 藍「牛奶海」與賞鯨勝景。",
+                audioSegments: ["龜", "山", "島"]
+            },
+            en: { 
+                name: "Guishan Island (Turtle Island)", 
+                sub: "龜山島", 
+                phonetic: "Turtle Island", 
+                speech: "Guishan Island", 
+                description: "An active volcanic island off Yilan shaped like a giant turtle, famous for underwater thermal vents creating Milky Sea."
+            }
+        },
+        g_pacific_ocean: {
+            tw: { 
+                name: "太平洋", 
+                sub: "Thài-pîng-iûnn", 
+                phonetic: "Thài-pîng-iûnn", 
+                speech: "太平洋", 
+                description: "地球上最遼闊的海洋，緊臨臺灣東海岸斷崖，深邃深藍的黑潮暖流長年北上，滋養極為豐沛的鯨豚與魚類資源。",
+                audioSegments: ["太平洋"]
+            },
+            en: { 
+                name: "Pacific Ocean", 
+                sub: "太平洋", 
+                phonetic: "Pacific Ocean", 
+                speech: "Pacific Ocean", 
+                description: "The world's largest ocean flanking Taiwan's east coast, where the deep Kuroshio Current nurtures rich marine biodiversity."
+            }
+        },
+        g_yehliu: {
+            tw: { 
+                name: "野柳女王頭", 
+                sub: "Iá-liú Lú-ông-thâu", 
+                phonetic: "Iá-liú Lú-ông-thâu", 
+                speech: "野柳女王頭", 
+                description: "北海岸萬里野柳岬角歷經千萬年海水差異侵蝕形成的蕈狀岩，維妙維肖如雍容華貴的英國女王側影。",
+                audioSegments: ["野", "女王頭"]
+            },
+            en: { 
+                name: "Yehliu Queen's Head", 
+                sub: "野柳女王頭", 
+                phonetic: "Queen's Head Rock", 
+                speech: "Queen's Head Rock", 
+                description: "An iconic mushroom rock hoodoo sculpted by marine erosion in Yehliu Geopark, resembling Queen Elizabeth."
+            }
+        },
+        g_eluanbi: {
+            tw: { 
+                name: "鵝鑾鼻", 
+                sub: "Gô-luân-phīnn", 
+                phonetic: "Gô-luân-phīnn", 
+                speech: "鵝鑾鼻", 
+                description: "臺灣本島最南端的石灰岩岬角，矗立著「東亞之光」鵝鑾鼻燈塔，隔著巴士海峽與菲律賓隔海相望。",
+                audioSegments: ["鵝", "鼻"]
+            },
+            en: { 
+                name: "Eluanbi (Cape Eluanbi)", 
+                sub: "鵝鑾鼻", 
+                phonetic: "Cape Eluanbi", 
+                speech: "Eluanbi", 
+                description: "The southernmost point of Taiwan island with its historic lighthouse overlooking the Bashi Channel."
+            }
+        },
+        // 擴充：名勝水體與人文古蹟 (Landmarks & Waters)
+        g_dajia_river: {
+            tw: { 
+                name: "大甲溪", 
+                sub: "Tāi-kah-khe", 
+                phonetic: "Tāi-kah-khe", 
+                speech: "大甲溪", 
+                description: "中部重要河流，上游七家灣溪棲息國寶魚櫻花鉤吻鮭，河口的高美濕地則是世界知名的夕陽生態保護區。",
+                audioSegments: ["大", "甲", "溪"]
+            },
+            en: { 
+                name: "Dajia River", 
+                sub: "大甲溪", 
+                phonetic: "Dajia River", 
+                speech: "Dajia River", 
+                description: "A major river in central Taiwan feeding wetlands at its mouth and sheltering endangered salmon in its headwaters."
+            }
+        },
+        g_xiuguluan_river: {
+            tw: { 
+                name: "秀姑巒溪", 
+                sub: "Siù-koo-luân-khe", 
+                phonetic: "Siù-koo-luân-khe", 
+                speech: "秀姑巒溪", 
+                description: "東臺灣第一大河，發源於中央山脈，深切海岸山脈形成奇岩絕壁，是臺灣最受歡迎的急流泛舟熱門勝地。",
+                audioSegments: ["姑", "溪"]
+            },
+            en: { 
+                name: "Xiuguluan River", 
+                sub: "秀姑巒溪", 
+                phonetic: "Xiuguluan River", 
+                speech: "Xiuguluan River", 
+                description: "The longest river in eastern Taiwan, carving spectacular gorges through Coastal Range, famous for whitewater rafting."
+            }
+        },
+        g_keelung_port: {
+            tw: { 
+                name: "基隆港", 
+                sub: "Ke-lâng-káng", 
+                phonetic: "Ke-lâng-káng", 
+                speech: "基隆港", 
+                description: "北臺灣最著名的天然深水良港，三面環山，長年海運繁盛，也是國際頂級豪華郵輪進出臺灣最重要的門戶。",
+                audioSegments: ["基隆", "港"]
+            },
+            en: { 
+                name: "Port of Keelung", 
+                sub: "基隆港", 
+                phonetic: "Keelung Port", 
+                speech: "Port of Keelung", 
+                description: "A deepwater harbor in northern Taiwan serving as the island's primary cruise passenger and maritime trading hub."
+            }
+        },
+        g_anping_fort: {
+            tw: { 
+                name: "安平古堡", 
+                sub: "An-pîng kóo-pó", 
+                phonetic: "An-pîng kóo-pó", 
+                speech: "安平古堡", 
+                description: "原名「熱蘭遮城」，1624年由荷蘭東印度公司修築於臺南，見證大航海時代臺灣與世界的首度繁盛交流。",
+                audioSegments: ["安平", "古堡"]
+            },
+            en: { 
+                name: "Anping Old Fort (Fort Zeelandia)", 
+                sub: "安平古堡", 
+                phonetic: "Anping Fort", 
+                speech: "Anping Fort", 
+                description: "Built in 1624 by the Dutch East India Company in Tainan, standing as the historic origin of modern Taiwan."
+            }
+        },
+        g_lukang: {
+            tw: { 
+                name: "鹿港小鎮", 
+                sub: "Lo̍k-káng", 
+                phonetic: "Lo̍k-káng", 
+                speech: "鹿港", 
+                description: "清代「一府二鹿三艋舺」的臺灣第二大商港，保留壯麗的鹿港天后宮、九曲巷、摸乳巷與百年木雕錫雕傳統工藝。",
+                audioSegments: ["鹿", "港"]
+            },
+            en: { 
+                name: "Lukang Historic Town", 
+                sub: "鹿港", 
+                phonetic: "Lukang", 
+                speech: "Lukang", 
+                description: "An ancient port town famous for temples, preserved winding alleys, traditional bakeries, and heritage handicrafts."
+            }
+        },
+        g_alishan_tree: {
+            tw: { 
+                name: "阿里山神木", 
+                sub: "A-lí-san Sîn-bo̍k", 
+                phonetic: "A-lí-san Sîn-bo̍k", 
+                speech: "神木", 
+                description: "高聳入雲的千年以上臺灣紅檜巨木，歷經雷擊與歲月考驗，是臺灣高山林相宏偉與生生不息的精神地標。",
+                audioSegments: ["阿里山", "神木"]
+            },
+            en: { 
+                name: "Alishan Sacred Tree", 
+                sub: "阿里山神木", 
+                phonetic: "Alishan Sacred Cypress", 
+                speech: "Alishan Sacred Tree", 
+                description: "Ancient Formosan cypress trees standing for millennia in the mist-shrouded high mountains of Alishan."
+            }
+        }
+
     },
     body: {
         b_brain: {
@@ -694,6 +902,300 @@ const dataSource = {
                 description: "The rigid structural framework of 206 bones that protects internal organs, enables movement, and produces blood cells in bone marrow."
             }
         }
+,
+        // 擴充：頭面五官特寫 (Head & Facial Features)
+        b_forehead: {
+            tw: { 
+                name: "額頭", 
+                sub: "Hia̍h-thâu", 
+                phonetic: "Hia̍h-thâu", 
+                speech: "額頭", 
+                description: "頭部正面雙眼上方的寬廣部位，額骨保護大腦額葉，額頭肌肉能配合表情做出挑眉、驚訝或思索的豐富動作。",
+                audioSegments: ["額頭"]
+            },
+            en: { 
+                name: "Forehead", 
+                sub: "額頭", 
+                phonetic: "Forehead", 
+                speech: "Forehead", 
+                description: "The upper frontal part of the face above the eyebrows, protecting the frontal lobe of the brain."
+            }
+        },
+        b_eyebrow: {
+            tw: { 
+                name: "目眉 (眉毛)", 
+                sub: "Ba̍k-bâi", 
+                phonetic: "Ba̍k-bâi", 
+                speech: "目眉", 
+                description: "眼眶上方呈拱形排列的細密毛髮，能有效阻擋額頭流下的汗水、雨水與灰塵掉入眼睛，並具有傳神的臉部溝通功能。",
+                audioSegments: ["目眉"]
+            },
+            en: { 
+                name: "Eyebrows", 
+                sub: "目眉", 
+                phonetic: "Eyebrows", 
+                speech: "Eyebrows", 
+                description: "Arched strips of hair above the eyes that prevent sweat and debris from entering the eyes and convey expressions."
+            }
+        },
+        b_teeth: {
+            tw: { 
+                name: "喙齒 (牙齒)", 
+                sub: "Tshuì-khí", 
+                phonetic: "Tshuì-khí", 
+                speech: "喙齒", 
+                description: "鑲嵌在上下顎齒槽內的堅硬鈣質器官，由極為堅硬的琺瑯質保護，負責切斷、撕裂並研磨食物，並協助咬字發音。",
+                audioSegments: ["喙", "齒"]
+            },
+            en: { 
+                name: "Teeth", 
+                sub: "喙齒", 
+                phonetic: "Teeth", 
+                speech: "Teeth", 
+                description: "Hard, calcified structures embedded in the jaws, coated in enamel for chewing food and aiding speech articulation."
+            }
+        },
+        b_tongue: {
+            tw: { 
+                name: "舌 (舌頭)", 
+                sub: "Chi̍h", 
+                phonetic: "Chi̍h", 
+                speech: "舌", 
+                description: "口腔底部靈巧的肌肉感覺器官，表面密布味蕾感知酸甜苦鹹鮮，能靈活攪拌食物協助吞嚥，更是清晰說話的核心部位。",
+                audioSegments: ["舌"]
+            },
+            en: { 
+                name: "Tongue", 
+                sub: "舌", 
+                phonetic: "Tongue", 
+                speech: "Tongue", 
+                description: "A muscular sensory organ in the mouth covered in taste buds, essential for tasting, chewing, swallowing, and speech."
+            }
+        },
+        b_chin: {
+            tw: { 
+                name: "下頦 (下巴)", 
+                sub: "Ē-hâi", 
+                phonetic: "Ē-hâi", 
+                speech: "下頦", 
+                description: "面部正下方由下顎骨前端構成的突出輪廓，兩側顳顎關節帶動下顎靈活開闔，支撐咀嚼、表情與言語。",
+                audioSegments: ["下頦"]
+            },
+            en: { 
+                name: "Chin", 
+                sub: "下頦", 
+                phonetic: "Chin", 
+                speech: "Chin", 
+                description: "The lower anatomical extremity of the face formed by the mandible, supporting jaw articulation and chewing."
+            }
+        },
+        b_neck: {
+            tw: { 
+                name: "頷頸 (頸部/脖子)", 
+                sub: "Ām-kún", 
+                phonetic: "Ām-kún", 
+                speech: "頷頸", 
+                description: "連接頭部與軀幹的重要生命通道，包含七節頸椎、頸動脈、氣管與食道，支撐頭部重量並提供靈巧的多角度旋轉。",
+                audioSegments: ["頷頸"]
+            },
+            en: { 
+                name: "Neck", 
+                sub: "頷頸", 
+                phonetic: "Neck", 
+                speech: "Neck", 
+                description: "The vital corridor connecting head to torso, encasing the cervical spine, carotid arteries, trachea, and esophagus."
+            }
+        },
+        // 擴充：胸腹內臟系統特寫 (Visceral System)
+        b_trachea: {
+            tw: { 
+                name: "氣管", 
+                sub: "Khì-kńg", 
+                phonetic: "Khì-kńg", 
+                speech: "氣管", 
+                description: "由十餘個彈性 C 型軟骨環支撐的呼吸管道，內壁佈滿纖毛與黏液吸附灰塵雜質，將新鮮空氣安全引導至兩側肺葉。",
+                audioSegments: ["氣管"]
+            },
+            en: { 
+                name: "Trachea (Windpipe)", 
+                sub: "氣管", 
+                phonetic: "Trachea", 
+                speech: "Trachea", 
+                description: "A cartilaginous tube lined with cilia that filters and conducts inhaled air from the larynx into the bronchi."
+            }
+        },
+        b_esophagus: {
+            tw: { 
+                name: "食道", 
+                sub: "Chia̍h-tō", 
+                phonetic: "Chia̍h-tō (Si̍t-tō)", 
+                speech: "食道", 
+                description: "位於氣管後方的長條形平滑肌肉管道，在吞嚥時藉由協調的波浪狀肌肉蠕動，迅速將食團從咽喉推進至胃中。",
+                audioSegments: ["食", "道"]
+            },
+            en: { 
+                name: "Esophagus (Gullet)", 
+                sub: "食道", 
+                phonetic: "Esophagus", 
+                speech: "Esophagus", 
+                description: "A muscular tube behind the windpipe that contracts rhythmically via peristalsis to move food into the stomach."
+            }
+        },
+        b_gallbladder: {
+            tw: { 
+                name: "膽 (膽囊)", 
+                sub: "Tánn", 
+                phonetic: "Tánn", 
+                speech: "膽", 
+                description: "緊貼於肝臟下方的梨形肌肉囊袋，負責暫存、濃縮肝臟分泌的苦綠色膽汁，並在吃進油脂食物時收縮排入十二指腸乳化脂肪。",
+                audioSegments: ["膽"]
+            },
+            en: { 
+                name: "Gallbladder", 
+                sub: "膽", 
+                phonetic: "Gallbladder", 
+                speech: "Gallbladder", 
+                description: "A pear-shaped organ beneath the liver that stores and concentrates bile to help digest fats in meals."
+            }
+        },
+        b_spleen: {
+            tw: { 
+                name: "脾 (脾臟)", 
+                sub: "Phî", 
+                phonetic: "Phî", 
+                speech: "脾", 
+                description: "位於左上腹部的暗紅色扁橢圓形器官，是人體最大的淋巴免疫過濾器，清除老化紅血球並儲存白血球與血小板抵禦感染。",
+                audioSegments: ["脾"]
+            },
+            en: { 
+                name: "Spleen", 
+                sub: "脾", 
+                phonetic: "Spleen", 
+                speech: "Spleen", 
+                description: "The largest lymphatic organ, filtering blood to destroy old red blood cells and holding reserves of immune cells."
+            }
+        },
+        b_bladder: {
+            tw: { 
+                name: "膀胱 (尿袋)", 
+                sub: "Phông-kong / Jiō-tē", 
+                phonetic: "Phông-kong", 
+                speech: "膀胱", 
+                description: "骨盆腔底部的彈性肌肉中空囊袋，收集由雙腎排出的尿液暫時儲存，平滑肌富有高度擴展彈性，隨神經訊號控制排尿。",
+                audioSegments: ["膀胱"]
+            },
+            en: { 
+                name: "Urinary Bladder", 
+                sub: "膀胱", 
+                phonetic: "Bladder", 
+                speech: "Bladder", 
+                description: "A hollow muscular and elastic organ in the pelvis that stores urine excreted by the kidneys before urination."
+            }
+        },
+        // 擴充：四肢關節與肢體特寫 (Limbs & Extremities)
+        b_shoulder: {
+            tw: { 
+                name: "肩胛頭 (肩膀)", 
+                sub: "King-kah-thâu", 
+                phonetic: "King-kah-thâu", 
+                speech: "肩胛頭", 
+                description: "連接手臂與胸廓上緣的球窩關節構造，具有全身人體活動角度最大的旋轉自由度，提供上肢靈活舉起、揮擺與承重。",
+                audioSegments: ["肩胛頭"]
+            },
+            en: { 
+                name: "Shoulder", 
+                sub: "肩胛頭", 
+                phonetic: "Shoulder", 
+                speech: "Shoulder", 
+                description: "A complex ball-and-socket joint that links upper arm to torso, offering the widest range of motion in the body."
+            }
+        },
+        b_elbow: {
+            tw: { 
+                name: "手肘 (手彎/手肘彎)", 
+                sub: "Tshiú-uann", 
+                phonetic: "Tshiú-uann", 
+                speech: "手肘", 
+                description: "連接上臂肱骨與前臂尺橈骨的關鍵鉸鏈關節，能做屈伸與轉動動作，讓手部能精巧地將食物送入口中或做工。",
+                audioSegments: ["手", "手肘_彎"]
+            },
+            en: { 
+                name: "Elbow", 
+                sub: "手肘", 
+                phonetic: "Elbow", 
+                speech: "Elbow", 
+                description: "A hinge joint connecting upper arm to forearm, enabling bending, extension, and forearm rotation."
+            }
+        },
+        b_fingers: {
+            tw: { 
+                name: "指頭仔 (手指)", 
+                sub: "Tsíng-thâu-á / Tshiú-tsí", 
+                phonetic: "Tsíng-thâu-á", 
+                speech: "指頭仔", 
+                description: "手掌末端靈巧敏銳的五根指節，指尖神經末梢極為豐富，具備精細的觸覺感受力，能執行握筆、撫摸與繁複工藝。",
+                audioSegments: ["指頭仔"]
+            },
+            en: { 
+                name: "Fingers", 
+                sub: "指頭仔", 
+                phonetic: "Fingers", 
+                speech: "Fingers", 
+                description: "Five articulated digits of the hand with dense tactile receptors and opposable thumb control for dexterous grasping."
+            }
+        },
+        b_knee: {
+            tw: { 
+                name: "跤頭趺 (膝蓋)", 
+                sub: "Kha-thâu-u", 
+                phonetic: "Kha-thâu-u", 
+                speech: "跤頭趺", 
+                description: "人體最大且構造最精密的承重鉸鏈關節，受髕骨與韌帶牢固保護，半月軟骨板如天然彈簧般吸收行走跑步的巨大衝擊。",
+                audioSegments: ["跤頭趺"]
+            },
+            en: { 
+                name: "Knee", 
+                sub: "跤頭趺", 
+                phonetic: "Knee", 
+                speech: "Knee", 
+                description: "The largest and most complex weight-bearing joint, cushioned by menisci cartilages to absorb shock while moving."
+            }
+        },
+        b_ankle: {
+            tw: { 
+                name: "跤目 (腳踝)", 
+                sub: "Kha-ba̍k", 
+                phonetic: "Kha-ba̍k", 
+                speech: "跤目", 
+                description: "連接小腿脛骨、腓骨與足部距骨的關節突起部位，由強韌韌帶包裹，維持站立行走時的足底受力平衡與微調角度。",
+                audioSegments: ["跤目"]
+            },
+            en: { 
+                name: "Ankle", 
+                sub: "跤目", 
+                phonetic: "Ankle", 
+                speech: "Ankle", 
+                description: "The joint uniting the lower leg bones with the foot, providing hinge stability and balance adjustments during movement."
+            }
+        },
+        b_sole: {
+            tw: { 
+                name: "跤底 (腳底)", 
+                sub: "Kha-té", 
+                phonetic: "Kha-té / Kha-tué", 
+                speech: "跤底", 
+                description: "直接與地面接觸的足底部，具有厚實耐磨的角質層與縱橫交錯的彈性足弓，能分散人體全身重量並具備避震減震機能。",
+                audioSegments: ["跤底"]
+            },
+            en: { 
+                name: "Sole (Foot Sole)", 
+                sub: "跤底", 
+                phonetic: "Sole", 
+                speech: "Sole of Foot", 
+                description: "The bottom surface of the foot featuring strong arches and thick skin cushions that absorb impact and disperse weight."
+            }
+        }
+
     },
     machinery: {
         m_tire: {
@@ -922,6 +1424,51 @@ const taigiAudioMap = {
     "電": "10283(1)", "瓶": "7628(1)",    // 電 (tiān) + 瓶 (pân) -> 電瓶
     "鐵馬": "13148(1)", "汽車": "22244(1)",
     
+
+    // === 擴充地理 (離島、海域、名勝、水體、古蹟) ===
+    "綠": "10695(1)",
+    "島": "5887(1)",
+    "蘭": "13115(1)",
+    "嶼_島": "5887(1)",
+    "龜": "12093(1)",
+    "太平洋": "23695(1)",
+    "野": "8003(1)",
+    "女王頭": "12756(1)",
+    "鵝": "12759(1)",
+    "鼻": "10938(1)",
+    "大": "187(1)",
+    "甲": "1847(1)",
+    "姑": "3765(1)",
+    "基隆": "20752(1)",
+    "港": "8544(1)",
+    "安平": "2281(1)",
+    "古堡": "1396(1)",
+    "鹿": "8086(1)",
+    "神木": "20876(1)",
+
+    // === 擴充人體器官與部位 (頭面五官、內臟、關節四肢) ===
+    "額頭": "12756(1)",
+    "目眉": "1926(1)",
+    "喙": "8174(1)",
+    "齒": "11570(1)",
+    "舌": "2599(1)",
+    "下頦": "526(1)",
+    "頷頸": "12082(1)",
+    "氣管": "28748(1)",
+    "食": "5570(1)",
+    "道": "10153(1)",
+    "膽": "12294(1)",
+    "脾": "8900(1)",
+    "膀胱": "10768(1)",
+    "肚": "3340(1)",
+    "肩胛頭": "4450(1)",
+    "手肘_彎": "794(1)",
+    "指頭仔": "5054(1)",
+    "手指": "987(1)",
+    "跤頭趺": "10132(1)",
+    "跤目": "10073(1)",
+    "跤底": "10085(1)",
+
     // 大分類
     "動物": "7040(1)", "昆蟲": "29449(1)", "地理": "2363(1)", "人體": "22371(1)", "機械": "11718(1)",
     
@@ -1084,6 +1631,8 @@ window.onload = () => {
     updateUI();
     updateDisplay();
     renderStampsAlbum();
+    updateHeaderDate();
+    initCanvasZoomInteractions();
 };
 
 // ==========================================================================
@@ -1245,7 +1794,7 @@ function submitQuizAnswer(partId) {
 function updateUI() {
     const t = uiStrings[currentLang];
     
-    document.getElementById("ui-title").innerHTML = `<i class="fa-solid fa-graduation-cap"></i> ${t.title}`;
+    document.getElementById("ui-title").textContent = t.title;
     document.getElementById("ui-subtitle").textContent = t.subtitle;
     document.getElementById("lang-toggle-btn").innerHTML = `<i class="fa-solid fa-language"></i> ${currentLang === "ZH" ? "English / 台語" : "台語 / English"}`;
     
@@ -1291,6 +1840,24 @@ function updateUI() {
     // Stamps
     document.getElementById("ui-stamps-title").innerHTML = `<i class="fa-solid fa-bookmark"></i> ${t.stampsTitle}`;
     document.getElementById("ui-stamps-desc").textContent = t.stampsDesc;
+
+    // Zoom preset buttons localization
+    const isZH = currentLang === "ZH";
+    const elGeoOverview = document.querySelector("#geo-preset-overview .preset-label");
+    if (elGeoOverview) elGeoOverview.textContent = isZH ? "全島地形總覽" : "All Taiwan";
+    const elGeoIslands = document.querySelector("#geo-preset-islands .preset-label");
+    if (elGeoIslands) elGeoIslands.textContent = isZH ? "放大：海域與離島" : "Zoom: Islands";
+    const elGeoLandmarks = document.querySelector("#geo-preset-landmarks .preset-label");
+    if (elGeoLandmarks) elGeoLandmarks.textContent = isZH ? "放大：名勝水體古蹟" : "Zoom: Landmarks";
+
+    const elBodyOverview = document.querySelector("#body-preset-overview .preset-label");
+    if (elBodyOverview) elBodyOverview.textContent = isZH ? "全身器官總覽" : "Whole Body";
+    const elBodyHead = document.querySelector("#body-preset-head .preset-label");
+    if (elBodyHead) elBodyHead.textContent = isZH ? "放大：頭面五官" : "Zoom: Head & Face";
+    const elBodyViscera = document.querySelector("#body-preset-viscera .preset-label");
+    if (elBodyViscera) elBodyViscera.textContent = isZH ? "放大：胸腹內臟" : "Zoom: Visceral";
+    const elBodyLimbs = document.querySelector("#body-preset-limbs .preset-label");
+    if (elBodyLimbs) elBodyLimbs.textContent = isZH ? "放大：四肢關節" : "Zoom: Limbs";
     
     document.getElementById("ui-current-mode-label").textContent = t.currentModeLabel;
     
@@ -1585,6 +2152,7 @@ function loadQuizQuestion() {
     document.getElementById("quizFeedback").className = "feedback-box";
     
     currentCorrectAnswer = quizQuestions[quizCurrentIndex];
+    autoZoomForQuiz(currentTab, currentCorrectAnswer);
     const data = dataSource[currentTab][currentCorrectAnswer];
     
     // Render question prompt
@@ -1905,4 +2473,200 @@ function toggleLanguage() {
         clearInterval(quizTimerInterval);
         startQuiz();
     }
+}
+
+
+// ==========================================================================
+// 8. Interactive Zoom & Smooth Pan Engine (Geography & Human Body)
+// ==========================================================================
+let currentGeoZoom = "overview";   // "overview" | "islands" | "landmarks"
+let currentBodyZoom = "overview";  // "overview" | "head" | "viscera" | "limbs"
+
+const zoomTransforms = {
+    geography: {
+        overview: "scale(1.0) translate(0px, 0px)",
+        islands: "scale(1.35) translate(-10px, 15px)",
+        landmarks: "scale(1.4) translate(-12px, -8px)"
+    },
+    body: {
+        overview: "scale(1.0) translate(0px, 0px)",
+        head: "scale(1.9) translate(0px, 135px)",
+        viscera: "scale(1.65) translate(0px, 20px)",
+        limbs: "scale(1.4) translate(0px, -20px)"
+    }
+};
+
+const canvasZoomLevels = {
+    geography: 1.0,
+    body: 1.0
+};
+
+function switchGeoZoomView(viewId, autoPlay = true) {
+    currentGeoZoom = viewId;
+    
+    // Update toolbar preset buttons
+    document.querySelectorAll("#geo-zoom-toolbar .zoom-preset-btn").forEach(btn => btn.classList.remove("active"));
+    const activeBtn = document.getElementById(`geo-preset-${viewId}`);
+    if (activeBtn) activeBtn.classList.add("active");
+    
+    // Switch active SVG layers with smooth opacity
+    document.querySelectorAll(".geo-zoom-layer").forEach(layer => {
+        layer.style.display = "none";
+        layer.classList.remove("active");
+    });
+    const targetLayer = document.getElementById(`geo-layer-${viewId}`);
+    if (targetLayer) {
+        targetLayer.style.display = "block";
+        setTimeout(() => targetLayer.classList.add("active"), 10);
+    }
+    
+    // Animate central SVG map image
+    const imgLayer = document.getElementById("geo-image-layer");
+    if (imgLayer) {
+        imgLayer.style.transform = zoomTransforms.geography[viewId] || "scale(1.0) translate(0px, 0px)";
+    }
+    canvasZoomLevels.geography = 1.0;
+    updateZoomBadge("geography");
+    
+    // Select first part of this view
+    const layerParts = targetLayer ? Array.from(targetLayer.querySelectorAll(".clickable-part")).map(el => el.id.replace("part-", "")) : [];
+    if (layerParts.length > 0) {
+        selectedPart = layerParts[0];
+        updateDisplay();
+        if (autoPlay && currentMode === "learn") {
+            speakCurrentWord();
+        }
+    }
+}
+
+function switchBodyZoomView(viewId, autoPlay = true) {
+    currentBodyZoom = viewId;
+    
+    // Update toolbar preset buttons
+    document.querySelectorAll("#body-zoom-toolbar .zoom-preset-btn").forEach(btn => btn.classList.remove("active"));
+    const activeBtn = document.getElementById(`body-preset-${viewId}`);
+    if (activeBtn) activeBtn.classList.add("active");
+    
+    // Switch active SVG layers with smooth opacity
+    document.querySelectorAll(".body-zoom-layer").forEach(layer => {
+        layer.style.display = "none";
+        layer.classList.remove("active");
+    });
+    const targetLayer = document.getElementById(`body-layer-${viewId}`);
+    if (targetLayer) {
+        targetLayer.style.display = "block";
+        setTimeout(() => targetLayer.classList.add("active"), 10);
+    }
+    
+    // Animate central anatomical model image
+    const imgLayer = document.getElementById("body-image-layer");
+    if (imgLayer) {
+        imgLayer.style.transform = zoomTransforms.body[viewId] || "scale(1.0) translate(0px, 0px)";
+    }
+    canvasZoomLevels.body = 1.0;
+    updateZoomBadge("body");
+    
+    // Select first part of this view
+    const layerParts = targetLayer ? Array.from(targetLayer.querySelectorAll(".clickable-part")).map(el => el.id.replace("part-", "")) : [];
+    if (layerParts.length > 0) {
+        selectedPart = layerParts[0];
+        updateDisplay();
+        if (autoPlay && currentMode === "learn") {
+            speakCurrentWord();
+        }
+    }
+}
+
+function stepZoom(domain, delta) {
+    const minScale = 0.8;
+    const maxScale = 2.5;
+    canvasZoomLevels[domain] = Math.min(maxScale, Math.max(minScale, +(canvasZoomLevels[domain] + delta).toFixed(2)));
+    
+    const layerId = domain === "geography" ? "geo-image-layer" : "body-image-layer";
+    const imgLayer = document.getElementById(layerId);
+    if (imgLayer) {
+        const currentView = domain === "geography" ? currentGeoZoom : currentBodyZoom;
+        const baseTransform = zoomTransforms[domain][currentView] || "scale(1.0) translate(0px, 0px)";
+        imgLayer.style.transform = `${baseTransform} scale(${canvasZoomLevels[domain]})`;
+    }
+    updateZoomBadge(domain);
+}
+
+function resetCanvasZoom(domain) {
+    canvasZoomLevels[domain] = 1.0;
+    const layerId = domain === "geography" ? "geo-image-layer" : "body-image-layer";
+    const imgLayer = document.getElementById(layerId);
+    if (imgLayer) {
+        const currentView = domain === "geography" ? currentGeoZoom : currentBodyZoom;
+        imgLayer.style.transform = zoomTransforms[domain][currentView] || "scale(1.0) translate(0px, 0px)";
+    }
+    updateZoomBadge(domain);
+}
+
+function updateZoomBadge(domain) {
+    const badgeId = domain === "geography" ? "geo-zoom-badge" : "body-zoom-badge";
+    const badge = document.getElementById(badgeId);
+    if (badge) {
+        const pct = Math.round(canvasZoomLevels[domain] * 100);
+        badge.textContent = `${pct}%`;
+    }
+}
+
+// Auto camera tracking for Quiz Mode
+function autoZoomForQuiz(domain, itemKey) {
+    if (domain === "geography") {
+        const islandKeys = ["g_green_island", "g_orchid_island", "g_guishan_island", "g_pacific_ocean", "g_yehliu", "g_eluanbi", "l_penghu", "l_taiwan_strait"];
+        const landmarkKeys = ["g_dajia_river", "g_xiuguluan_river", "g_keelung_port", "g_anping_fort", "g_lukang", "g_alishan_tree", "l_sunmoonlake", "l_taroko", "l_east_rift"];
+        if (islandKeys.includes(itemKey)) {
+            switchGeoZoomView("islands", false);
+        } else if (landmarkKeys.includes(itemKey)) {
+            switchGeoZoomView("landmarks", false);
+        } else {
+            switchGeoZoomView("overview", false);
+        }
+    } else if (domain === "body") {
+        const headKeys = ["b_forehead", "b_eyebrow", "b_teeth", "b_tongue", "b_chin", "b_neck", "b_eyes", "b_nose", "b_ear", "b_brain"];
+        const visceraKeys = ["b_heart", "b_lung", "b_trachea", "b_esophagus", "b_stomach", "b_liver", "b_gallbladder", "b_spleen", "b_kidney", "b_intestines", "b_bladder"];
+        const limbKeys = ["b_shoulder", "b_elbow", "b_hand", "b_fingers", "b_skin", "b_bone", "b_knee", "b_ankle", "b_sole", "b_foot"];
+        if (headKeys.includes(itemKey)) {
+            switchBodyZoomView("head", false);
+        } else if (visceraKeys.includes(itemKey)) {
+            switchBodyZoomView("viscera", false);
+        } else if (limbKeys.includes(itemKey)) {
+            switchBodyZoomView("limbs", false);
+        } else {
+            switchBodyZoomView("overview", false);
+        }
+    }
+}
+
+
+function initCanvasZoomInteractions() {
+    const geoCard = document.querySelector("#visual-geography .anatomy-map-card");
+    if (geoCard) {
+        geoCard.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 0.15 : -0.15;
+            stepZoom("geography", delta);
+        }, { passive: false });
+    }
+    const bodyCard = document.querySelector("#visual-body .anatomy-map-card");
+    if (bodyCard) {
+        bodyCard.addEventListener("wheel", (e) => {
+            e.preventDefault();
+            const delta = e.deltaY < 0 ? 0.15 : -0.15;
+            stepZoom("body", delta);
+        }, { passive: false });
+    }
+}
+
+
+function updateHeaderDate() {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const dateStr = `${year}-${month}-${day}`;
+    const el = document.getElementById("current-date-text");
+    if (el) el.textContent = dateStr;
 }

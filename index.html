@@ -23,6 +23,7 @@
                 </div>
             </div>
             <div class="control-actions">
+                <span id="header-date" class="date-badge" title="日期 (Date)"><i class="fa-regular fa-calendar-days"></i> <span id="current-date-text">2026-10-30</span></span>
                 <span id="speech-engine-badge" class="speech-badge badge-google">🔊 真人發音 (教育部)</span>
                 <button class="btn-icon" id="theme-toggle-btn" onclick="toggleTheme()" title="切換主題"><i class="fa-solid fa-moon"></i></button>
                 <button class="btn btn-primary" id="lang-toggle-btn" onclick="toggleLanguage()"><i class="fa-solid fa-language"></i> 台語 / English</button>
@@ -126,8 +127,29 @@
                     </div>
                 </div>
 
-                                                                <!-- 3. Taiwan Geography Interactive Visual -->
+                                                                                <!-- 3. Taiwan Geography Interactive Visual with Zoom-In Engine -->
                 <div id="visual-geography" class="visual-wrapper">
+                    <!-- Zoom & Viewpoint Control Toolbar -->
+                    <div class="zoom-toolbar" id="geo-zoom-toolbar">
+                        <div class="zoom-presets">
+                            <button class="btn btn-secondary zoom-preset-btn active" id="geo-preset-overview" onclick="switchGeoZoomView('overview')">
+                                <i class="fa-solid fa-map"></i> <span class="preset-label">全島地形總覽</span>
+                            </button>
+                            <button class="btn btn-secondary zoom-preset-btn" id="geo-preset-islands" onclick="switchGeoZoomView('islands')">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> <span class="preset-label">放大：海域與離島</span>
+                            </button>
+                            <button class="btn btn-secondary zoom-preset-btn" id="geo-preset-landmarks" onclick="switchGeoZoomView('landmarks')">
+                                <i class="fa-solid fa-water"></i> <span class="preset-label">放大：名勝水體古蹟</span>
+                            </button>
+                        </div>
+                        <div class="canvas-zoom-controls">
+                            <button class="btn-icon zoom-step-btn" title="放大 (Zoom In)" onclick="stepZoom('geography', 0.2)"><i class="fa-solid fa-plus"></i></button>
+                            <span class="zoom-level-badge" id="geo-zoom-badge">100%</span>
+                            <button class="btn-icon zoom-step-btn" title="縮小 (Zoom Out)" onclick="stepZoom('geography', -0.2)"><i class="fa-solid fa-minus"></i></button>
+                            <button class="btn-icon zoom-step-btn" title="重設全景 (Reset)" onclick="resetCanvasZoom('geography')"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                    </div>
+
                     <div class="anatomy-container">
                         <div class="svg-container-map anatomy-map-card">
                             <svg id="taiwan-map-svg" viewBox="0 0 720 660" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
@@ -140,8 +162,10 @@
                                     </filter>
                                 </defs>
 
-                                <!-- Central Topographic Relief Map Illustration -->
-                                <image href="images/taiwan_map.jpg" x="165" y="30" width="390" height="582" clip-path="url(#map-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                <!-- Central Topographic Relief Map Illustration with Zoom Transform -->
+                                <g id="geo-image-layer" class="zoom-target-image" style="transform-origin: 360px 320px; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
+                                    <image href="images/taiwan_map.jpg" x="165" y="30" width="390" height="582" clip-path="url(#map-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                </g>
                                 <rect x="165" y="30" width="390" height="582" rx="16" ry="16" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
                                 <!-- Compass Rose overlay on map bottom-right -->
@@ -155,140 +179,315 @@
                                     <circle r="3.5" fill="#fbbf24"/>
                                 </g>
 
-                                <!-- LEFT COLUMN CALLOUTS (7 items spaced 85px apart) -->
-                                <!-- 1. 淡水河 (Tām-tsuí-hô) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-r_tamsui" onclick="handlePartClick('r_tamsui')">
-                                    <path class="leader-line" d="M 155,58 L 260,58 L 376,146" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="376" cy="146" r="14" fill="#0284c7" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="376" cy="146" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">淡水河 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tām-tsuí-hô)</tspan></text>
+                                <!-- ================= LAYER 1: 全島總覽 (14 ITEMS) ================= -->
+                                <g id="geo-layer-overview" class="geo-zoom-layer active">
+                                    <!-- 1. 淡水河 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-r_tamsui" onclick="handlePartClick('r_tamsui')">
+                                        <path class="leader-line" d="M 155,58 L 260,58 L 376,146" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="376" cy="146" r="14" fill="#0284c7" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="376" cy="146" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">淡水河 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tām-tsuí)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 臺灣海峽 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_taiwan_strait" onclick="handlePartClick('l_taiwan_strait')">
+                                        <path class="leader-line" d="M 155,143 L 180,143 L 212,216" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="212" cy="216" r="14" fill="#2563eb" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="212" cy="216" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">臺灣海峽 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-kiap)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 澎湖 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_penghu" onclick="handlePartClick('l_penghu')">
+                                        <path class="leader-line" d="M 155,228 L 200,228 L 251,321" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="251" cy="321" r="14" fill="#059669" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="251" cy="321" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">澎湖 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phînn-ôo)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 濁水溪 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-r_zhuoshui" onclick="handlePartClick('r_zhuoshui')">
+                                        <path class="leader-line" d="M 155,313 L 240,313 L 313,286" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="313" cy="286" r="14" fill="#0369a1" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="313" cy="286" r="6" fill="#0369a1" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0369a1" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">濁水溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lô-tsuí)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 日月潭 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_sunmoonlake" onclick="handlePartClick('l_sunmoonlake')">
+                                        <path class="leader-line" d="M 155,398 L 250,398 L 352,298" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="352" cy="298" r="14" fill="#0ea5e9" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="352" cy="298" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">日月潭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ji̍t-gua̍t)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 阿里山 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_alishan" onclick="handlePartClick('m_alishan')">
+                                        <path class="leader-line" d="M 155,483 L 240,483 L 325,350" fill="none" stroke="#4d7c0f" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="325" cy="350" r="14" fill="#4d7c0f" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="325" cy="350" r="6" fill="#4d7c0f" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#4d7c0f" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">阿里山 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(A-lí-san)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 曾文溪 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-r_zengwen" onclick="handlePartClick('r_zengwen')">
+                                        <path class="leader-line" d="M 155,568 L 230,568 L 305,391" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="305" cy="391" r="14" fill="#0891b2" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="305" cy="391" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">曾文溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tsan-bûn)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 雪山山脈 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_xueshan" onclick="handlePartClick('m_xueshan')">
+                                        <path class="leader-line" d="M 565,58 L 470,58 L 372,193" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="372" cy="193" r="14" fill="#15803d" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="372" cy="193" r="6" fill="#15803d" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#15803d" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">雪山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Suat-suann)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 太魯閣 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_taroko" onclick="handlePartClick('l_taroko')">
+                                        <path class="leader-line" d="M 565,143 L 490,143 L 415,228" fill="none" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="415" cy="228" r="14" fill="#9333ea" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="415" cy="228" r="6" fill="#9333ea" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#9333ea" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">太魯閣 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Thài-lóo-koh)</tspan></text>
+                                    </g>
+
+                                    <!-- 10. 中央山脈 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_central" onclick="handlePartClick('m_central')">
+                                        <path class="leader-line" d="M 565,228 L 470,228 L 372,274" fill="none" stroke="#166534" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="372" cy="274" r="14" fill="#166534" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="372" cy="274" r="6" fill="#166534" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#166534" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">中央山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiong-iong)</tspan></text>
+                                    </g>
+
+                                    <!-- 11. 花東縱谷 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_east_rift" onclick="handlePartClick('l_east_rift')">
+                                        <path class="leader-line" d="M 565,313 L 485,313 L 403,333" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="403" cy="333" r="14" fill="#ea580c" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="403" cy="333" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">花東縱谷 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hua-tang)</tspan></text>
+                                    </g>
+
+                                    <!-- 12. 海岸山脈 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_coastal" onclick="handlePartClick('m_coastal')">
+                                        <path class="leader-line" d="M 565,398 L 495,398 L 426,344" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="426" cy="344" r="14" fill="#047857" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="426" cy="344" r="6" fill="#047857" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#047857" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">海岸山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-huānn)</tspan></text>
+                                    </g>
+
+                                    <!-- 13. 玉山山脈 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_yushan" onclick="handlePartClick('m_yushan')">
+                                        <path class="leader-line" d="M 565,483 L 460,483 L 356,344" fill="none" stroke="#065f46" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="356" cy="344" r="14" fill="#065f46" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="356" cy="344" r="6" fill="#065f46" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#065f46" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">玉山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Gio̍k-san)</tspan></text>
+                                    </g>
+
+                                    <!-- 14. 高屏溪 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-r_gaoping" onclick="handlePartClick('r_gaoping')">
+                                        <path class="leader-line" d="M 565,568 L 450,568 L 333,449" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="333" cy="449" r="14" fill="#0284c7" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="333" cy="449" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">高屏溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ko-pîn-khe)</tspan></text>
+                                    </g>
                                 </g>
 
-                                <!-- 2. 臺灣海峽 (Tâi-uân hái-kiap) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-l_taiwan_strait" onclick="handlePartClick('l_taiwan_strait')">
-                                    <path class="leader-line" d="M 155,143 L 180,143 L 212,216" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="212" cy="216" r="14" fill="#2563eb" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="212" cy="216" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">臺灣海峽 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-kiap)</tspan></text>
+                                <!-- ================= LAYER 2: 離島海域特寫 (8 ITEMS) ================= -->
+                                <g id="geo-layer-islands" class="geo-zoom-layer" style="display: none;">
+                                    <!-- 1. 綠島 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_green_island" onclick="handlePartClick('g_green_island')">
+                                        <path class="leader-line" d="M 155,90 L 280,90 L 415,410" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="415" cy="410" r="15" fill="#059669" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="415" cy="410" r="6.5" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="70" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="93" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">綠島 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Li̍k-tó)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 蘭嶼 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_orchid_island" onclick="handlePartClick('g_orchid_island')">
+                                        <path class="leader-line" d="M 155,220 L 290,220 L 425,480" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="425" cy="480" r="15" fill="#d97706" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="425" cy="480" r="6.5" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="200" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">蘭嶼 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lân-sū)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 澎湖群島 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_penghu" onclick="handlePartClick('l_penghu')">
+                                        <path class="leader-line" d="M 155,350 L 200,350 L 245,320" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="245" cy="320" r="15" fill="#2563eb" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="245" cy="320" r="6.5" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="330" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="353" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">澎湖群島 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phînn-ôo)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 臺灣海峽 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_taiwan_strait" onclick="handlePartClick('l_taiwan_strait')">
+                                        <path class="leader-line" d="M 155,480 L 180,480 L 210,215" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="210" cy="215" r="15" fill="#0284c7" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="210" cy="215" r="6.5" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="460" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="483" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">臺灣海峽 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-kiap)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 龜山島 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_guishan_island" onclick="handlePartClick('g_guishan_island')">
+                                        <path class="leader-line" d="M 565,90 L 490,90 L 430,145" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="430" cy="145" r="15" fill="#16a34a" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="430" cy="145" r="6.5" fill="#16a34a" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="70" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#16a34a" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="93" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">龜山島 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ku-suann)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 太平洋 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_pacific_ocean" onclick="handlePartClick('g_pacific_ocean')">
+                                        <path class="leader-line" d="M 565,220 L 510,220 L 470,280" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="470" cy="280" r="15" fill="#0284c7" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="470" cy="280" r="6.5" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="200" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">太平洋 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Thài-pîng)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 野柳女王頭 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_yehliu" onclick="handlePartClick('g_yehliu')">
+                                        <path class="leader-line" d="M 565,350 L 460,350 L 385,115" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="385" cy="115" r="15" fill="#e11d48" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="385" cy="115" r="6.5" fill="#e11d48" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="330" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#e11d48" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="353" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">野柳女王頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lú-ông)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 鵝鑾鼻 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_eluanbi" onclick="handlePartClick('g_eluanbi')">
+                                        <path class="leader-line" d="M 565,480 L 450,480 L 365,520" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="365" cy="520" r="15" fill="#7c3aed" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="365" cy="520" r="6.5" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="460" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="483" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鵝鑾鼻 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Gô-luân)</tspan></text>
+                                    </g>
                                 </g>
 
-                                <!-- 3. 澎湖 (Phînn-ôo) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-l_penghu" onclick="handlePartClick('l_penghu')">
-                                    <path class="leader-line" d="M 155,228 L 200,228 L 251,321" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="251" cy="321" r="14" fill="#059669" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="251" cy="321" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">澎湖 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phînn-ôo)</tspan></text>
-                                </g>
+                                <!-- ================= LAYER 3: 名勝水體古蹟特寫 (8 ITEMS) ================= -->
+                                <g id="geo-layer-landmarks" class="geo-zoom-layer" style="display: none;">
+                                    <!-- 1. 大甲溪 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_dajia_river" onclick="handlePartClick('g_dajia_river')">
+                                        <path class="leader-line" d="M 155,90 L 240,90 L 320,235" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="320" cy="235" r="15" fill="#0284c7" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="320" cy="235" r="6.5" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="70" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="93" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">大甲溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tāi-kah)</tspan></text>
+                                    </g>
 
-                                <!-- 4. 濁水溪 (Lô-tsuí-khe) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-r_zhuoshui" onclick="handlePartClick('r_zhuoshui')">
-                                    <path class="leader-line" d="M 155,313 L 240,313 L 313,286" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="313" cy="286" r="14" fill="#0369a1" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="313" cy="286" r="6" fill="#0369a1" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0369a1" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">濁水溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lô-tsuí-khe)</tspan></text>
-                                </g>
+                                    <!-- 2. 日月潭 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_sunmoonlake" onclick="handlePartClick('l_sunmoonlake')">
+                                        <path class="leader-line" d="M 155,220 L 250,220 L 352,298" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="352" cy="298" r="15" fill="#0ea5e9" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="352" cy="298" r="6.5" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="200" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">日月潭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ji̍t-gua̍t)</tspan></text>
+                                    </g>
 
-                                <!-- 5. 日月潭 (Ji̍t-gua̍t-thâm) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-l_sunmoonlake" onclick="handlePartClick('l_sunmoonlake')">
-                                    <path class="leader-line" d="M 155,398 L 250,398 L 352,298" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="352" cy="298" r="14" fill="#0ea5e9" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="352" cy="298" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">日月潭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ji̍t-gua̍t)</tspan></text>
-                                </g>
+                                    <!-- 3. 鹿港小鎮 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_lukang" onclick="handlePartClick('g_lukang')">
+                                        <path class="leader-line" d="M 155,350 L 230,350 L 295,275" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="295" cy="275" r="15" fill="#b45309" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="295" cy="275" r="6.5" fill="#b45309" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="330" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#b45309" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="353" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鹿港小鎮 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lo̍k-káng)</tspan></text>
+                                    </g>
 
-                                <!-- 6. 阿里山 (A-lí-san) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-m_alishan" onclick="handlePartClick('m_alishan')">
-                                    <path class="leader-line" d="M 155,483 L 240,483 L 325,350" fill="none" stroke="#4d7c0f" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="325" cy="350" r="14" fill="#4d7c0f" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="325" cy="350" r="6" fill="#4d7c0f" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#4d7c0f" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">阿里山 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(A-lí-san)</tspan></text>
-                                </g>
+                                    <!-- 4. 安平古堡 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_anping_fort" onclick="handlePartClick('g_anping_fort')">
+                                        <path class="leader-line" d="M 155,480 L 230,480 L 295,415" fill="none" stroke="#c2410c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="295" cy="415" r="15" fill="#c2410c" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="295" cy="415" r="6.5" fill="#c2410c" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="460" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#c2410c" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="82" y="483" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">安平古堡 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(An-pîng)</tspan></text>
+                                    </g>
 
-                                <!-- 7. 曾文溪 (Tsan-bûn-khe) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-r_zengwen" onclick="handlePartClick('r_zengwen')">
-                                    <path class="leader-line" d="M 155,568 L 230,568 L 305,391" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="305" cy="391" r="14" fill="#0891b2" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="305" cy="391" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="82" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">曾文溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tsan-bûn)</tspan></text>
-                                </g>
+                                    <!-- 5. 基隆港 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_keelung_port" onclick="handlePartClick('g_keelung_port')">
+                                        <path class="leader-line" d="M 565,90 L 480,90 L 400,125" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="400" cy="125" r="15" fill="#0369a1" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="400" cy="125" r="6.5" fill="#0369a1" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="70" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0369a1" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="93" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">基隆港 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ke-lâng)</tspan></text>
+                                    </g>
 
-                                <!-- RIGHT COLUMN CALLOUTS (7 items spaced 85px apart) -->
-                                <!-- 8. 雪山山脈 (Suat-suann) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-m_xueshan" onclick="handlePartClick('m_xueshan')">
-                                    <path class="leader-line" d="M 565,58 L 470,58 L 372,193" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="372" cy="193" r="14" fill="#15803d" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="372" cy="193" r="6" fill="#15803d" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#15803d" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">雪山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Suat-suann)</tspan></text>
-                                </g>
+                                    <!-- 6. 太魯閣峽谷 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-l_taroko" onclick="handlePartClick('l_taroko')">
+                                        <path class="leader-line" d="M 565,220 L 490,220 L 415,228" fill="none" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="415" cy="228" r="15" fill="#9333ea" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="415" cy="228" r="6.5" fill="#9333ea" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="200" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#9333ea" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="223" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">太魯閣 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Thài-lóo-koh)</tspan></text>
+                                    </g>
 
-                                <!-- 9. 太魯閣 (Thài-lóo-koh) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-l_taroko" onclick="handlePartClick('l_taroko')">
-                                    <path class="leader-line" d="M 565,143 L 490,143 L 415,228" fill="none" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="415" cy="228" r="14" fill="#9333ea" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="415" cy="228" r="6" fill="#9333ea" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#9333ea" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">太魯閣 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Thài-lóo-koh)</tspan></text>
-                                </g>
+                                    <!-- 7. 秀姑巒溪 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_xiuguluan_river" onclick="handlePartClick('g_xiuguluan_river')">
+                                        <path class="leader-line" d="M 565,350 L 485,350 L 410,350" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="410" cy="350" r="15" fill="#0891b2" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="410" cy="350" r="6.5" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="330" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="353" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">秀姑巒溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Siù-koo)</tspan></text>
+                                    </g>
 
-                                <!-- 10. 中央山脈 (Tiong-iong) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-m_central" onclick="handlePartClick('m_central')">
-                                    <path class="leader-line" d="M 565,228 L 470,228 L 372,274" fill="none" stroke="#166534" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="372" cy="274" r="14" fill="#166534" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="372" cy="274" r="6" fill="#166534" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#166534" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">中央山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiong-iong)</tspan></text>
-                                </g>
-
-                                <!-- 11. 花東縱谷 (Hua-tang) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-l_east_rift" onclick="handlePartClick('l_east_rift')">
-                                    <path class="leader-line" d="M 565,313 L 485,313 L 403,333" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="403" cy="333" r="14" fill="#ea580c" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="403" cy="333" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">花東縱谷 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hua-tang)</tspan></text>
-                                </g>
-
-                                <!-- 12. 海岸山脈 (Hái-huānn) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-m_coastal" onclick="handlePartClick('m_coastal')">
-                                    <path class="leader-line" d="M 565,398 L 495,398 L 426,344" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="426" cy="344" r="14" fill="#047857" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="426" cy="344" r="6" fill="#047857" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#047857" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">海岸山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-huānn)</tspan></text>
-                                </g>
-
-                                <!-- 13. 玉山山脈 (Gio̍k-san) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-m_yushan" onclick="handlePartClick('m_yushan')">
-                                    <path class="leader-line" d="M 565,483 L 460,483 L 356,344" fill="none" stroke="#065f46" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="356" cy="344" r="14" fill="#065f46" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="356" cy="344" r="6" fill="#065f46" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#065f46" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">玉山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Gio̍k-san)</tspan></text>
-                                </g>
-
-                                <!-- 14. 高屏溪 (Ko-pîn-khe) -->
-                                <g class="clickable-part geo-part-node body-part-node" id="part-r_gaoping" onclick="handlePartClick('r_gaoping')">
-                                    <path class="leader-line" d="M 565,568 L 450,568 L 333,449" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="333" cy="449" r="14" fill="#0284c7" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="333" cy="449" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
-                                    <text class="badge-title" x="637" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">高屏溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ko-pîn-khe)</tspan></text>
+                                    <!-- 8. 阿里山神木 -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-g_alishan_tree" onclick="handlePartClick('g_alishan_tree')">
+                                        <path class="leader-line" d="M 565,480 L 460,480 L 345,345" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="345" cy="345" r="15" fill="#15803d" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="345" cy="345" r="6.5" fill="#15803d" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="460" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#15803d" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                        <text class="badge-title" x="637" y="483" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">阿里山神木 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Sîn-bo̍k)</tspan></text>
+                                    </g>
                                 </g>
                             </svg>
                         </div>
                     </div>
                 </div>
 
-<!-- 4. Human Body Interactive Visual -->
+                <!-- 4. Human Body Interactive Visual with Zoom-In Engine -->
                 <div id="visual-body" class="visual-wrapper">
+                    <!-- Zoom & Viewpoint Control Toolbar -->
+                    <div class="zoom-toolbar" id="body-zoom-toolbar">
+                        <div class="zoom-presets">
+                            <button class="btn btn-secondary zoom-preset-btn active" id="body-preset-overview" onclick="switchBodyZoomView('overview')">
+                                <i class="fa-solid fa-child"></i> <span class="preset-label">全身器官總覽</span>
+                            </button>
+                            <button class="btn btn-secondary zoom-preset-btn" id="body-preset-head" onclick="switchBodyZoomView('head')">
+                                <i class="fa-solid fa-magnifying-glass-plus"></i> <span class="preset-label">放大：頭面五官</span>
+                            </button>
+                            <button class="btn btn-secondary zoom-preset-btn" id="body-preset-viscera" onclick="switchBodyZoomView('viscera')">
+                                <i class="fa-solid fa-heart-pulse"></i> <span class="preset-label">放大：胸腹內臟</span>
+                            </button>
+                            <button class="btn btn-secondary zoom-preset-btn" id="body-preset-limbs" onclick="switchBodyZoomView('limbs')">
+                                <i class="fa-solid fa-hand"></i> <span class="preset-label">放大：四肢關節</span>
+                            </button>
+                        </div>
+                        <div class="canvas-zoom-controls">
+                            <button class="btn-icon zoom-step-btn" title="放大 (Zoom In)" onclick="stepZoom('body', 0.2)"><i class="fa-solid fa-plus"></i></button>
+                            <span class="zoom-level-badge" id="body-zoom-badge">100%</span>
+                            <button class="btn-icon zoom-step-btn" title="縮小 (Zoom Out)" onclick="stepZoom('body', -0.2)"><i class="fa-solid fa-minus"></i></button>
+                            <button class="btn-icon zoom-step-btn" title="重設全景 (Reset)" onclick="resetCanvasZoom('body')"><i class="fa-solid fa-rotate-left"></i></button>
+                        </div>
+                    </div>
+
                     <div class="anatomy-container">
                         <div class="svg-container-map anatomy-map-card">
                             <svg id="human-body-svg" viewBox="0 0 720 660" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
@@ -301,143 +500,434 @@
                                     </filter>
                                 </defs>
 
-                                <!-- Central Anatomical Illustration -->
-                                <image href="images/human_body.jpg" x="165" y="30" width="390" height="582" clip-path="url(#body-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                <!-- Central Anatomical Illustration with Zoom Transform -->
+                                <g id="body-image-layer" class="zoom-target-image" style="transform-origin: 360px 320px; transition: transform 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);">
+                                    <image href="images/human_body.jpg" x="165" y="30" width="390" height="582" clip-path="url(#body-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                </g>
                                 <rect x="165" y="30" width="390" height="582" rx="16" ry="16" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
-                                <!-- LEFT COLUMN CALLOUTS (7 items spaced 85px apart) -->
-                                <!-- 1. 腦 (Náu) -->
-                                <g class="clickable-part body-part-node" id="part-b_brain" onclick="handlePartClick('b_brain')">
-                                    <path class="leader-line" d="M 155,58 L 260,58 L 360,81" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="360" cy="81" r="14" fill="#dc2626" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="360" cy="81" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腦 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Náu)</tspan></text>
+                                <!-- ================= LAYER 1: 全身總覽 (14 ITEMS) ================= -->
+                                <g id="body-layer-overview" class="body-zoom-layer active">
+                                    <!-- 1. 腦 -->
+                                    <g class="clickable-part body-part-node" id="part-b_brain" onclick="handlePartClick('b_brain')">
+                                        <path class="leader-line" d="M 155,58 L 260,58 L 360,81" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="81" r="14" fill="#dc2626" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="360" cy="81" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腦 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Náu)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 耳仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_ear" onclick="handlePartClick('b_ear')">
+                                        <path class="leader-line" d="M 155,143 L 250,143 L 335,120" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="335" cy="120" r="14" fill="#ea580c" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="335" cy="120" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">耳仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hīnn-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 肺 -->
+                                    <g class="clickable-part body-part-node" id="part-b_lung" onclick="handlePartClick('b_lung')">
+                                        <path class="leader-line" d="M 155,228 L 250,228 L 340,200" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="340" cy="200" r="14" fill="#2563eb" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="340" cy="200" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肺 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hì)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 肝臟 -->
+                                    <g class="clickable-part body-part-node" id="part-b_liver" onclick="handlePartClick('b_liver')">
+                                        <path class="leader-line" d="M 155,313 L 250,313 L 344,246" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="344" cy="246" r="14" fill="#b45309" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="344" cy="246" r="6" fill="#b45309" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#b45309" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肝臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kuann)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 腰子 -->
+                                    <g class="clickable-part body-part-node" id="part-b_kidney" onclick="handlePartClick('b_kidney')">
+                                        <path class="leader-line" d="M 155,398 L 250,398 L 345,274" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="345" cy="274" r="14" fill="#7c3aed" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="345" cy="274" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腰子 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Io-tsí)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 手 -->
+                                    <g class="clickable-part body-part-node" id="part-b_hand" onclick="handlePartClick('b_hand')">
+                                        <path class="leader-line" d="M 155,483 L 220,483 L 289,334" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="289" cy="334" r="14" fill="#d97706" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="289" cy="334" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 骨頭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_bone" onclick="handlePartClick('b_bone')">
+                                        <path class="leader-line" d="M 155,568 L 250,568 L 349,389" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="349" cy="389" r="14" fill="#475569" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="349" cy="389" r="6" fill="#475569" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#475569" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">骨頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kut-thâu)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 目睭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_eyes" onclick="handlePartClick('b_eyes')">
+                                        <path class="leader-line" d="M 565,58 L 470,58 L 375,110" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="375" cy="110" r="14" fill="#0284c7" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="375" cy="110" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">目睭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ba̍k-tsiu)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 鼻仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_nose" onclick="handlePartClick('b_nose')">
+                                        <path class="leader-line" d="M 565,143 L 470,143 L 360,127" fill="none" stroke="#db2777" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="127" r="14" fill="#db2777" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="360" cy="127" r="6" fill="#db2777" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#db2777" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鼻仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phīnn-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 10. 心臟 -->
+                                    <g class="clickable-part body-part-node" id="part-b_heart" onclick="handlePartClick('b_heart')">
+                                        <path class="leader-line" d="M 565,228 L 470,228 L 372,212" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="372" cy="212" r="14" fill="#e11d48" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="372" cy="212" r="6" fill="#e11d48" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#e11d48" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">心臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Sim-tsōng)</tspan></text>
+                                    </g>
+
+                                    <!-- 11. 皮膚 -->
+                                    <g class="clickable-part body-part-node" id="part-b_skin" onclick="handlePartClick('b_skin')">
+                                        <path class="leader-line" d="M 565,313 L 470,313 L 404,228" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="404" cy="228" r="14" fill="#ca8a04" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="404" cy="228" r="6" fill="#ca8a04" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ca8a04" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">皮膚 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phuê-hu)</tspan></text>
+                                    </g>
+
+                                    <!-- 12. 胃 -->
+                                    <g class="clickable-part body-part-node" id="part-b_stomach" onclick="handlePartClick('b_stomach')">
+                                        <path class="leader-line" d="M 565,398 L 470,398 L 374,251" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="374" cy="251" r="14" fill="#f59e0b" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="374" cy="251" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">胃 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Uī)</tspan></text>
+                                    </g>
+
+                                    <!-- 13. 腸仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_intestines" onclick="handlePartClick('b_intestines')">
+                                        <path class="leader-line" d="M 565,483 L 470,483 L 360,306" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="306" r="14" fill="#059669" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="360" cy="306" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腸仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tn̂g-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 14. 跤 -->
+                                    <g class="clickable-part body-part-node" id="part-b_foot" onclick="handlePartClick('b_foot')">
+                                        <path class="leader-line" d="M 565,568 L 450,568 L 375,582" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="375" cy="582" r="14" fill="#0891b2" opacity="0.3"/>
+                                        <circle class="hotspot-core" cx="375" cy="582" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha)</tspan></text>
+                                    </g>
                                 </g>
 
-                                <!-- 2. 耳仔 (Hīnn-á) -->
-                                <g class="clickable-part body-part-node" id="part-b_ear" onclick="handlePartClick('b_ear')">
-                                    <path class="leader-line" d="M 155,143 L 250,143 L 335,120" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="335" cy="120" r="14" fill="#ea580c" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="335" cy="120" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">耳仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hīnn-á)</tspan></text>
+                                <!-- ================= LAYER 2: 頭面五官特寫 (10 ITEMS) ================= -->
+                                <g id="body-layer-head" class="body-zoom-layer" style="display: none;">
+                                    <!-- 1. 額頭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_forehead" onclick="handlePartClick('b_forehead')">
+                                        <path class="leader-line" d="M 155,75 L 260,75 L 360,65" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="65" r="14" fill="#d97706" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="65" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="55" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">額頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hia̍h-thâu)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 目眉 -->
+                                    <g class="clickable-part body-part-node" id="part-b_eyebrow" onclick="handlePartClick('b_eyebrow')">
+                                        <path class="leader-line" d="M 155,185 L 260,185 L 348,88" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="348" cy="88" r="14" fill="#059669" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="348" cy="88" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="165" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="188" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">目眉 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ba̍k-bâi)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 腦 -->
+                                    <g class="clickable-part body-part-node" id="part-b_brain" onclick="handlePartClick('b_brain')">
+                                        <path class="leader-line" d="M 155,295 L 260,295 L 360,50" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="50" r="14" fill="#dc2626" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="50" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="275" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腦 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Náu)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 耳仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_ear" onclick="handlePartClick('b_ear')">
+                                        <path class="leader-line" d="M 155,405 L 250,405 L 318,105" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="318" cy="105" r="14" fill="#ea580c" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="318" cy="105" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="385" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="408" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">耳仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hīnn-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 頷頸 -->
+                                    <g class="clickable-part body-part-node" id="part-b_neck" onclick="handlePartClick('b_neck')">
+                                        <path class="leader-line" d="M 155,515 L 260,515 L 360,160" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="160" r="14" fill="#7c3aed" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="160" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="495" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="518" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">頷頸 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ām-kún)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 目睭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_eyes" onclick="handlePartClick('b_eyes')">
+                                        <path class="leader-line" d="M 565,75 L 460,75 L 375,90" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="375" cy="90" r="14" fill="#0284c7" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="375" cy="90" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="55" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">目睭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ba̍k-tsiu)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 鼻仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_nose" onclick="handlePartClick('b_nose')">
+                                        <path class="leader-line" d="M 565,185 L 460,185 L 360,108" fill="none" stroke="#db2777" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="108" r="14" fill="#db2777" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="108" r="6" fill="#db2777" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="165" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#db2777" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="188" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鼻仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phīnn-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 喙齒 -->
+                                    <g class="clickable-part body-part-node" id="part-b_teeth" onclick="handlePartClick('b_teeth')">
+                                        <path class="leader-line" d="M 565,295 L 460,295 L 360,126" fill="none" stroke="#0d9488" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="126" r="14" fill="#0d9488" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="126" r="6" fill="#0d9488" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="275" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0d9488" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">喙齒 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshuì-khí)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 舌 -->
+                                    <g class="clickable-part body-part-node" id="part-b_tongue" onclick="handlePartClick('b_tongue')">
+                                        <path class="leader-line" d="M 565,405 L 460,405 L 360,135" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="135" r="14" fill="#e11d48" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="135" r="6" fill="#e11d48" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="385" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#e11d48" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="408" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">舌 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Chi̍h)</tspan></text>
+                                    </g>
+
+                                    <!-- 10. 下頦 -->
+                                    <g class="clickable-part body-part-node" id="part-b_chin" onclick="handlePartClick('b_chin')">
+                                        <path class="leader-line" d="M 565,515 L 460,515 L 360,146" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="146" r="14" fill="#ca8a04" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="146" r="6" fill="#ca8a04" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="495" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#ca8a04" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="518" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">下頦 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ē-hâi)</tspan></text>
+                                    </g>
                                 </g>
 
-                                <!-- 3. 肺 (Hì) -->
-                                <g class="clickable-part body-part-node" id="part-b_lung" onclick="handlePartClick('b_lung')">
-                                    <path class="leader-line" d="M 155,228 L 250,228 L 340,200" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="340" cy="200" r="14" fill="#2563eb" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="340" cy="200" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肺 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hì)</tspan></text>
+                                <!-- ================= LAYER 3: 胸腹內臟特寫 (11 ITEMS) ================= -->
+                                <g id="body-layer-viscera" class="body-zoom-layer" style="display: none;">
+                                    <!-- 1. 肺 -->
+                                    <g class="clickable-part body-part-node" id="part-b_lung" onclick="handlePartClick('b_lung')">
+                                        <path class="leader-line" d="M 155,60 L 250,60 L 330,185" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="330" cy="185" r="14" fill="#2563eb" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="330" cy="185" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="42" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肺 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hì)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 氣管 -->
+                                    <g class="clickable-part body-part-node" id="part-b_trachea" onclick="handlePartClick('b_trachea')">
+                                        <path class="leader-line" d="M 155,160 L 260,160 L 355,155" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="355" cy="155" r="14" fill="#0891b2" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="355" cy="155" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="142" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="164" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">氣管 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Khì-kńg)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 胃 -->
+                                    <g class="clickable-part body-part-node" id="part-b_stomach" onclick="handlePartClick('b_stomach')">
+                                        <path class="leader-line" d="M 155,260 L 260,260 L 375,250" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="375" cy="250" r="14" fill="#f59e0b" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="375" cy="250" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="242" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="264" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">胃 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Uī)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 脾 -->
+                                    <g class="clickable-part body-part-node" id="part-b_spleen" onclick="handlePartClick('b_spleen')">
+                                        <path class="leader-line" d="M 155,360 L 260,360 L 385,235" fill="none" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="385" cy="235" r="14" fill="#9333ea" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="385" cy="235" r="6" fill="#9333ea" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="342" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#9333ea" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="364" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">脾 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phî)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 腰子 -->
+                                    <g class="clickable-part body-part-node" id="part-b_kidney" onclick="handlePartClick('b_kidney')">
+                                        <path class="leader-line" d="M 155,460 L 250,460 L 340,275" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="340" cy="275" r="14" fill="#7c3aed" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="340" cy="275" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="442" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="464" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腰子 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Io-tsí)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 心臟 -->
+                                    <g class="clickable-part body-part-node" id="part-b_heart" onclick="handlePartClick('b_heart')">
+                                        <path class="leader-line" d="M 565,60 L 470,60 L 370,200" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="370" cy="200" r="14" fill="#e11d48" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="370" cy="200" r="6" fill="#e11d48" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="42" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#e11d48" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="64" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">心臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Sim-tsōng)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 食道 -->
+                                    <g class="clickable-part body-part-node" id="part-b_esophagus" onclick="handlePartClick('b_esophagus')">
+                                        <path class="leader-line" d="M 565,160 L 470,160 L 365,170" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="365" cy="170" r="14" fill="#d97706" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="365" cy="170" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="142" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="164" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">食道 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Chia̍h-tō)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 肝臟 -->
+                                    <g class="clickable-part body-part-node" id="part-b_liver" onclick="handlePartClick('b_liver')">
+                                        <path class="leader-line" d="M 565,260 L 460,260 L 340,235" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="340" cy="235" r="14" fill="#b45309" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="340" cy="235" r="6" fill="#b45309" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="242" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#b45309" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="264" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肝臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kuann)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 膽 -->
+                                    <g class="clickable-part body-part-node" id="part-b_gallbladder" onclick="handlePartClick('b_gallbladder')">
+                                        <path class="leader-line" d="M 565,360 L 460,360 L 345,245" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="345" cy="245" r="14" fill="#16a34a" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="345" cy="245" r="6" fill="#16a34a" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="342" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#16a34a" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="364" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">膽 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tánn)</tspan></text>
+                                    </g>
+
+                                    <!-- 10. 腸仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_intestines" onclick="handlePartClick('b_intestines')">
+                                        <path class="leader-line" d="M 565,460 L 460,460 L 360,310" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="310" r="14" fill="#059669" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="310" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="442" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="464" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腸仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tn̂g-á)</tspan></text>
+                                    </g>
+
+                                    <!-- 11. 膀胱 -->
+                                    <g class="clickable-part body-part-node" id="part-b_bladder" onclick="handlePartClick('b_bladder')">
+                                        <path class="leader-line" d="M 565,550 L 460,550 L 360,360" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="360" r="14" fill="#ca8a04" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="360" r="6" fill="#ca8a04" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="532" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ca8a04" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="554" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">膀胱 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phông-kong)</tspan></text>
+                                    </g>
                                 </g>
 
-                                <!-- 4. 肝臟 (Kuann) -->
-                                <g class="clickable-part body-part-node" id="part-b_liver" onclick="handlePartClick('b_liver')">
-                                    <path class="leader-line" d="M 155,313 L 250,313 L 344,246" fill="none" stroke="#b45309" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="344" cy="246" r="14" fill="#b45309" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="344" cy="246" r="6" fill="#b45309" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#b45309" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肝臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kuann)</tspan></text>
-                                </g>
+                                <!-- ================= LAYER 4: 四肢關節特寫 (10 ITEMS) ================= -->
+                                <g id="body-layer-limbs" class="body-zoom-layer" style="display: none;">
+                                    <!-- 1. 肩胛頭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_shoulder" onclick="handlePartClick('b_shoulder')">
+                                        <path class="leader-line" d="M 155,75 L 250,75 L 315,175" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="315" cy="175" r="14" fill="#0284c7" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="315" cy="175" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="55" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">肩胛頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(King-kah)</tspan></text>
+                                    </g>
 
-                                <!-- 5. 腰子 / 腎臟 (Io-tsí) -->
-                                <g class="clickable-part body-part-node" id="part-b_kidney" onclick="handlePartClick('b_kidney')">
-                                    <path class="leader-line" d="M 155,398 L 250,398 L 345,274" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="345" cy="274" r="14" fill="#7c3aed" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="345" cy="274" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腰子 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Io-tsí)</tspan></text>
-                                </g>
+                                    <!-- 2. 手肘 -->
+                                    <g class="clickable-part body-part-node" id="part-b_elbow" onclick="handlePartClick('b_elbow')">
+                                        <path class="leader-line" d="M 155,185 L 240,185 L 295,260" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="295" cy="260" r="14" fill="#ea580c" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="295" cy="260" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="165" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="188" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手肘 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú-uann)</tspan></text>
+                                    </g>
 
-                                <!-- 6. 手 (Tshiú) -->
-                                <g class="clickable-part body-part-node" id="part-b_hand" onclick="handlePartClick('b_hand')">
-                                    <path class="leader-line" d="M 155,483 L 220,483 L 289,334" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="289" cy="334" r="14" fill="#d97706" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="289" cy="334" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú)</tspan></text>
-                                </g>
+                                    <!-- 3. 手 -->
+                                    <g class="clickable-part body-part-node" id="part-b_hand" onclick="handlePartClick('b_hand')">
+                                        <path class="leader-line" d="M 155,295 L 230,295 L 275,335" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="275" cy="335" r="14" fill="#d97706" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="275" cy="335" r="6" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="275" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú)</tspan></text>
+                                    </g>
 
-                                <!-- 7. 骨頭 (Kut-thâu) -->
-                                <g class="clickable-part body-part-node" id="part-b_bone" onclick="handlePartClick('b_bone')">
-                                    <path class="leader-line" d="M 155,568 L 250,568 L 349,389" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="349" cy="389" r="14" fill="#475569" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="349" cy="389" r="6" fill="#475569" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="10" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#475569" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="82" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">骨頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kut-thâu)</tspan></text>
-                                </g>
+                                    <!-- 4. 指頭仔 -->
+                                    <g class="clickable-part body-part-node" id="part-b_fingers" onclick="handlePartClick('b_fingers')">
+                                        <path class="leader-line" d="M 155,405 L 230,405 L 270,375" fill="none" stroke="#16a34a" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="270" cy="375" r="14" fill="#16a34a" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="270" cy="375" r="6" fill="#16a34a" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="385" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#16a34a" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="408" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">指頭仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tsíng-thâu)</tspan></text>
+                                    </g>
 
-                                <!-- RIGHT COLUMN CALLOUTS (7 items spaced 85px apart) -->
-                                <!-- 8. 目睭 (Ba̍k-tsiu) -->
-                                <g class="clickable-part body-part-node" id="part-b_eyes" onclick="handlePartClick('b_eyes')">
-                                    <path class="leader-line" d="M 565,58 L 470,58 L 375,110" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="375" cy="110" r="14" fill="#0284c7" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="375" cy="110" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">目睭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ba̍k-tsiu)</tspan></text>
-                                </g>
+                                    <!-- 5. 皮膚 -->
+                                    <g class="clickable-part body-part-node" id="part-b_skin" onclick="handlePartClick('b_skin')">
+                                        <path class="leader-line" d="M 155,515 L 260,515 L 420,250" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="420" cy="250" r="14" fill="#ca8a04" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="420" cy="250" r="6" fill="#ca8a04" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="10" y="495" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#ca8a04" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="82" y="518" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">皮膚 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phuê-hu)</tspan></text>
+                                    </g>
 
-                                <!-- 9. 鼻仔 / 喙 (Phīnn-á / Tshuì) -->
-                                <g class="clickable-part body-part-node" id="part-b_nose" onclick="handlePartClick('b_nose')">
-                                    <path class="leader-line" d="M 565,143 L 470,143 L 360,127" fill="none" stroke="#db2777" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="360" cy="127" r="14" fill="#db2777" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="360" cy="127" r="6" fill="#db2777" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#db2777" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鼻仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phīnn-á)</tspan></text>
-                                </g>
+                                    <!-- 6. 骨頭 -->
+                                    <g class="clickable-part body-part-node" id="part-b_bone" onclick="handlePartClick('b_bone')">
+                                        <path class="leader-line" d="M 565,75 L 460,75 L 360,390" fill="none" stroke="#475569" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="390" r="14" fill="#475569" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="360" cy="390" r="6" fill="#475569" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="55" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#475569" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="78" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">骨頭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kut-thâu)</tspan></text>
+                                    </g>
 
-                                <!-- 10. 心臟 (Sim-tsōng) -->
-                                <g class="clickable-part body-part-node" id="part-b_heart" onclick="handlePartClick('b_heart')">
-                                    <path class="leader-line" d="M 565,228 L 470,228 L 372,212" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="372" cy="212" r="14" fill="#e11d48" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="372" cy="212" r="6" fill="#e11d48" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#e11d48" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">心臟 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Sim-tsōng)</tspan></text>
-                                </g>
+                                    <!-- 7. 跤頭趺 (膝蓋) -->
+                                    <g class="clickable-part body-part-node" id="part-b_knee" onclick="handlePartClick('b_knee')">
+                                        <path class="leader-line" d="M 565,185 L 460,185 L 350,440" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="350" cy="440" r="14" fill="#2563eb" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="350" cy="440" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="165" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="188" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤頭趺 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha-thâu-u)</tspan></text>
+                                    </g>
 
-                                <!-- 11. 皮膚 (Phuê-hu) -->
-                                <g class="clickable-part body-part-node" id="part-b_skin" onclick="handlePartClick('b_skin')">
-                                    <path class="leader-line" d="M 565,313 L 470,313 L 404,228" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="404" cy="228" r="14" fill="#ca8a04" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="404" cy="228" r="6" fill="#ca8a04" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ca8a04" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">皮膚 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phuê-hu)</tspan></text>
-                                </g>
+                                    <!-- 8. 跤目 (腳踝) -->
+                                    <g class="clickable-part body-part-node" id="part-b_ankle" onclick="handlePartClick('b_ankle')">
+                                        <path class="leader-line" d="M 565,295 L 460,295 L 350,555" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="350" cy="555" r="14" fill="#0891b2" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="350" cy="555" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="275" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="298" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤目 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha-ba̍k)</tspan></text>
+                                    </g>
 
-                                <!-- 12. 胃 (Uī) -->
-                                <g class="clickable-part body-part-node" id="part-b_stomach" onclick="handlePartClick('b_stomach')">
-                                    <path class="leader-line" d="M 565,398 L 470,398 L 374,251" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="374" cy="251" r="14" fill="#f59e0b" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="374" cy="251" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">胃 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Uī)</tspan></text>
-                                </g>
+                                    <!-- 9. 跤底 (腳底) -->
+                                    <g class="clickable-part body-part-node" id="part-b_sole" onclick="handlePartClick('b_sole')">
+                                        <path class="leader-line" d="M 565,405 L 460,405 L 350,595" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="350" cy="595" r="14" fill="#059669" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="350" cy="595" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="385" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="408" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤底 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha-té)</tspan></text>
+                                    </g>
 
-                                <!-- 13. 腸仔 (Tn̂g-á) -->
-                                <g class="clickable-part body-part-node" id="part-b_intestines" onclick="handlePartClick('b_intestines')">
-                                    <path class="leader-line" d="M 565,483 L 470,483 L 360,306" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="360" cy="306" r="14" fill="#059669" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="360" cy="306" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">腸仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tn̂g-á)</tspan></text>
-                                </g>
-
-                                <!-- 14. 跤 (Kha) -->
-                                <g class="clickable-part body-part-node" id="part-b_foot" onclick="handlePartClick('b_foot')">
-                                    <path class="leader-line" d="M 565,568 L 450,568 L 375,582" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
-                                    <circle class="hotspot-pulse" cx="375" cy="582" r="14" fill="#0891b2" opacity="0.3"/>
-                                    <circle class="hotspot-core" cx="375" cy="582" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
-                                    <rect class="badge-bg" x="565" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#pillShadow)"/>
-                                    <text class="badge-title" x="637" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha)</tspan></text>
+                                    <!-- 10. 跤 -->
+                                    <g class="clickable-part body-part-node" id="part-b_foot" onclick="handlePartClick('b_foot')">
+                                        <path class="leader-line" d="M 565,515 L 460,515 L 375,580" fill="none" stroke="#7c3aed" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="375" cy="580" r="14" fill="#7c3aed" opacity="0.35"/>
+                                        <circle class="hotspot-core" cx="375" cy="580" r="6" fill="#7c3aed" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="565" y="495" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#7c3aed" stroke-width="1.5" filter="url(#pillShadow)"/>
+                                        <text class="badge-title" x="637" y="518" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Kha)</tspan></text>
+                                    </g>
                                 </g>
                             </svg>
                         </div>
                     </div>
                 </div>
 
-                <!-- 5. Machinery SVG -->
+<!-- 5. Machinery SVG -->
                                 <!-- 5. Machinery Interactive Visual -->
                 <div id="visual-machinery" class="visual-wrapper">
                     <!-- Toggle subcategory: Bicycle or Motorbike/Car -->
