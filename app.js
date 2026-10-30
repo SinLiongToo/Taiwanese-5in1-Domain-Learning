@@ -78,9 +78,9 @@ const dataSource = {
         },
         a_salmon: {
             tw: { 
-                name: "櫻花鉤吻鮭 (鮭魚)", 
+                name: "鮭魚 (櫻花鉤吻鮭)", 
                 sub: "Kue-hî", 
-                phonetic: "In-hua-kau-bún-kue / Kue-hî", 
+                phonetic: "Kue-hî", 
                 speech: "鮭魚", 
                 description: "冰河時期遺留下來的「國寶魚」，是陸封型的鮭魚，棲息於大甲溪上游七家灣溪的清冷溪水中。",
                 audioSegments: ["鮭", "魚"]
@@ -199,18 +199,18 @@ const dataSource = {
         },
         i_bee: {
             tw: { 
-                name: "蜜蜂", 
-                sub: "Bi̍t-phang", 
-                phonetic: "Bi̍t-phang", 
-                speech: "蜜蜂", 
+                name: "蜂", 
+                sub: "Phang", 
+                phonetic: "Phang", 
+                speech: "蜂", 
                 description: "社會性昆蟲，為大自然的花朵傳播花粉，生產甜美的蜂蜜。牠們跳舞來向同伴傳達花蜜的位置資訊。",
-                audioSegments: ["蜜", "蜂"]
+                audioSegments: ["蜂"]
             },
             en: { 
-                name: "Honeybee", 
-                sub: "蜜蜂", 
-                phonetic: "Honeybee", 
-                speech: "Honeybee", 
+                name: "Bee", 
+                sub: "蜂", 
+                phonetic: "Bee", 
+                speech: "Bee", 
                 description: "A social insect that plays a crucial role in pollination and honey production. Communicates via the waggle dance."
             }
         }
@@ -942,7 +942,7 @@ const twHomophones = {
     // 昆蟲
     "寬尾鳳蝶": "寬尾鬨夜", "蝴蝶": "歐牒", "螢火蟲": "營夥充", "火金姑": "毀金姑",
     "臺灣油蟬": "台玩油賢", "蟬仔": "賢阿", "獨角仙": "毒角先",
-    "蜻蜓": "青聽", "田嬰": "纏因", "蜜蜂": "逼胖",
+    "蜻蜓": "青聽", "田嬰": "纏因", "蜂": "胖", "蜜蜂": "逼胖",
     // 地理
     "中央山脈": "丁央山脈", "玉山山脈": "玉山山脈", "雪山山脈": "些山山脈",
     "阿里山山脈": "阿里山山脈", "海岸山脈": "還岸山脈",
