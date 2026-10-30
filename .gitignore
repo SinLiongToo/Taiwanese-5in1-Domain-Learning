@@ -1,0 +1,11 @@
+# Temporary test files
+audit_*.png
+*.tmp
+*.log
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/

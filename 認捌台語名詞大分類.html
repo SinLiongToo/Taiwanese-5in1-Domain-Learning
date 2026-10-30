@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>五合一跨領域台語雙語學習 App</title>
+    <!-- Fonts & Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Noto+Sans+TC:wght@100..900&family=Outfit:wght@100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main>
+        <!-- Header -->
+        <header>
+            <div class="logo-area">
+                <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+                <div>
+                    <h1 id="ui-title">五合一跨領域台語雙語學習 App</h1>
+                    <p id="ui-subtitle" class="subtitle">生物人體、生活機械、地理與特有種特攻隊</p>
+                </div>
+            </div>
+            <div class="control-actions">
+                <span id="speech-engine-badge" class="speech-badge badge-google">🔊 真人發音 (教育部)</span>
+                <button class="btn-icon" id="theme-toggle-btn" onclick="toggleTheme()" title="切換主題"><i class="fa-solid fa-moon"></i></button>
+                <button class="btn btn-primary" id="lang-toggle-btn" onclick="toggleLanguage()"><i class="fa-solid fa-language"></i> 台語 / English</button>
+            </div>
+        </header>
+
+        <!-- Mode Selector -->
+        <div class="mode-selector-bar">
+            <div class="status-indicator">
+                <span id="ui-current-mode-label">當前模式：</span>
+                <span id="current-mode-badge" class="mode-badge learn-mode">學習探索 (Learning)</span>
+            </div>
+            <button class="btn btn-secondary animate-pulse" id="toggleModeBtn" onclick="toggleAppMode()"><i class="fa-solid fa-gamepad"></i> 切換至遊戲挑戰</button>
+        </div>
+
+        <!-- Domain Tab Navigation -->
+        <div class="tabs-container" role="tablist">
+            <button class="tab-btn active" id="tab-animal-btn" onclick="switchTab('animal')">
+                <span class="tab-title">🐻 <span class="tab-text">野生動物</span></span>
+                <span class="tab-sub">Iá-sing tōng-bu̍t</span>
+            </button>
+            <button class="tab-btn" id="tab-insect-btn" onclick="switchTab('insect')">
+                <span class="tab-title">🦋 <span class="tab-text">常見昆蟲</span></span>
+                <span class="tab-sub">Siông-kìan khun-thiông</span>
+            </button>
+            <button class="tab-btn" id="tab-geography-btn" onclick="switchTab('geography')">
+                <span class="tab-title">🗺️ <span class="tab-text">臺灣地理</span></span>
+                <span class="tab-sub">Tâi-uân tē-lí</span>
+            </button>
+            <button class="tab-btn" id="tab-body-btn" onclick="switchTab('body')">
+                <span class="tab-title">🫁 <span class="tab-text">人體結構</span></span>
+                <span class="tab-sub">Jîn-thé kiat-kòo</span>
+            </button>
+            <button class="tab-btn" id="tab-machinery-btn" onclick="switchTab('machinery')">
+                <span class="tab-title">⚙️ <span class="tab-text">生活機械</span></span>
+                <span class="tab-sub">Sing-ua̍h ki-hāi</span>
+            </button>
+        </div>
+
+        <!-- Main Content Matrix -->
+        <div class="main-container">
+            <!-- Left Panel: SVG Visual Center -->
+            <div class="panel panel-left card-blur">
+                <!-- 1. Wildlife SVG Visuals -->
+                <div id="visual-animal" class="visual-wrapper active">
+                    <div class="grid-visual">
+                        <div class="svg-card clickable-part" id="part-a_bear" onclick="handlePartClick('a_bear')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-bear)" />
+                                <circle cx="30" cy="20" r="10" fill="#2D3748" />
+                                <circle cx="70" cy="20" r="10" fill="#2D3748" />
+                                <circle cx="50" cy="48" r="24" fill="#1A202C" />
+                                <ellipse cx="50" cy="54" rx="12" ry="8" fill="#E2E8F0" />
+                                <ellipse cx="50" cy="52" rx="4" ry="2" fill="#1A202C" />
+                                <path d="M 40,32 Q 50,22 60,32" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+                                <circle cx="40" cy="42" r="3" fill="#FFFFFF" />
+                                <circle cx="60" cy="42" r="3" fill="#FFFFFF" />
+                            </svg>
+                            <span class="card-label">狗熊 (Tâi-uân kàu-hiong)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-a_deer" onclick="handlePartClick('a_deer')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-deer)" />
+                                <path d="M 35,22 L 30,10 M 65,22 L 70,10" stroke="#718096" stroke-width="4" stroke-linecap="round" />
+                                <ellipse cx="50" cy="50" rx="20" ry="16" fill="#ED8936" />
+                                <circle cx="42" cy="45" r="2.5" fill="#FFFFFF" />
+                                <circle cx="58" cy="45" r="2.5" fill="#FFFFFF" />
+                                <circle cx="44" cy="54" r="2.5" fill="#FFFFFF" />
+                                <circle cx="56" cy="54" r="2.5" fill="#FFFFFF" />
+                            </svg>
+                            <span class="card-label">梅花鹿 (Tâi-uân muî-hue-lo̍k)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-a_leopard" onclick="handlePartClick('a_leopard')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-leopard)" />
+                                <circle cx="50" cy="48" r="24" fill="#D69E2E" />
+                                <ellipse cx="50" cy="52" rx="10" ry="6" fill="#F7FAFC" />
+                                <circle cx="42" cy="44" r="3" fill="#1A202C" />
+                                <circle cx="58" cy="44" r="3" fill="#1A202C" />
+                                <circle cx="36" cy="48" r="2" fill="#2D3748" />
+                                <circle cx="64" cy="48" r="2" fill="#2D3748" />
+                                <circle cx="50" cy="38" r="2" fill="#2D3748" />
+                            </svg>
+                            <span class="card-label">山貓 (Sann-niau / Tsio̍h-hōo)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-a_monkey" onclick="handlePartClick('a_monkey')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-monkey)" />
+                                <circle cx="24" cy="40" r="8" fill="#718096" />
+                                <circle cx="76" cy="40" r="8" fill="#718096" />
+                                <circle cx="50" cy="45" r="24" fill="#A0AEC0" />
+                                <ellipse cx="50" cy="47" rx="16" ry="14" fill="#FEB2B2" />
+                                <circle cx="43" cy="42" r="2.5" fill="#1A202C" />
+                                <circle cx="57" cy="42" r="2.5" fill="#1A202C" />
+                            </svg>
+                            <span class="card-label">獼猴 (Tâi-uân kâu)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-a_salmon" onclick="handlePartClick('a_salmon')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-salmon)" />
+                                <ellipse cx="50" cy="50" rx="28" ry="12" fill="#4FD1C5" />
+                                <polygon points="76,45 88,38 84,50 88,62 76,55" fill="#319795" />
+                                <circle cx="35" cy="46" r="3" fill="#1A202C" />
+                                <circle cx="36" cy="45" r="1" fill="#FFFFFF" />
+                            </svg>
+                            <span class="card-label">鮭魚 (In-hua-kau-bún-kuê)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-a_magpie" onclick="handlePartClick('a_magpie')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-magpie)" />
+                                <ellipse cx="45" cy="50" rx="20" ry="14" fill="#3182CE" />
+                                <path d="M 55,50 C 65,54 75,54 85,50" stroke="#E2E8F0" stroke-width="4" stroke-linecap="round" />
+                                <polygon points="26,45 14,48 26,56" fill="#E53E3E" />
+                                <circle cx="38" cy="44" r="3" fill="#1A202C" />
+                            </svg>
+                            <span class="card-label">山娘 (Tâi-uân lâm-tshiok)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2. Insects SVG Visuals -->
+                <div id="visual-insect" class="visual-wrapper">
+                    <div class="grid-visual">
+                        <div class="svg-card clickable-part" id="part-i_butterfly" onclick="handlePartClick('i_butterfly')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-butterfly)" />
+                                <path d="M 50,55 L 25,30 Q 38,25 50,42 Q 62,25 75,30 Z" fill="#9F7AEA" />
+                                <path d="M 50,55 L 30,72 Q 40,75 50,60 Q 60,75 70,72 Z" fill="#B7791F" />
+                                <rect x="48" y="28" width="4" height="34" rx="2" fill="#1A202C" />
+                                <path d="M 48,28 Q 42,20 38,22 M 52,28 Q 58,20 62,22" fill="none" stroke="#1A202C" stroke-width="1.5" />
+                            </svg>
+                            <span class="card-label">蝴蝶 (Kuan-bué hōng-ia̍h)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-i_firefly" onclick="handlePartClick('i_firefly')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-firefly)" />
+                                <ellipse cx="50" cy="42" rx="12" ry="18" fill="#4A5568" />
+                                <ellipse cx="50" cy="24" rx="8" ry="8" fill="#E53E3E" />
+                                <circle cx="50" cy="58" r="12" fill="#FFFF00" opacity="0.8" class="glow-animation" />
+                                <path d="M 42,42 L 24,30 Q 32,48 42,46 M 58,42 L 76,30 Q 68,48 58,46" fill="#E2E8F0" opacity="0.8" />
+                            </svg>
+                            <span class="card-label">火金姑 (Hué-kim-koo)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-i_cicada" onclick="handlePartClick('i_cicada')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-cicada)" />
+                                <ellipse cx="50" cy="45" rx="10" ry="24" fill="#718096" />
+                                <path d="M 45,35 L 28,68 L 45,55 Z M 55,35 L 72,68 L 55,55 Z" fill="#E2E8F0" opacity="0.75" />
+                                <circle cx="43" cy="28" r="2.5" fill="#1A202C" />
+                                <circle cx="57" cy="28" r="2.5" fill="#1A202C" />
+                            </svg>
+                            <span class="card-label">蟬仔 (Sian-á)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-i_beetle" onclick="handlePartClick('i_beetle')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-beetle)" />
+                                <ellipse cx="50" cy="52" rx="14" ry="20" fill="#2C5282" />
+                                <rect x="49" y="38" width="2" height="34" fill="#1A202C" />
+                                <path d="M 50,34 L 50,16 M 50,16 L 40,12 M 50,16 L 60,12" fill="none" stroke="#2C5282" stroke-width="3" stroke-linecap="round" />
+                            </svg>
+                            <span class="card-label">鹿角䗁 (Lo̍k-kak-khia)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-i_dragonfly" onclick="handlePartClick('i_dragonfly')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-dragonfly)" />
+                                <rect x="48" y="24" width="4" height="48" rx="2" fill="#E53E3E" />
+                                <path d="M 48,34 Q 22,22 48,34 M 52,34 Q 78,22 52,34" fill="none" stroke="#63B3ED" stroke-width="3" opacity="0.8" />
+                                <path d="M 48,42 Q 26,34 48,42 M 52,42 Q 74,34 52,42" fill="none" stroke="#63B3ED" stroke-width="3" opacity="0.8" />
+                                <circle cx="46" cy="24" r="4" fill="#2B6CB0" />
+                                <circle cx="54" cy="24" r="4" fill="#2B6CB0" />
+                            </svg>
+                            <span class="card-label">田嬰 (Tshân-enn)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-i_bee" onclick="handlePartClick('i_bee')">
+                            <svg viewBox="0 0 100 100" class="mini-svg">
+                                <circle cx="50" cy="45" r="32" fill="var(--svg-accent-bee)" />
+                                <ellipse cx="50" cy="48" rx="14" ry="20" fill="#D69E2E" />
+                                <path d="M 37,38 H 63 M 36,48 H 64 M 37,58 H 63" stroke="#1A202C" stroke-width="3.5" />
+                                <path d="M 46,32 L 32,20 Q 42,16 46,30 Z M 54,32 L 68,20 Q 58,16 54,30 Z" fill="#E2E8F0" opacity="0.75" />
+                            </svg>
+                            <span class="card-label">蜜蜂 (Mi̍t-phang)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. Geography SVG Map -->
+                <div id="visual-geography" class="visual-wrapper">
+                    <div class="svg-container-map">
+                        <svg viewBox="0 0 320 480" class="taiwan-map-svg" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="seaGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--sea-stop-1)" />
+                                    <stop offset="100%" stop-color="var(--sea-stop-2)" />
+                                </linearGradient>
+                                <linearGradient id="landGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" stop-color="var(--land-stop-1)" />
+                                    <stop offset="100%" stop-color="var(--land-stop-2)" />
+                                </linearGradient>
+                            </defs>
+                            
+                            <!-- Sea background -->
+                            <rect width="320" height="480" fill="url(#seaGrad)" rx="18" />
+                            
+                            <!-- Cute Waves -->
+                            <path d="M 40,240 Q 45,236 50,240 Q 55,236 60,240" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" style="pointer-events: none;" />
+                            <path d="M 250,330 Q 255,326 260,330 Q 265,326 270,330" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" style="pointer-events: none;" opacity="0.7" />
+                            
+                            <!-- Cute Cartoon Sun -->
+                            <g transform="translate(45, 50)" style="pointer-events: none;">
+                                <circle cx="0" cy="0" r="14" fill="#fbbf24" stroke="#d97706" stroke-width="1.5" />
+                                <path d="M 0,-20 L 0,-15 M 0,15 L 0,20 M -20,0 L -15,0 M 15,0 L 20,0 M -13,-13 L -9,-9 M 9,9 L 13,13 M -13,13 L -9,9 M 9,-9 L 13,-13" stroke="#d97706" stroke-width="2" stroke-linecap="round" />
+                                <circle cx="-4" cy="-3" r="1.2" fill="#78350f" />
+                                <circle cx="4" cy="-3" r="1.2" fill="#78350f" />
+                                <path d="M -4,3 Q 0,7 4,3" fill="none" stroke="#78350f" stroke-width="1.2" stroke-linecap="round" />
+                            </g>
+                            
+                            <!-- Cute Cartoon Cloud -->
+                            <path d="M 260,50 C 255,50 250,54 250,58 C 245,58 240,62 240,66 C 240,70 245,74 250,74 L 280,74 C 285,74 290,70 290,66 C 290,62 285,58 280,58 C 280,54 275,50 270,50 Z" fill="#ffffff" stroke="#bae6fd" stroke-width="1.5" opacity="0.9" style="pointer-events: none;" />
+                            
+                            <!-- Cute Cartoon Sailboat -->
+                            <g transform="translate(50, 390)" style="pointer-events: none;" opacity="0.85">
+                                <path d="M -12,0 L 12,0 L 8,6 L -8,6 Z" fill="#b45309" stroke="#78350f" stroke-width="1" />
+                                <polygon points="0,-14 0,0 -9,0" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1" />
+                                <path d="M -18,6 Q -12,4 -6,6 Q 0,4 6,6 Q 12,4 18,6" fill="none" stroke="#60a5fa" stroke-width="1" stroke-linecap="round" />
+                            </g>
+
+                            <!-- Taiwan Base silhouette -->
+                            <path d="M 170,30 C 220,100 240,240 180,410 C 160,430 145,445 130,450 C 110,430 80,390 90,320 C 100,240 85,150 120,70 Q 140,50 170,30 Z" fill="url(#landGrad)" stroke="var(--island-border)" stroke-width="3" />
+                            
+                            <!-- 1. Mountains (Cartoon Peaks) -->
+                            <!-- 雪山山脈 -->
+                            <g id="part-m_xueshan" class="clickable-part geo-mtn" onclick="handlePartClick('m_xueshan')">
+                                <polygon points="135,130 155,90 175,130" class="mtn-base" />
+                                <polygon points="149,102 155,90 161,102 158,106 155,103 152,106" class="mtn-cap" />
+                                <polygon points="150,135 165,105 180,135" class="mtn-base" />
+                                <polygon points="161,113 165,105 169,113 167,116 165,114 163,116" class="mtn-cap" />
+                            </g>
+                            <!-- 中央山脈 -->
+                            <g id="part-m_central" class="clickable-part geo-mtn" onclick="handlePartClick('m_central')">
+                                <polygon points="150,220 170,180 190,220" class="mtn-base" />
+                                <polygon points="165,190 170,180 175,190 172,194 170,192 168,194" class="mtn-cap" />
+                                <polygon points="152,270 172,230 192,270" class="mtn-base" />
+                                <polygon points="167,240 172,230 177,240 174,244 172,242 170,244" class="mtn-cap" />
+                                <polygon points="145,320 165,280 185,320" class="mtn-base" />
+                                <polygon points="160,290 165,280 170,290 167,294 165,292 163,294" class="mtn-cap" />
+                            </g>
+                            <!-- 玉山山脈 -->
+                            <g id="part-m_yushan" class="clickable-part geo-mtn" onclick="handlePartClick('m_yushan')">
+                                <polygon points="132,330 152,285 172,330" class="mtn-base" />
+                                <polygon points="146,298 152,285 158,298 155,302 152,300 149,302" class="mtn-cap" />
+                            </g>
+                            <!-- 阿里山山脈 -->
+                            <g id="part-m_alishan" class="clickable-part geo-mtn" onclick="handlePartClick('m_alishan')">
+                                <polygon points="120,320 136,290 152,320" class="mtn-base" />
+                                <polygon points="131,300 136,290 141,300 138,303 136,301 134,303" class="mtn-cap" />
+                            </g>
+                            <!-- 海岸山脈 -->
+                            <g id="part-m_coastal" class="clickable-part geo-mtn" onclick="handlePartClick('m_coastal')">
+                                <polygon points="174,310 186,280 198,310" class="mtn-base" />
+                                <polygon points="181,290 186,280 191,290 189,293 186,291 183,293" class="mtn-cap" />
+                            </g>
+
+                            <!-- 2. Rivers (Paths) -->
+                            <!-- 淡水河 -->
+                            <path id="part-r_tamsui" class="clickable-part river-part" d="M 175,55 Q 165,85 150,95 L 155,115" onclick="handlePartClick('r_tamsui')"/>
+                            <!-- 濁水溪 -->
+                            <path id="part-r_zhuoshui" class="clickable-part river-part" d="M 102,260 Q 132,250 152,250 L 170,230" onclick="handlePartClick('r_zhuoshui')"/>
+                            <!-- 曾文溪 -->
+                            <path id="part-r_zengwen" class="clickable-part river-part" d="M 98,320 Q 120,320 134,310 L 146,290" onclick="handlePartClick('r_zengwen')"/>
+                            <!-- 高屏溪 -->
+                            <path id="part-r_gaoping" class="clickable-part river-part" d="M 132,425 Q 132,365 146,345 L 155,310" onclick="handlePartClick('r_gaoping')"/>
+
+                            <!-- 3. Landmarks -->
+                            <!-- 日月潭 Sun Moon Lake — central Taiwan (Nantou) -->
+                            <g id="part-l_sunmoonlake" class="clickable-part geo-mtn" onclick="handlePartClick('l_sunmoonlake')">
+                                <circle cx="145" cy="265" r="12" class="hotspot-glow" opacity="0.5"/>
+                                <ellipse cx="148" cy="265" rx="11" ry="7" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5" opacity="0.85"/>
+                                <text x="148" y="268" text-anchor="middle" font-size="7" fill="#0c4a6e" font-weight="bold" style="pointer-events:none;">湖</text>
+                            </g>
+
+                            <!-- 太魯閣 Taroko — east coast Hualien -->
+                            <g id="part-l_taroko" class="clickable-part geo-mtn" onclick="handlePartClick('l_taroko')">
+                                <circle cx="183" cy="210" r="10" class="hotspot-glow" opacity="0.5"/>
+                                <polygon points="183,200 189,215 177,215" fill="#a78bfa" stroke="#7c3aed" stroke-width="1.5" opacity="0.9"/>
+                                <text x="183" y="212" text-anchor="middle" font-size="6" fill="#faf5ff" font-weight="bold" style="pointer-events:none;">峽</text>
+                            </g>
+
+                            <!-- 澎湖 Penghu — west of Taiwan -->
+                            <g id="part-l_penghu" class="clickable-part geo-mtn" onclick="handlePartClick('l_penghu')">
+                                <circle cx="55" cy="300" r="12" class="hotspot-glow" opacity="0.5"/>
+                                <circle cx="52" cy="297" r="5" fill="#34d399" stroke="#059669" stroke-width="1.5" opacity="0.9"/>
+                                <circle cx="60" cy="303" r="4" fill="#34d399" stroke="#059669" stroke-width="1.5" opacity="0.9"/>
+                                <circle cx="54" cy="308" r="3" fill="#34d399" stroke="#059669" stroke-width="1.5" opacity="0.9"/>
+                            </g>
+
+                            <!-- 台灣海峽 Taiwan Strait — the sea area to the west -->
+                            <g id="part-l_taiwan_strait" class="clickable-part geo-mtn" onclick="handlePartClick('l_taiwan_strait')">
+                                <rect x="25" y="200" width="55" height="60" rx="8" fill="rgba(14,165,233,0.15)" stroke="#0ea5e9" stroke-width="1.5" stroke-dasharray="4,3"/>
+                                <text x="52" y="236" text-anchor="middle" font-size="8" fill="#0369a1" font-weight="bold" style="pointer-events:none;">海峽</text>
+                            </g>
+
+                            <!-- 花東縱谷 East Rift Valley — between ranges, eastern side -->
+                            <g id="part-l_east_rift" class="clickable-part geo-mtn" onclick="handlePartClick('l_east_rift')">
+                                <circle cx="178" cy="275" r="10" class="hotspot-glow" opacity="0.5"/>
+                                <rect x="171" y="267" width="14" height="22" rx="3" fill="#fbbf24" stroke="#d97706" stroke-width="1.5" opacity="0.85"/>
+                                <text x="178" y="282" text-anchor="middle" font-size="6" fill="#78350f" font-weight="bold" style="pointer-events:none;">縱谷</text>
+                            </g>
+
+                            <!-- Map Labels/Icons -->
+                            <g opacity="0.8" font-size="10" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
+                                <text x="145" y="75">雪山 (Suat-san)</text>
+                                <text x="180" y="200">中央山脈 (Tiong-iang San-me̍h)</text>
+                                <text x="156" y="275">玉山 (Gio̍k-san)</text>
+                                <text x="100" y="295">阿里山 (A-lí-san)</text>
+                                <text x="195" y="310">海岸山脈 (Hái-gān san-me̍h)</text>
+                            </g>
+                            <!-- Landmark labels (smaller, lighter) -->
+                            <g opacity="0.75" font-size="8" fill="var(--text-secondary)" style="pointer-events: none;">
+                                <text x="148" y="282">日月潭</text>
+                                <text x="172" y="197">太魯閣</text>
+                                <text x="40" y="318">澎湖</text>
+                                <text x="25" y="198">台灣海峽</text>
+                                <text x="165" y="295">縱谷</text>
+                                <!-- River labels -->
+                                <text x="158" y="107">淡水河</text>
+                                <text x="92" y="248">濁水溪</text>
+                                <text x="86" y="318">曾文溪</text>
+                                <text x="118" y="435">高屏溪</text>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 4. Human Body SVG -->
+                <div id="visual-body" class="visual-wrapper">
+                    <div class="svg-container-body">
+                        <svg viewBox="0 0 240 400" class="body-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Cartoon kid body base silhouette outline -->
+                            <path class="body-outline" d="M 80,95 C 70,105 55,140 55,160 C 55,165 62,170 68,165 C 72,160 82,125 85,115 L 85,320 C 85,335 100,335 100,320 L 100,240 L 120,240 L 120,320 C 120,335 135,335 135,320 L 135,115 C 138,125 148,160 152,165 C 158,170 165,165 165,160 C 165,140 150,105 140,95 Z" />
+                            
+                            <!-- Cartoon kid face and head -->
+                            <g style="pointer-events: none;">
+                                <!-- Ears -->
+                                <circle cx="86" cy="50" r="6" fill="#fed7aa" stroke="#fdba74" stroke-width="1.5" />
+                                <circle cx="154" cy="50" r="6" fill="#fed7aa" stroke="#fdba74" stroke-width="1.5" />
+                                <!-- Face -->
+                                <circle cx="120" cy="50" r="32" fill="#fed7aa" stroke="#fdba74" stroke-width="2" />
+                                <!-- Hair -->
+                                <path d="M 86,52 C 86,22 154,22 154,52 C 154,42 144,34 135,36 C 128,34 120,30 112,34 C 104,32 94,40 86,52 Z" fill="#78350f" />
+                                <!-- Eyes -->
+                                <circle cx="108" cy="46" r="3" fill="#1e293b" />
+                                <circle cx="132" cy="46" r="3" fill="#1e293b" />
+                                <!-- Smile -->
+                                <path d="M 114,56 Q 120,62 126,56" fill="none" stroke="#1e293b" stroke-width="2" stroke-linecap="round" />
+                                <!-- Blush -->
+                                <circle cx="100" cy="52" r="4" fill="#fca5a5" opacity="0.6" />
+                                <circle cx="140" cy="52" r="4" fill="#fca5a5" opacity="0.6" />
+                                <!-- Neck -->
+                                <rect x="113" y="78" width="14" height="10" fill="#fed7aa" stroke="#fdba74" stroke-width="1.5" />
+                            </g>
+
+                            <!-- Interactive Organs -->
+                            <!-- Brain (腦) -->
+                            <g id="part-b_brain" class="clickable-part organ-part" onclick="handlePartClick('b_brain')">
+                                <circle cx="120" cy="46" r="16" class="hotspot-glow" />
+                                <path d="M 108,46 C 108,36 114,32 120,32 C 126,32 132,36 132,46 C 132,54 126,58 120,58 C 114,58 108,54 108,46 Z" fill="#fda4af" stroke="#f43f5e" stroke-width="1.5" />
+                                <path d="M 120,32 L 120,58 M 112,42 C 116,42 116,46 120,46 C 124,46 124,50 128,50" fill="none" stroke="#f43f5e" stroke-width="1" />
+                            </g>
+                            
+                            <!-- Lungs (肺) -->
+                            <g id="part-b_lung" class="clickable-part organ-part" onclick="handlePartClick('b_lung')">
+                                <circle cx="102" cy="115" r="18" class="hotspot-glow" />
+                                <circle cx="138" cy="115" r="18" class="hotspot-glow" />
+                                <path d="M 115,100 C 95,95 90,115 90,130 C 90,135 100,140 115,130 Z" fill="#fca5a5" stroke="#ef4444" stroke-width="1.5" class="breathe-animation" />
+                                <path d="M 125,100 C 145,95 150,115 150,130 C 150,135 140,140 125,130 Z" fill="#fca5a5" stroke="#ef4444" stroke-width="1.5" class="breathe-animation" />
+                            </g>
+                            
+                            <!-- Heart (心) -->
+                            <g id="part-b_heart" class="clickable-part organ-part" onclick="handlePartClick('b_heart')">
+                                <circle cx="120" cy="120" r="12" class="hotspot-glow" />
+                                <path d="M 120,126 C 120,126 112,120 112,115 C 112,111 115,108 119,108 C 120,108 120,109 120,110 C 120,109 120,108 121,108 C 125,108 128,111 128,115 C 128,120 120,126 120,126 Z" fill="#f43f5e" stroke="#be123c" stroke-width="1.5" class="pulse-animation" />
+                            </g>
+                            
+                            <!-- Liver (肝) -->
+                            <g id="part-b_liver" class="clickable-part organ-part" onclick="handlePartClick('b_liver')">
+                                <circle cx="108" cy="155" r="14" class="hotspot-glow" />
+                                <path d="M 94,152 L 122,152 C 122,152 120,165 110,165 C 100,165 94,158 94,152 Z" fill="#b45309" stroke="#78350f" stroke-width="1.5" />
+                            </g>
+                            
+                            <!-- Stomach (胃) -->
+                            <g id="part-b_stomach" class="clickable-part organ-part" onclick="handlePartClick('b_stomach')">
+                                <circle cx="132" cy="160" r="14" class="hotspot-glow" />
+                                <path d="M 122,150 C 142,150 144,168 136,174 C 128,180 122,168 122,150 Z" fill="#f59e0b" stroke="#d97706" stroke-width="1.5" />
+                            </g>
+                            
+                            <!-- Kidney (腎臟) -->
+                            <g id="part-b_kidney" class="clickable-part organ-part" onclick="handlePartClick('b_kidney')">
+                                <circle cx="108" cy="185" r="10" class="hotspot-glow" />
+                                <circle cx="132" cy="185" r="10" class="hotspot-glow" />
+                                <path d="M 112,180 C 112,175 104,178 104,185 C 104,192 112,188 112,180 Z" fill="#c084fc" stroke="#7e22ce" stroke-width="1.5" />
+                                <path d="M 128,180 C 128,175 136,178 136,185 C 136,192 128,188 128,180 Z" fill="#c084fc" stroke="#7e22ce" stroke-width="1.5" />
+                            </g>
+                            
+                            <!-- Intestines (腸) -->
+                            <g id="part-b_intestines" class="clickable-part organ-part" onclick="handlePartClick('b_intestines')">
+                                <circle cx="120" cy="225" r="22" class="hotspot-glow" />
+                                <path d="M 102,210 C 138,200 138,220 120,220 C 102,220 102,240 120,240 C 138,240 138,250 115,250" fill="none" stroke="#fb923c" stroke-width="5" stroke-linecap="round" />
+                                <path d="M 102,210 C 138,200 138,220 120,220 C 102,220 102,240 120,240 C 138,240 138,250 115,250" fill="none" stroke="#f97316" stroke-width="2" stroke-linecap="round" />
+                            </g>
+
+                            <!-- Eyes (目睭) — on the cartoon face -->
+                            <g id="part-b_eyes" class="clickable-part organ-part" onclick="handlePartClick('b_eyes')">
+                                <circle cx="108" cy="46" r="7" class="hotspot-glow" />
+                                <circle cx="132" cy="46" r="7" class="hotspot-glow" />
+                                <circle cx="108" cy="46" r="4" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5" />
+                                <circle cx="132" cy="46" r="4" fill="#38bdf8" stroke="#0284c7" stroke-width="1.5" />
+                                <circle cx="109" cy="46" r="1.5" fill="#0f172a" />
+                                <circle cx="133" cy="46" r="1.5" fill="#0f172a" />
+                            </g>
+
+                            <!-- Ears (耳仔) -->
+                            <g id="part-b_ear" class="clickable-part organ-part" onclick="handlePartClick('b_ear')">
+                                <circle cx="86" cy="50" r="8" class="hotspot-glow" />
+                                <circle cx="154" cy="50" r="8" class="hotspot-glow" />
+                                <ellipse cx="86" cy="50" rx="5" ry="7" fill="#fbbf24" stroke="#d97706" stroke-width="1.5" />
+                                <ellipse cx="154" cy="50" rx="5" ry="7" fill="#fbbf24" stroke="#d97706" stroke-width="1.5" />
+                            </g>
+
+                            <!-- Nose & Mouth (鼻仔/喙) -->
+                            <g id="part-b_nose" class="clickable-part organ-part" onclick="handlePartClick('b_nose')">
+                                <circle cx="120" cy="58" r="8" class="hotspot-glow" />
+                                <ellipse cx="120" cy="53" rx="3" ry="2.5" fill="#fda4af" stroke="#f43f5e" stroke-width="1" />
+                                <path d="M 113,59 Q 120,65 127,59" fill="#f9a8d4" stroke="#ec4899" stroke-width="1.5" stroke-linecap="round" />
+                            </g>
+
+                            <!-- Hands (手) — clickable area at end of arms -->
+                            <g id="part-b_hand" class="clickable-part organ-part" onclick="handlePartClick('b_hand')">
+                                <!-- Left hand area -->
+                                <circle cx="62" cy="170" r="10" class="hotspot-glow" />
+                                <ellipse cx="62" cy="172" rx="8" ry="6" fill="#fed7aa" stroke="#f97316" stroke-width="1.5" />
+                                <!-- Fingers left -->
+                                <line x1="56" y1="167" x2="53" y2="162" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="60" y1="166" x2="58" y2="160" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="64" y1="166" x2="63" y2="160" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="68" y1="167" x2="68" y2="161" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <!-- Right hand area -->
+                                <circle cx="178" cy="170" r="10" class="hotspot-glow" />
+                                <ellipse cx="178" cy="172" rx="8" ry="6" fill="#fed7aa" stroke="#f97316" stroke-width="1.5" />
+                                <!-- Fingers right -->
+                                <line x1="172" y1="167" x2="172" y2="161" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="176" y1="166" x2="177" y2="160" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="180" y1="166" x2="182" y2="160" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                                <line x1="184" y1="167" x2="187" y2="162" stroke="#fdba74" stroke-width="2" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Feet (跤) — at bottom of legs -->
+                            <g id="part-b_foot" class="clickable-part organ-part" onclick="handlePartClick('b_foot')">
+                                <!-- Left foot -->
+                                <circle cx="95" cy="328" r="12" class="hotspot-glow" />
+                                <ellipse cx="92" cy="332" rx="12" ry="5" fill="#fed7aa" stroke="#f97316" stroke-width="1.5" />
+                                <!-- Right foot -->
+                                <circle cx="125" cy="328" r="12" class="hotspot-glow" />
+                                <ellipse cx="128" cy="332" rx="12" ry="5" fill="#fed7aa" stroke="#f97316" stroke-width="1.5" />
+                            </g>
+
+                            <!-- Skin (皮膚) — shown as the body outline highlight -->
+                            <g id="part-b_skin" class="clickable-part organ-part" onclick="handlePartClick('b_skin')">
+                                <circle cx="165" cy="140" r="10" class="hotspot-glow" />
+                                <rect x="158" y="133" width="14" height="14" rx="4" fill="#fde68a" stroke="#f59e0b" stroke-width="1.5" />
+                                <text x="165" y="143" text-anchor="middle" font-size="7" fill="#78350f" font-weight="bold">皮</text>
+                            </g>
+
+                            <!-- Bones (骨頭) — show spine indicator -->
+                            <g id="part-b_bone" class="clickable-part organ-part" onclick="handlePartClick('b_bone')">
+                                <circle cx="75" cy="200" r="10" class="hotspot-glow" />
+                                <rect x="68" y="193" width="14" height="14" rx="4" fill="#c7d2fe" stroke="#6366f1" stroke-width="1.5" />
+                                <text x="75" y="203" text-anchor="middle" font-size="7" fill="#312e81" font-weight="bold">骨</text>
+                            </g>
+                            
+                            <!-- Anatomical Labels and Leader Lines -->
+                            <g class="body-labels" opacity="0.85" font-size="9" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
+                                <!-- Brain (腦) -->
+                                <text x="120" y="20" text-anchor="middle">腦 (Náu)</text>
+                                
+                                <!-- Eyes (目睭) -->
+                                <text x="10" y="42" text-anchor="start">目睭 (Ba̍k-tsiu)</text>
+                                <line x1="55" y1="40" x2="102" y2="45" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Ears (耳仔) -->
+                                <text x="230" y="52" text-anchor="end">耳仔 (Hīnn-á)</text>
+                                <line x1="192" y1="50" x2="158" y2="50" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+
+                                <!-- Nose/Mouth (鼻仔) -->
+                                <text x="120" y="72" text-anchor="middle">鼻仔/喙 (Phīnn-á/Tshuì)</text>
+                                
+                                <!-- Lungs (肺) -->
+                                <text x="10" y="112" text-anchor="start">肺 (Hì)</text>
+                                <line x1="38" y1="109" x2="98" y2="112" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Heart (心臟) -->
+                                <text x="230" y="122" text-anchor="end">心臟 (Sim-tsōng)</text>
+                                <line x1="190" y1="119" x2="126" y2="120" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Liver (肝) -->
+                                <text x="10" y="152" text-anchor="start">肝臟 (Kuann)</text>
+                                <line x1="50" y1="149" x2="105" y2="158" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Stomach (胃) -->
+                                <text x="230" y="162" text-anchor="end">胃 (Uī)</text>
+                                <line x1="205" y1="159" x2="132" y2="162" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Kidney (腎臟) -->
+                                <text x="10" y="192" text-anchor="start">腎臟 (Sīn-tsōng)</text>
+                                <line x1="55" y1="189" x2="104" y2="185" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Intestines (腸仔) -->
+                                <text x="230" y="222" text-anchor="end">腸仔 (Tn̂g-á)</text>
+                                <line x1="200" y1="219" x2="130" y2="225" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+
+                                <!-- Hands (手) -->
+                                <text x="10" y="168" text-anchor="start">手 (Tshiú)</text>
+                                <line x1="32" y1="166" x2="54" y2="170" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+
+                                <!-- Feet (跤) -->
+                                <text x="120" y="355" text-anchor="middle">跤 (Kha)</text>
+
+                                <!-- Skin (皮膚) -->
+                                <text x="230" y="142" text-anchor="end">皮膚 (Phûe-hu)</text>
+                                <line x1="200" y1="139" x2="172" y2="140" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+
+                                <!-- Bones (骨頭) -->
+                                <text x="10" y="202" text-anchor="start">骨頭 (Kut-thâu)</text>
+                                <line x1="50" y1="200" x2="68" y2="200" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- 5. Machinery SVG -->
+                <div id="visual-machinery" class="visual-wrapper">
+                    <!-- Toggle subcategory: Bicycle or Motorbike/Car -->
+                    <div class="machinery-toggle-bar">
+                        <button class="btn btn-secondary active" id="machinery-sub-bike" onclick="switchMachinerySub('bike')"><i class="fa-solid fa-bicycle"></i> 跤踏車結構</button>
+                        <button class="btn btn-secondary" id="machinery-sub-car" onclick="switchMachinerySub('car')"><i class="fa-solid fa-car-side"></i> 汽機車機件</button>
+                    </div>
+
+                    <!-- Subcategory 1: Bicycle Visual -->
+                    <div id="machinery-bike-area" class="machinery-panel active">
+                        <svg viewBox="0 0 280 200" class="machinery-svg" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Frame & Wheels -->
+                            <circle id="part-m_tire" class="clickable-part machine-part" cx="70" cy="130" r="32" stroke="#4A5568" stroke-width="8" fill="none" onclick="handlePartClick('m_tire')" />
+                            <circle cx="210" cy="130" r="32" stroke="#4A5568" stroke-width="8" fill="none" />
+                            
+                            <!-- Spokes/Hubs -->
+                            <circle cx="70" cy="130" r="6" fill="#A0AEC0" />
+                            <circle cx="210" cy="130" r="6" fill="#A0AEC0" />
+                            
+                            <!-- Frame paths -->
+                            <path d="M 70,130 L 120,130 L 180,85 L 110,85 L 70,130 M 120,130 L 145,75 M 180,85 L 210,130 M 145,75 L 130,75 L 160,75" stroke="#718096" stroke-width="4" stroke-linecap="round" fill="none" />
+                            
+                            <!-- Handlebar (馬角仔) -->
+                            <path id="part-m_handlebar" class="clickable-part machine-part" d="M 180,85 L 195,55 L 175,48 M 195,55 L 210,55" stroke="#E2E8F0" stroke-width="5" stroke-linecap="round" fill="none" onclick="handlePartClick('m_handlebar')" />
+                            
+                            <!-- Chain (鏈仔) -->
+                            <path id="part-m_chain" class="clickable-part machine-part" d="M 70,130 L 120,130 L 110,115 Z" stroke="#F5D0A9" stroke-width="3" fill="none" onclick="handlePartClick('m_chain')" />
+                            
+                            <!-- Brake (手擋) -->
+                            <path id="part-m_brake" class="clickable-part machine-part" d="M 188,72 L 205,108" stroke="#E53E3E" stroke-width="4.5" stroke-linecap="round" fill="none" onclick="handlePartClick('m_brake')" />
+
+                            <!-- Bicycle Labels and Leader Lines -->
+                            <g class="machine-labels" opacity="0.85" font-size="9" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
+                                <!-- Tires (外奶/內奶) -->
+                                <text x="10" y="185" text-anchor="start">外奶/內奶 (Gōa-leng / Lāi-leng)</text>
+                                <line x1="45" y1="172" x2="60" y2="155" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Handlebar (馬角仔) -->
+                                <text x="270" y="25" text-anchor="end">馬角仔 (Bé-kak-á)</text>
+                                <line x1="225" y1="28" x2="195" y2="48" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Brakes (手擋) -->
+                                <text x="270" y="65" text-anchor="end">手擋 (Chhiú-tòng)</text>
+                                <line x1="225" y1="68" x2="192" y2="80" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- Chain (鏈仔) -->
+                                <text x="140" y="185" text-anchor="middle">鏈仔 (Liān-á)</text>
+                                <line x1="130" y1="172" x2="105" y2="130" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Subcategory 2: Motorbike/Car Parts Visual -->
+                    <div id="machinery-car-area" class="machinery-panel">
+                        <!-- Interactive Car SVG Diagram (Shows locations of parts) -->
+                        <svg viewBox="0 0 280 145" class="machinery-svg" xmlns="http://www.w3.org/2000/svg" style="max-width: 280px; width: 100%; height: auto;">
+                            <!-- Car Body Outline Silhouette -->
+                            <path class="car-body-path" d="M 240,105 L 215,105 A 20,20 0 0,1 175,105 L 105,105 A 20,20 0 0,1 65,105 L 35,105 C 28,105 25,100 25,93 L 27,80 C 27,75 35,75 45,75 L 75,75 C 80,75 85,72 88,68 L 108,48 C 112,42 120,42 125,42 L 180,42 C 187,42 193,45 197,52 L 217,75 L 238,75 C 245,75 248,80 248,86 L 246,95 C 246,102 243,105 240,105 Z" />
+                            
+                            <!-- Windows -->
+                            <path d="M 122,48 L 150,48 L 150,70 L 102,70 Z" fill="rgba(186, 230, 253, 0.4)" stroke="var(--text-muted)" stroke-width="1.5" />
+                            <path d="M 155,48 L 178,48 L 195,70 L 155,70 Z" fill="rgba(186, 230, 253, 0.4)" stroke="var(--text-muted)" stroke-width="1.5" />
+                            
+                            <!-- Wheels -->
+                            <!-- Front Wheel -->
+                            <circle cx="85" cy="105" r="18" fill="#2d3748" stroke="#1a202c" stroke-width="2" />
+                            <circle cx="85" cy="105" r="8" fill="#a0aec0" stroke="#cbd5e0" stroke-width="1.5" />
+                            <!-- Rear Wheel -->
+                            <circle cx="195" cy="105" r="18" fill="#2d3748" stroke="#1a202c" stroke-width="2" />
+                            <circle cx="195" cy="105" r="8" fill="#a0aec0" stroke="#cbd5e0" stroke-width="1.5" />
+
+                            <!-- Interactive Part Hotspots -->
+                            <!-- Engine (引擎) -->
+                            <g id="car-part-m_engine" class="clickable-part machine-part" onclick="handlePartClick('m_engine')">
+                                <circle cx="55" cy="88" r="18" class="hotspot-glow" />
+                                <rect x="42" y="78" width="26" height="20" rx="3" fill="#4A5568" stroke="#cbd5e0" stroke-width="1" />
+                                <rect x="47" y="73" width="16" height="5" fill="#718096" />
+                                <circle cx="55" cy="88" r="5" fill="#E2E8F0" />
+                            </g>
+                            
+                            <!-- Battery (電瓶) -->
+                            <g id="car-part-m_battery" class="clickable-part machine-part" onclick="handlePartClick('m_battery')">
+                                <circle cx="82" cy="86" r="14" class="hotspot-glow" />
+                                <rect x="72" y="78" width="20" height="16" rx="2" fill="#2B6CB0" stroke="#cbd5e0" stroke-width="1" />
+                                <rect x="75" y="74" width="4" height="4" fill="#1A202C" />
+                                <rect x="85" y="74" width="4" height="4" fill="#E53E3E" />
+                            </g>
+                            
+                            <!-- Spark Plug (火星塞) -->
+                            <g id="car-part-m_sparkplug" class="clickable-part machine-part" onclick="handlePartClick('m_sparkplug')">
+                                <circle cx="55" cy="68" r="10" class="hotspot-glow" />
+                                <rect x="52" y="60" width="6" height="12" rx="1" fill="#E2E8F0" stroke="#1A202C" stroke-width="0.5" />
+                                <rect x="51" y="72" width="8" height="4" fill="#4A5568" />
+                                <line x1="55" y1="56" x2="55" y2="60" stroke="#e53e3e" stroke-width="1.5" />
+                            </g>
+                            
+                            <!-- Shock Absorber (避震器) -->
+                            <g id="car-part-m_shock" class="clickable-part machine-part" onclick="handlePartClick('m_shock')">
+                                <circle cx="85" cy="80" r="12" class="hotspot-glow" />
+                                <circle cx="195" cy="80" r="12" class="hotspot-glow" />
+                                <!-- Front Shock Spring -->
+                                <path d="M 81,70 C 89,72 89,74 81,76 C 89,78 89,80 81,82 C 89,84 89,86 85,88" fill="none" stroke="#E53E3E" stroke-width="2.5" stroke-linecap="round" />
+                                <line x1="85" y1="64" x2="85" y2="70" stroke="#A0AEC0" stroke-width="2" />
+                                <!-- Rear Shock Spring -->
+                                <path d="M 191,70 C 199,72 199,74 191,76 C 199,78 199,80 191,82 C 199,84 199,86 195,88" fill="none" stroke="#E53E3E" stroke-width="2.5" stroke-linecap="round" />
+                                <line x1="195" y1="64" x2="195" y2="70" stroke="#A0AEC0" stroke-width="2" />
+                            </g>
+                            
+                            <!-- Exhaust Pipe (排氣管) -->
+                            <g id="car-part-m_exhaust" class="clickable-part machine-part" onclick="handlePartClick('m_exhaust')">
+                                <circle cx="245" cy="98" r="15" class="hotspot-glow" />
+                                <path d="M 215,98 L 235,98 Q 245,98 250,104 L 262,104" fill="none" stroke="#718096" stroke-width="4" stroke-linecap="round" />
+                                <rect x="222" y="92" width="20" height="12" rx="2" fill="#4A5568" stroke="#cbd5e0" stroke-width="1" />
+                                <!-- Smoke Puffs -->
+                                <circle cx="268" cy="102" r="3" fill="#A0AEC0" opacity="0.6" style="pointer-events: none;" />
+                                <circle cx="274" cy="100" r="2" fill="#A0AEC0" opacity="0.4" style="pointer-events: none;" />
+                            </g>
+
+                            <!-- Car Labels and Dotted Lines -->
+                            <g class="machine-labels" opacity="0.85" font-size="9" font-weight="bold" fill="var(--text-primary)" style="pointer-events: none;">
+                                <!-- 引擎 (Ián-jín) -->
+                                <text x="15" y="25" text-anchor="start">引擎 (Ián-jín)</text>
+                                <line x1="35" y1="28" x2="55" y2="78" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- 火星塞 (Hué-tshenn-sai) -->
+                                <text x="80" y="18" text-anchor="middle">火星塞 (Hué-tshenn-sai)</text>
+                                <line x1="80" y1="22" x2="56" y2="60" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- 避震器 (Pī-tsín-khì) -->
+                                <text x="145" y="18" text-anchor="middle">避震器 (Pī-tsín-khì)</text>
+                                <line x1="145" y1="22" x2="195" y2="64" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                <line x1="145" y1="22" x2="85" y2="64" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- 電瓶 (Tiān-pân) -->
+                                <text x="230" y="25" text-anchor="end">電瓶 (Tiān-pân)</text>
+                                <line x1="210" y1="28" x2="82" y2="78" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                                
+                                <!-- 排氣管 (Pâi-khì-kńg) -->
+                                <text x="270" y="130" text-anchor="end">排氣管 (Pâi-khì-kńg)</text>
+                                <line x1="225" y1="127" x2="235" y2="100" stroke="var(--text-muted)" stroke-width="1" stroke-dasharray="2,2" />
+                            </g>
+                        </svg>
+
+                        <!-- Card Grid (Kept below the diagram as requested) -->
+                        <div class="grid-visual text-center">
+                            <!-- Engine -->
+                            <div class="svg-card clickable-part" id="part-m_engine" onclick="handlePartClick('m_engine')">
+                                <svg viewBox="0 0 100 100" class="mini-svg">
+                                    <rect x="25" y="30" width="50" height="40" rx="6" fill="#4A5568" />
+                                    <rect x="35" y="20" width="30" height="10" fill="#718096" />
+                                    <circle cx="50" cy="50" r="12" fill="#E2E8F0" />
+                                    <path d="M 50,38 L 50,62 M 38,50 L 62,50" stroke="#1A202C" stroke-width="3" />
+                                </svg>
+                                <span class="card-label">引擎 (Ián-jín)</span>
+                            </div>
+                            <!-- Spark Plug -->
+                            <div class="svg-card clickable-part" id="part-m_sparkplug" onclick="handlePartClick('m_sparkplug')">
+                                <svg viewBox="0 0 100 100" class="mini-svg">
+                                    <rect x="42" y="20" width="16" height="40" rx="3" fill="#E2E8F0" />
+                                    <rect x="38" y="60" width="24" height="15" fill="#4A5568" />
+                                    <path d="M 50,75 L 50,88 L 44,88" stroke="#718096" stroke-width="3" stroke-linecap="round" fill="none" />
+                                    <line x1="42" y1="35" x2="58" y2="35" stroke="#CBD5E0" stroke-width="2" />
+                                    <line x1="42" y1="45" x2="58" y2="45" stroke="#CBD5E0" stroke-width="2" />
+                                </svg>
+                                <span class="card-label">火星塞 (Hué-tshenn-sai)</span>
+                            </div>
+                            <!-- Shock Absorber -->
+                            <div class="svg-card clickable-part" id="part-m_shock" onclick="handlePartClick('m_shock')">
+                                <svg viewBox="0 0 100 100" class="mini-svg">
+                                    <circle cx="50" cy="20" r="6" fill="#4A5568" />
+                                    <circle cx="50" cy="80" r="6" fill="#4A5568" />
+                                    <line x1="50" y1="26" x2="50" y2="74" stroke="#A0AEC0" stroke-width="4" />
+                                    <!-- Spring shape -->
+                                    <path d="M 42,32 C 58,36 58,40 42,44 C 58,48 58,52 42,56 C 58,60 58,64 42,68 C 58,72 58,74 50,74" fill="none" stroke="#E53E3E" stroke-width="4.5" stroke-linecap="round" />
+                                </svg>
+                                <span class="card-label">避震器 (Pī-tsín-khì)</span>
+                            </div>
+                            <!-- Exhaust Pipe -->
+                            <div class="svg-card clickable-part" id="part-m_exhaust" onclick="handlePartClick('m_exhaust')">
+                                <svg viewBox="0 0 100 100" class="mini-svg">
+                                    <path d="M 15,30 Q 35,30 45,50 L 80,50" stroke="#718096" stroke-width="6" fill="none" stroke-linecap="round" />
+                                    <rect x="52" y="42" width="28" height="16" rx="4" fill="#4A5568" />
+                                    <circle cx="80" cy="50" r="3" fill="#1A202C" />
+                                    <!-- Smoke puffs -->
+                                    <circle cx="88" cy="46" r="3" fill="#A0AEC0" opacity="0.6" />
+                                    <circle cx="94" cy="52" r="2" fill="#A0AEC0" opacity="0.4" />
+                                </svg>
+                                <span class="card-label">排氣管 (Pâi-khì-kńg)</span>
+                            </div>
+                            <!-- Battery -->
+                            <div class="svg-card clickable-part" id="part-m_battery" onclick="handlePartClick('m_battery')">
+                                <svg viewBox="0 0 100 100" class="mini-svg">
+                                    <rect x="25" y="32" width="50" height="42" rx="4" fill="#2B6CB0" />
+                                    <rect x="32" y="24" width="10" height="8" fill="#1A202C" />
+                                    <rect x="58" y="24" width="10" height="8" fill="#E53E3E" />
+                                    <!-- Plus & Minus signs -->
+                                    <text x="35" y="48" fill="#E2E8F0" font-size="16" font-weight="bold" text-anchor="middle">-</text>
+                                    <text x="63" y="48" fill="#E2E8F0" font-size="14" font-weight="bold" text-anchor="middle">+</text>
+                                </svg>
+                                <span class="card-label">電瓶 (Tiān-pân)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Panel: Info Display & Quiz Matrix -->
+            <div class="panel panel-right card-blur">
+                <!-- Learning Details Panel -->
+                <div id="learningContainer" class="info-content-panel active">
+                    <div class="panel-section-title"><i class="fa-solid fa-book-open"></i> <span id="ui-dict-title">跨領域學堂</span></div>
+                    <p class="panel-instruction" id="ui-dict-instruction">點擊左側圖示或地圖部位，探索雙語稱呼與本土讀音！</p>
+                    
+                    <div class="info-card">
+                        <div class="card-glow-bg"></div>
+                        <h2 id="displayMain" class="display-title">-</h2>
+                        <h3 id="displaySub" class="display-sub">-</h3>
+                        
+                        <div class="display-phonetic-row">
+                            <span id="displayPhonetic" class="display-phonetic">-</span>
+                        </div>
+                        
+                        <div class="display-detail-box" id="displayDetailBox">
+                            <p class="detail-label" id="ui-detail-label">補充介紹 (Info)</p>
+                            <p id="displayDescription" class="detail-description">-</p>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary btn-large btn-shadow" style="margin-top: 25px; width: 100%;" onclick="speakCurrentWord()">
+                        <i class="fa-solid fa-volume-high"></i> <span id="ui-btn-replay">重播台語發音 (Pronounce)</span>
+                    </button>
+                </div>
+
+                <!-- Quiz Interactive Panel -->
+                <div id="quizContainer" class="info-content-panel quiz-mode-panel">
+                    <div class="panel-section-title"><i class="fa-solid fa-circle-question"></i> <span id="ui-quiz-panel-title">台語問答遊戲</span></div>
+                    
+                    <!-- Score & Timer bar -->
+                    <div class="quiz-status-row">
+                        <div class="quiz-score"><i class="fa-solid fa-award"></i> <span id="ui-score-label">得分:</span> <span id="scoreValue" class="score-number">0</span></div>
+                        <div class="quiz-timer" id="quiz-timer-display"><i class="fa-solid fa-hourglass-half"></i> 20s</div>
+                    </div>
+                    
+                    <div class="timer-track">
+                        <div class="timer-bar" id="quiz-timer-bar"></div>
+                    </div>
+
+                    <!-- Question prompt -->
+                    <div class="quiz-card">
+                        <div class="quiz-question" id="quizQuestion">正在準備題目...</div>
+                        <button class="btn-icon btn-small" onclick="playQuizQuestionAudio()" title="重播題目語音"><i class="fa-solid fa-volume-high"></i></button>
+                    </div>
+
+                    <!-- Options list -->
+                    <div class="options-container" id="quiz-options-container">
+                        <!-- Options generated dynamically -->
+                    </div>
+
+                    <!-- Quiz Feedback message -->
+                    <div class="feedback-box" id="quizFeedback"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Stamp Achievement Album -->
+        <section class="stamps-section card-blur">
+            <h2 id="ui-stamps-title"><i class="fa-solid fa-bookmark"></i> 我的特有種集章冊 (Stamps)</h2>
+            <p id="ui-stamps-desc" class="stamps-desc">挑戰「遊戲模式」獲得 8 題（80分）以上，即可解鎖臺灣本土特有種野生動植物紀念章！</p>
+            <div class="stamps-grid" id="stamps-container">
+                <!-- Stamp cards generated dynamically -->
+            </div>
+        </section>
+    </main>
+    
+    <!-- Audio queue player helper variables -->
+    <script src="app.js"></script>
+</body>
+</html>
