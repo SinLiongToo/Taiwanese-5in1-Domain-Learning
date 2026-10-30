@@ -126,258 +126,168 @@
                     </div>
                 </div>
 
-                                <!-- 3. Taiwan Geography Interactive Visual -->
+                                                                <!-- 3. Taiwan Geography Interactive Visual -->
                 <div id="visual-geography" class="visual-wrapper">
-                    <div class="svg-container-map">
-                        <svg viewBox="0 0 320 490" class="taiwan-map-svg" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <linearGradient id="oceanGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stop-color="#0284c7"/>
-                                    <stop offset="40%" stop-color="#0369a1"/>
-                                    <stop offset="100%" stop-color="#075985"/>
-                                </linearGradient>
-                                <linearGradient id="landGrad" x1="20%" y1="0%" x2="80%" y2="100%">
-                                    <stop offset="0%" stop-color="#4ade80"/>
-                                    <stop offset="30%" stop-color="#22c55e"/>
-                                    <stop offset="70%" stop-color="#16a34a"/>
-                                    <stop offset="100%" stop-color="#15803d"/>
-                                </linearGradient>
-                                <filter id="pinShadow" x="-30%" y="-30%" width="160%" height="160%">
-                                    <feDropShadow dx="1" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.4"/>
-                                </filter>
-                                <filter id="labelShadow" x="-20%" y="-20%" width="140%" height="140%">
-                                    <feDropShadow dx="0" dy="1.5" stdDeviation="2" flood-color="#000" flood-opacity="0.35"/>
-                                </filter>
-                            </defs>
+                    <div class="anatomy-container">
+                        <div class="svg-container-map anatomy-map-card">
+                            <svg id="taiwan-map-svg" viewBox="0 0 720 660" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                                <defs>
+                                    <clipPath id="map-img-clip">
+                                        <rect x="165" y="30" width="390" height="582" rx="16" ry="16"/>
+                                    </clipPath>
+                                    <filter id="geoPillShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                        <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.15"/>
+                                    </filter>
+                                </defs>
 
-                            <!-- Ocean Background with subtle depth rings -->
-                            <rect width="320" height="490" fill="url(#oceanGrad)" rx="16"/>
-                            <g opacity="0.12" stroke="#bae6fd" stroke-width="1" fill="none">
-                                <circle cx="160" cy="245" r="90" stroke-dasharray="3,6"/>
-                                <circle cx="160" cy="245" r="140" stroke-dasharray="4,8"/>
-                                <circle cx="160" cy="245" r="190" stroke-dasharray="5,10"/>
-                            </g>
+                                <!-- Central Topographic Relief Map Illustration -->
+                                <image href="images/taiwan_map.jpg" x="165" y="30" width="390" height="582" clip-path="url(#map-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                <rect x="165" y="30" width="390" height="582" rx="16" ry="16" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
-                            <!-- Subtle gentle sea waves (non-cartoon) -->
-                            <g opacity="0.18">
-                                <path d="M 15,95 Q 30,90 45,95 Q 60,100 75,95" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-                                <path d="M 235,360 Q 250,355 265,360 Q 280,365 295,360" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-                                <path d="M 15,385 Q 30,380 45,385 Q 60,390 75,385" fill="none" stroke="white" stroke-width="1.2" stroke-linecap="round"/>
-                            </g>
-
-                            <!-- ===== TAIWAN ISLAND BODY ===== -->
-                            <!-- Island drop shadow -->
-                            <path d="M 160.9,369.9 L 154.0,384.3 L 148.4,399.4 L 146.2,413.8 L 146.3,428.5 L 144.7,441.8 L 142.0,455.0 L 131.1,451.2 L 125.2,441.8 L 123.8,426.3 L 115.9,407.6 L 113.0,402.2 L 101.6,391.8 L 91.3,386.6 L 83.3,378.8 L 84.3,379.5 L 78.4,369.1 L 73.9,358.0 L 64.7,326.6 L 61.5,319.0 L 57.2,312.0 L 56.0,305.2 L 57.4,297.6 L 61.4,286.2 L 63.9,274.7 L 61.9,259.1 L 62.6,243.6 L 65.7,236.8 L 118.4,142.7 L 132.7,122.6 L 141.5,112.8 L 148.9,101.7 L 155.9,87.7 L 164.5,74.9 L 170.6,70.9 L 200.9,59.4 L 210.3,48.4 L 217.9,45.0 L 226.5,45.2 L 232.0,50.4 L 236.9,56.7 L 242.1,60.0 L 255.5,66.1 L 261.4,72.0 L 264.0,82.1 L 255.9,91.7 L 251.8,100.3 L 251.1,109.9 L 252.5,122.8 L 252.7,135.8 L 242.5,166.3 L 231.6,185.3 L 228.6,194.7 L 225.3,218.2 L 218.9,241.8 L 213.4,271.6 L 204.5,302.4 L 199.4,315.3 L 193.1,327.6 L 178.0,350.9 L 160.9,369.9 Z"
-                                  fill="rgba(0,0,0,0.28)" transform="translate(6, 8)"/>
-                            <!-- Main island shape -->
-                            <path id="taiwan-island" d="M 160.9,369.9 L 154.0,384.3 L 148.4,399.4 L 146.2,413.8 L 146.3,428.5 L 144.7,441.8 L 142.0,455.0 L 131.1,451.2 L 125.2,441.8 L 123.8,426.3 L 115.9,407.6 L 113.0,402.2 L 101.6,391.8 L 91.3,386.6 L 83.3,378.8 L 84.3,379.5 L 78.4,369.1 L 73.9,358.0 L 64.7,326.6 L 61.5,319.0 L 57.2,312.0 L 56.0,305.2 L 57.4,297.6 L 61.4,286.2 L 63.9,274.7 L 61.9,259.1 L 62.6,243.6 L 65.7,236.8 L 118.4,142.7 L 132.7,122.6 L 141.5,112.8 L 148.9,101.7 L 155.9,87.7 L 164.5,74.9 L 170.6,70.9 L 200.9,59.4 L 210.3,48.4 L 217.9,45.0 L 226.5,45.2 L 232.0,50.4 L 236.9,56.7 L 242.1,60.0 L 255.5,66.1 L 261.4,72.0 L 264.0,82.1 L 255.9,91.7 L 251.8,100.3 L 251.1,109.9 L 252.5,122.8 L 252.7,135.8 L 242.5,166.3 L 231.6,185.3 L 228.6,194.7 L 225.3,218.2 L 218.9,241.8 L 213.4,271.6 L 204.5,302.4 L 199.4,315.3 L 193.1,327.6 L 178.0,350.9 L 160.9,369.9 Z"
-                                  fill="url(#landGrad)" stroke="#16a34a" stroke-width="2"/>
-
-                            <!-- ===== MOUNTAINS ===== -->
-                            <!-- 雪山山脈 (Suat-suann suann-me̍h) - Inbound Northern Ridge -->
-                            <g id="part-m_xueshan" class="clickable-part geo-mtn" onclick="handlePartClick('m_xueshan')">
-                                <polygon points="144,145 164,110 184,145" fill="#166534" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="152,150 172,115 192,150" fill="#15803d" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="159,114 164,110 169,114 167,118 164,115 161,118" fill="white" opacity="0.95"/>
-                                <ellipse cx="168" cy="132" rx="26" ry="18" fill="rgba(74,222,128,0.15)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="164" cy="106" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
-                                    <text x="164" y="110" text-anchor="middle" font-size="6" fill="#713f12" font-weight="bold" style="pointer-events:none;">⛰</text>
+                                <!-- Compass Rose overlay on map bottom-right -->
+                                <g transform="translate(520, 575)" style="pointer-events:none;" opacity="0.9">
+                                    <circle r="16" fill="rgba(15,23,42,0.6)" stroke="rgba(255,255,255,0.4)" stroke-width="1.2"/>
+                                    <polygon points="0,-14 3.5,-3 0,-6 -3.5,-3" fill="#f8fafc"/>
+                                    <polygon points="0,14 3.5,3 0,6 -3.5,3" fill="#64748b"/>
+                                    <polygon points="-14,0 -3,3.5 -6,0 -3,-3.5" fill="#64748b"/>
+                                    <polygon points="14,0 3,3.5 6,0 3,-3.5" fill="#64748b"/>
+                                    <text x="0" y="-16" text-anchor="middle" font-size="7.5" fill="#f8fafc" font-weight="bold">N</text>
+                                    <circle r="3.5" fill="#fbbf24"/>
                                 </g>
-                            </g>
 
-                            <!-- 中央山脈 (Tiong-iong suann-me̍h) - Central Spine -->
-                            <g id="part-m_central" class="clickable-part geo-mtn" onclick="handlePartClick('m_central')">
-                                <polygon points="148,220 168,182 188,220" fill="#166534" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="150,265 172,228 194,265" fill="#15803d" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="143,315 165,278 187,315" fill="#16a34a" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="163,186 168,182 173,186 171,190 168,187 165,190" fill="white" opacity="0.85"/>
-                                <ellipse cx="168" cy="250" rx="28" ry="24" fill="rgba(74,222,128,0.12)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="168" cy="178" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
-                                    <text x="168" y="182" text-anchor="middle" font-size="6" fill="#713f12" font-weight="bold" style="pointer-events:none;">⛰</text>
+                                <!-- LEFT COLUMN CALLOUTS (7 items spaced 85px apart) -->
+                                <!-- 1. 淡水河 (Tām-tsuí-hô) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-r_tamsui" onclick="handlePartClick('r_tamsui')">
+                                    <path class="leader-line" d="M 155,58 L 260,58 L 376,146" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="376" cy="146" r="14" fill="#0284c7" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="376" cy="146" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">淡水河 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tām-tsuí-hô)</tspan></text>
                                 </g>
-                            </g>
 
-                            <!-- 玉山山脈 (Gio̍k-san suann-me̍h) -->
-                            <g id="part-m_yushan" class="clickable-part geo-mtn" onclick="handlePartClick('m_yushan')">
-                                <polygon points="138,335 156,296 174,335" fill="#166534" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="149,300 156,296 163,300 160,305 156,302 152,305" fill="white" opacity="0.95"/>
-                                <ellipse cx="156" cy="320" rx="20" ry="16" fill="rgba(74,222,128,0.15)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="156" cy="292" r="7" fill="#f97316" stroke="#c2410c" stroke-width="1.5"/>
-                                    <text x="156" y="296" text-anchor="middle" font-size="7" fill="white" font-weight="bold" style="pointer-events:none;">★</text>
+                                <!-- 2. 臺灣海峽 (Tâi-uân hái-kiap) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-l_taiwan_strait" onclick="handlePartClick('l_taiwan_strait')">
+                                    <path class="leader-line" d="M 155,143 L 180,143 L 212,216" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="212" cy="216" r="14" fill="#2563eb" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="212" cy="216" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">臺灣海峽 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-kiap)</tspan></text>
                                 </g>
-                            </g>
 
-                            <!-- 阿里山山脈 (A-lí-san suann-me̍h) -->
-                            <g id="part-m_alishan" class="clickable-part geo-mtn" onclick="handlePartClick('m_alishan')">
-                                <polygon points="120,326 136,296 152,326" fill="#15803d" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="124,300 136,296 141,300 138,304 136,302 133,304" fill="white" opacity="0.8"/>
-                                <ellipse cx="136" cy="316" rx="18" ry="14" fill="rgba(74,222,128,0.12)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="136" cy="292" r="6" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
-                                    <text x="136" y="296" text-anchor="middle" font-size="6" fill="#713f12" font-weight="bold" style="pointer-events:none;">⛰</text>
+                                <!-- 3. 澎湖 (Phînn-ôo) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-l_penghu" onclick="handlePartClick('l_penghu')">
+                                    <path class="leader-line" d="M 155,228 L 200,228 L 251,321" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="251" cy="321" r="14" fill="#059669" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="251" cy="321" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">澎湖 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Phînn-ôo)</tspan></text>
                                 </g>
-                            </g>
 
-                            <!-- 海岸山脈 (Hái-huānn suann-me̍h) - Eastern Coast -->
-                            <g id="part-m_coastal" class="clickable-part geo-mtn" onclick="handlePartClick('m_coastal')">
-                                <polygon points="208,270 218,245 228,270" fill="#166534" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="202,310 214,280 226,310" fill="#15803d" stroke="#14532d" stroke-width="1"/>
-                                <polygon points="196,350 208,320 220,350" fill="#16a34a" stroke="#14532d" stroke-width="1"/>
-                                <ellipse cx="212" cy="300" rx="16" ry="38" fill="rgba(74,222,128,0.12)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="214" cy="275" r="5.5" fill="#fef08a" stroke="#ca8a04" stroke-width="1.5"/>
-                                    <text x="214" y="279" text-anchor="middle" font-size="5.5" fill="#713f12" font-weight="bold" style="pointer-events:none;">⛰</text>
+                                <!-- 4. 濁水溪 (Lô-tsuí-khe) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-r_zhuoshui" onclick="handlePartClick('r_zhuoshui')">
+                                    <path class="leader-line" d="M 155,313 L 240,313 L 313,286" fill="none" stroke="#0369a1" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="313" cy="286" r="14" fill="#0369a1" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="313" cy="286" r="6" fill="#0369a1" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0369a1" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">濁水溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Lô-tsuí-khe)</tspan></text>
                                 </g>
-                            </g>
 
-                            <!-- ===== RIVERS ===== -->
-                            <!-- 淡水河 (Tām-tsuí-hô) - North -->
-                            <g id="part-r_tamsui" class="clickable-part" onclick="handlePartClick('r_tamsui')">
-                                <path d="M 200,60 Q 186,84 174,104" class="river-part" stroke="#38bdf8"/>
-                                <circle cx="186" cy="84" r="14" fill="rgba(56,189,248,0.12)" class="hotspot-glow"/>
-                            </g>
-
-                            <!-- 濁水溪 (Lô-tsuí-khe) - Longest River -->
-                            <g id="part-r_zhuoshui" class="clickable-part" onclick="handlePartClick('r_zhuoshui')">
-                                <path d="M 166,238 Q 128,244 65,248" class="river-part" stroke="#38bdf8" stroke-width="5"/>
-                                <circle cx="115" cy="244" r="15" fill="rgba(56,189,248,0.12)" class="hotspot-glow"/>
-                            </g>
-
-                            <!-- 曾文溪 (Tsan-bûn-khe) - South-West -->
-                            <g id="part-r_zengwen" class="clickable-part" onclick="handlePartClick('r_zengwen')">
-                                <path d="M 150,310 Q 115,326 76,345" class="river-part" stroke="#38bdf8"/>
-                                <circle cx="112" cy="328" r="14" fill="rgba(56,189,248,0.12)" class="hotspot-glow"/>
-                            </g>
-
-                            <!-- 高屏溪 (Ko-pîn-khe) - Largest Basin in South -->
-                            <g id="part-r_gaoping" class="clickable-part" onclick="handlePartClick('r_gaoping')">
-                                <path d="M 164,345 Q 150,388 138,448" class="river-part" stroke="#38bdf8" stroke-width="5"/>
-                                <circle cx="150" cy="396" r="15" fill="rgba(56,189,248,0.12)" class="hotspot-glow"/>
-                            </g>
-
-                            <!-- ===== LANDMARKS & BODIES OF WATER ===== -->
-                            <!-- 日月潭 (Ji̍t-gua̍t-thâm) -->
-                            <g id="part-l_sunmoonlake" class="clickable-part" onclick="handlePartClick('l_sunmoonlake')">
-                                <circle cx="150" cy="272" r="8" fill="#38bdf8" stroke="#0284c7" stroke-width="2"/>
-                                <circle cx="150" cy="272" r="15" fill="rgba(56,189,248,0.15)" class="hotspot-glow"/>
-                                <g filter="url(#pinShadow)">
-                                    <circle cx="150" cy="272" r="4" fill="#0284c7"/>
+                                <!-- 5. 日月潭 (Ji̍t-gua̍t-thâm) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-l_sunmoonlake" onclick="handlePartClick('l_sunmoonlake')">
+                                    <path class="leader-line" d="M 155,398 L 250,398 L 352,298" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="352" cy="298" r="14" fill="#0ea5e9" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="352" cy="298" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">日月潭 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ji̍t-gua̍t)</tspan></text>
                                 </g>
-                            </g>
 
-                            <!-- 太魯閣 (Thài-lóo-koh) -->
-                            <g id="part-l_taroko" class="clickable-part" onclick="handlePartClick('l_taroko')">
-                                <circle cx="196" cy="195" r="9" fill="#c084fc" stroke="#7e22ce" stroke-width="2"/>
-                                <circle cx="196" cy="195" r="15" fill="rgba(192,132,252,0.15)" class="hotspot-glow"/>
-                                <text x="196" y="198" text-anchor="middle" font-size="7" fill="white" font-weight="bold" style="pointer-events:none;">峽</text>
-                            </g>
-
-                            <!-- 澎湖群島 (Phīnn-ôo) -->
-                            <g id="part-l_penghu" class="clickable-part" onclick="handlePartClick('l_penghu')">
-                                <g fill="#86efac" stroke="#15803d" stroke-width="1.2">
-                                    <ellipse cx="46" cy="292" rx="7" ry="9"/>
-                                    <ellipse cx="58" cy="286" rx="5" ry="7"/>
-                                    <circle cx="52" cy="302" r="4"/>
-                                    <circle cx="40" cy="298" r="3"/>
+                                <!-- 6. 阿里山 (A-lí-san) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-m_alishan" onclick="handlePartClick('m_alishan')">
+                                    <path class="leader-line" d="M 155,483 L 240,483 L 325,350" fill="none" stroke="#4d7c0f" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="325" cy="350" r="14" fill="#4d7c0f" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="325" cy="350" r="6" fill="#4d7c0f" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#4d7c0f" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">阿里山 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(A-lí-san)</tspan></text>
                                 </g>
-                                <circle cx="50" cy="294" r="20" fill="rgba(74,222,128,0.15)" class="hotspot-glow"/>
-                            </g>
 
-                            <!-- 台灣海峽 (Tâi-uân hái-kiap) -->
-                            <g id="part-l_taiwan_strait" class="clickable-part" onclick="handlePartClick('l_taiwan_strait')">
-                                <rect x="8" y="186" width="78" height="24" rx="12" fill="rgba(3,105,161,0.85)" stroke="#38bdf8" stroke-width="1.2" filter="url(#labelShadow)"/>
-                                <text x="47" y="202" text-anchor="middle" font-size="10" fill="#e0f2fe" font-weight="bold">台灣海峽</text>
-                            </g>
+                                <!-- 7. 曾文溪 (Tsan-bûn-khe) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-r_zengwen" onclick="handlePartClick('r_zengwen')">
+                                    <path class="leader-line" d="M 155,568 L 230,568 L 305,391" fill="none" stroke="#0891b2" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="305" cy="391" r="14" fill="#0891b2" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="305" cy="391" r="6" fill="#0891b2" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="10" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0891b2" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="82" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">曾文溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tsan-bûn)</tspan></text>
+                                </g>
 
-                            <!-- 花東縱谷 (Hua-tang tsiòng-kok) -->
-                            <g id="part-l_east_rift" class="clickable-part" onclick="handlePartClick('l_east_rift')">
-                                <line x1="188" y1="245" x2="198" y2="330" stroke="#fbbf24" stroke-width="3" stroke-dasharray="4,3" stroke-linecap="round"/>
-                                <circle cx="193" cy="285" r="14" fill="rgba(251,191,36,0.15)" class="hotspot-glow"/>
-                            </g>
+                                <!-- RIGHT COLUMN CALLOUTS (7 items spaced 85px apart) -->
+                                <!-- 8. 雪山山脈 (Suat-suann) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-m_xueshan" onclick="handlePartClick('m_xueshan')">
+                                    <path class="leader-line" d="M 565,58 L 470,58 L 372,193" fill="none" stroke="#15803d" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="372" cy="193" r="14" fill="#15803d" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="372" cy="193" r="6" fill="#15803d" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="40" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#15803d" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">雪山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Suat-suann)</tspan></text>
+                                </g>
 
-                            <!-- ===== MOUNTAIN LABELS ===== -->
-                            <g style="pointer-events:none;" font-family="'Iansui', sans-serif" filter="url(#labelShadow)">
-                                <!-- 雪山山脈 -->
-                                <rect x="186" y="98" width="60" height="15" rx="7.5" fill="rgba(0,0,0,0.55)"/>
-                                <text x="216" y="109" text-anchor="middle" font-size="9" fill="#86efac" font-weight="bold">雪山山脈</text>
+                                <!-- 9. 太魯閣 (Thài-lóo-koh) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-l_taroko" onclick="handlePartClick('l_taroko')">
+                                    <path class="leader-line" d="M 565,143 L 490,143 L 415,228" fill="none" stroke="#9333ea" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="415" cy="228" r="14" fill="#9333ea" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="415" cy="228" r="6" fill="#9333ea" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="125" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#9333ea" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="147" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">太魯閣 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Thài-lóo-koh)</tspan></text>
+                                </g>
 
-                                <!-- 中央山脈 -->
-                                <rect x="138" y="210" width="60" height="15" rx="7.5" fill="rgba(0,0,0,0.6)"/>
-                                <text x="168" y="221" text-anchor="middle" font-size="9" fill="#86efac" font-weight="bold">中央山脈</text>
+                                <!-- 10. 中央山脈 (Tiong-iong) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-m_central" onclick="handlePartClick('m_central')">
+                                    <path class="leader-line" d="M 565,228 L 470,228 L 372,274" fill="none" stroke="#166534" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="372" cy="274" r="14" fill="#166534" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="372" cy="274" r="6" fill="#166534" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="210" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#166534" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="232" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">中央山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiong-iong)</tspan></text>
+                                </g>
 
-                                <!-- 玉山山脈 -->
-                                <rect x="175" y="312" width="56" height="15" rx="7.5" fill="rgba(0,0,0,0.6)"/>
-                                <text x="203" y="323" text-anchor="middle" font-size="9" fill="#fed7aa" font-weight="bold">玉山 ★</text>
+                                <!-- 11. 花東縱谷 (Hua-tang) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-l_east_rift" onclick="handlePartClick('l_east_rift')">
+                                    <path class="leader-line" d="M 565,313 L 485,313 L 403,333" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="403" cy="333" r="14" fill="#ea580c" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="403" cy="333" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="295" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="317" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">花東縱谷 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hua-tang)</tspan></text>
+                                </g>
 
-                                <!-- 阿里山山脈 -->
-                                <rect x="74" y="296" width="56" height="15" rx="7.5" fill="rgba(0,0,0,0.6)"/>
-                                <text x="102" y="307" text-anchor="middle" font-size="9" fill="#bbf7d0" font-weight="bold">阿里山</text>
+                                <!-- 12. 海岸山脈 (Hái-huānn) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-m_coastal" onclick="handlePartClick('m_coastal')">
+                                    <path class="leader-line" d="M 565,398 L 495,398 L 426,344" fill="none" stroke="#047857" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="426" cy="344" r="14" fill="#047857" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="426" cy="344" r="6" fill="#047857" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="380" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#047857" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="402" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">海岸山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Hái-huānn)</tspan></text>
+                                </g>
 
-                                <!-- 海岸山脈 -->
-                                <rect x="230" y="325" width="56" height="15" rx="7.5" fill="rgba(0,0,0,0.6)"/>
-                                <text x="258" y="336" text-anchor="middle" font-size="9" fill="#bbf7d0" font-weight="bold">海岸山脈</text>
-                            </g>
+                                <!-- 13. 玉山山脈 (Gio̍k-san) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-m_yushan" onclick="handlePartClick('m_yushan')">
+                                    <path class="leader-line" d="M 565,483 L 460,483 L 356,344" fill="none" stroke="#065f46" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="356" cy="344" r="14" fill="#065f46" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="356" cy="344" r="6" fill="#065f46" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="465" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#065f46" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="487" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">玉山山脈 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Gio̍k-san)</tspan></text>
+                                </g>
 
-                            <!-- ===== RIVER LABELS ===== -->
-                            <g style="pointer-events:none;" font-family="'Iansui', sans-serif" opacity="0.95" filter="url(#labelShadow)">
-                                <!-- 淡水河 -->
-                                <rect x="126" y="72" width="46" height="13" rx="6" fill="rgba(2,132,199,0.85)"/>
-                                <text x="149" y="82" text-anchor="middle" font-size="8" fill="white">淡水河</text>
-
-                                <!-- 濁水溪 -->
-                                <rect x="68" y="235" width="46" height="13" rx="6" fill="rgba(2,132,199,0.85)"/>
-                                <text x="91" y="245" text-anchor="middle" font-size="8" fill="white">濁水溪</text>
-
-                                <!-- 曾文溪 -->
-                                <rect x="52" y="342" width="46" height="13" rx="6" fill="rgba(2,132,199,0.85)"/>
-                                <text x="75" y="352" text-anchor="middle" font-size="8" fill="white">曾文溪</text>
-
-                                <!-- 高屏溪 -->
-                                <rect x="100" y="440" width="46" height="13" rx="6" fill="rgba(2,132,199,0.85)"/>
-                                <text x="123" y="450" text-anchor="middle" font-size="8" fill="white">高屏溪</text>
-                            </g>
-
-                            <!-- ===== LANDMARK LABELS ===== -->
-                            <g style="pointer-events:none;" font-family="'Iansui', sans-serif" filter="url(#labelShadow)">
-                                <!-- 日月潭 -->
-                                <line x1="150" y1="264" x2="118" y2="272" stroke="#7dd3fc" stroke-width="1.2" stroke-dasharray="2,2"/>
-                                <rect x="74" y="265" width="60" height="15" rx="7.5" fill="rgba(2,132,199,0.9)"/>
-                                <text x="104" y="276" text-anchor="middle" font-size="8.5" fill="white" font-weight="bold">日月潭</text>
-
-                                <!-- 太魯閣 -->
-                                <line x1="196" y1="195" x2="225" y2="195" stroke="#a78bfa" stroke-width="1.2" stroke-dasharray="2,2"/>
-                                <rect x="220" y="187" width="54" height="15" rx="7.5" fill="rgba(109,40,217,0.9)"/>
-                                <text x="247" y="198" text-anchor="middle" font-size="8.5" fill="white" font-weight="bold">太魯閣</text>
-
-                                <!-- 澎湖 -->
-                                <rect x="24" y="268" width="46" height="15" rx="7.5" fill="rgba(21,128,61,0.9)"/>
-                                <text x="47" y="279" text-anchor="middle" font-size="8.5" fill="white" font-weight="bold">澎湖</text>
-
-                                <!-- 花東縱谷 -->
-                                <line x1="195" y1="285" x2="225" y2="285" stroke="#fbbf24" stroke-width="1.2" stroke-dasharray="2,2"/>
-                                <rect x="218" y="277" width="56" height="15" rx="7.5" fill="rgba(180,83,9,0.9)"/>
-                                <text x="246" y="288" text-anchor="middle" font-size="8.5" fill="white" font-weight="bold">花東縱谷</text>
-                            </g>
-
-                            <!-- Professional Compass Rose (bottom right) -->
-                            <g transform="translate(285, 452)" style="pointer-events:none;" opacity="0.85">
-                                <circle r="14" fill="rgba(0,0,0,0.35)" stroke="rgba(255,255,255,0.4)" stroke-width="1"/>
-                                <polygon points="0,-12 3,-2 0,-5 -3,-2" fill="#f8fafc"/>
-                                <polygon points="0,12 3,2 0,5 -3,2" fill="#94a3b8"/>
-                                <polygon points="-12,0 -2,3 -5,0 -2,-3" fill="#94a3b8"/>
-                                <polygon points="12,0 2,3 5,0 2,-3" fill="#94a3b8"/>
-                                <text x="0" y="-14" text-anchor="middle" font-size="6.5" fill="#f8fafc" font-weight="bold">N</text>
-                                <circle r="3" fill="#fbbf24"/>
-                            </g>
-                        </svg>
+                                <!-- 14. 高屏溪 (Ko-pîn-khe) -->
+                                <g class="clickable-part geo-part-node body-part-node" id="part-r_gaoping" onclick="handlePartClick('r_gaoping')">
+                                    <path class="leader-line" d="M 565,568 L 450,568 L 333,449" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                    <circle class="hotspot-pulse" cx="333" cy="449" r="14" fill="#0284c7" opacity="0.3"/>
+                                    <circle class="hotspot-core" cx="333" cy="449" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                    <rect class="badge-bg" x="565" y="550" width="145" height="36" rx="18" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#geoPillShadow)"/>
+                                    <text class="badge-title" x="637" y="572" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">高屏溪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ko-pîn-khe)</tspan></text>
+                                </g>
+                            </svg>
+                        </div>
                     </div>
                 </div>
 
-
-                                <!-- 4. Human Body Interactive Visual -->
+<!-- 4. Human Body Interactive Visual -->
                 <div id="visual-body" class="visual-wrapper">
                     <div class="anatomy-container">
                         <div class="svg-container-map anatomy-map-card">

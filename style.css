@@ -622,16 +622,16 @@ svg text {
     pointer-events: none;
 }
 
-.body-part-node {
+.body-part-node, .geo-part-node {
     cursor: pointer;
     transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-.body-part-node .leader-line {
+.body-part-node .leader-line, .geo-part-node .leader-line {
     transition: stroke 0.25s ease, stroke-width 0.25s ease, opacity 0.25s ease;
 }
 
-.body-part-node .hotspot-pulse {
+.body-part-node .hotspot-pulse, .geo-part-node .hotspot-pulse {
     transition: all 0.3s ease;
     animation: pulseRing 2.4s infinite ease-in-out;
 }
@@ -642,70 +642,70 @@ svg text {
     100% { opacity: 0.2; }
 }
 
-.body-part-node .badge-bg {
+.body-part-node .badge-bg, .geo-part-node .badge-bg {
     fill: #ffffff;
     transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
 }
 
-[data-theme="dark"] .body-part-node .badge-bg {
+[data-theme="dark"] .body-part-node .badge-bg, .geo-part-node .badge-bg {
     fill: #1e293b;
 }
 
-.body-part-node .badge-title {
+.body-part-node .badge-title, .geo-part-node .badge-title {
     fill: var(--text-primary);
     transition: fill 0.2s ease;
     user-select: none;
     pointer-events: none;
 }
 
-.body-part-node .badge-title tspan {
+.body-part-node .badge-title tspan, .geo-part-node .badge-title tspan {
     fill: var(--text-muted);
     transition: fill 0.2s ease;
 }
 
-.body-part-node .leader-line {
+.body-part-node .leader-line, .geo-part-node .leader-line {
     pointer-events: none;
 }
 
-.body-part-node:hover .badge-bg {
+.body-part-node:hover .badge-bg, .geo-part-node:hover .badge-bg {
     filter: brightness(1.08);
     stroke-width: 2.2px;
 }
 
-.body-part-node:hover .leader-line {
+.body-part-node:hover .leader-line, .geo-part-node:hover .leader-line {
     stroke-width: 2.8px;
     stroke-dasharray: none;
     opacity: 1;
 }
 
-.body-part-node.active .badge-bg {
+.body-part-node.active .badge-bg, .geo-part-node.active .badge-bg {
     fill: var(--primary) !important;
     stroke: #ffffff !important;
     stroke-width: 2px !important;
 }
 
-.body-part-node.active .badge-title {
+.body-part-node.active .badge-title, .geo-part-node.active .badge-title {
     fill: #ffffff !important;
 }
 
-.body-part-node.active .badge-title tspan {
+.body-part-node.active .badge-title tspan, .geo-part-node.active .badge-title tspan {
     fill: rgba(255, 255, 255, 0.9) !important;
 }
 
-.body-part-node.active .leader-line {
+.body-part-node.active .leader-line, .geo-part-node.active .leader-line {
     stroke: var(--primary) !important;
     stroke-dasharray: none !important;
     stroke-width: 3.2px !important;
     opacity: 1 !important;
 }
 
-.body-part-node.active .hotspot-pulse {
+.body-part-node.active .hotspot-pulse, .geo-part-node.active .hotspot-pulse {
     fill: var(--primary) !important;
     opacity: 0.85 !important;
     r: 18 !important;
 }
 
-.body-part-node.active .hotspot-core {
+.body-part-node.active .hotspot-core, .geo-part-node.active .hotspot-core {
     fill: var(--primary) !important;
     stroke: #ffffff !important;
     stroke-width: 3px !important;
