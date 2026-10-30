@@ -114,16 +114,16 @@ const dataSource = {
     insect: {
         i_butterfly: {
             tw: { 
-                name: "寬尾鳳蝶 (尾蝶仔)", 
-                sub: "Kuan-bué hōng-ia̍h (Bué-ia̍h-á)", 
-                phonetic: "Bué-ia̍h-á", 
+                name: "尾蝶仔 (寬尾鳳蝶)", 
+                sub: "Bóe-ia̍h-á", 
+                phonetic: "Bóe-ia̍h-á", 
                 speech: "尾蝶仔", 
                 description: "臺灣特有種國寶蝴蝶，後翅有著極寬大的尾狀突起與鮮紅魚鱗狀斑紋，幼蟲僅吃稀有的臺灣擦樹葉子。",
                 audioSegments: ["尾蝶", "仔"]
             },
             en: { 
                 name: "Broad-tailed Swallowtail", 
-                sub: "寬尾鳳蝶", 
+                sub: "尾蝶仔", 
                 phonetic: "Broad-tailed Swallowtail", 
                 speech: "Broad-tailed Swallowtail", 
                 description: "A magnificent swallowtail butterfly endemic to Taiwan, featuring a distinct broad red tail."
@@ -940,7 +940,7 @@ const twHomophones = {
     "臺灣石虎": "台玩幾厚", "山貓": "三妞", "臺灣獼猴": "台玩彌高", "烏肢猴": "歐給高",
     "櫻花鉤吻鮭": "應花高門貴", "鮭魚": "貴黑", "臺灣藍鵲": "台玩藍去", "山娘": "山妞",
     // 昆蟲
-    "寬尾鳳蝶": "寬尾鬨夜", "蝴蝶": "歐牒", "螢火蟲": "營夥充", "火金姑": "毀金姑",
+    "寬尾鳳蝶": "寬尾鬨夜", "蝴蝶": "歐牒", "尾蝶仔": "尾夜阿", "螢火蟲": "營夥充", "火金姑": "毀金姑",
     "臺灣油蟬": "台玩油賢", "蟬仔": "賢阿", "獨角仙": "毒角先",
     "蜻蜓": "青聽", "田嬰": "纏因", "蜂": "胖", "蜜蜂": "逼胖",
     // 地理
