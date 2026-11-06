@@ -315,6 +315,108 @@ const dataSource = {
                 speech: "Mole Cricket", 
                 description: "A subterranean insect with powerful spade-like forelegs adapted for digging through soil, central to nostalgic Taiwanese childhood memories."
             }
+        },
+        i_stag_beetle: {
+            tw: { 
+                name: "剪仔龜 (鍬形蟲)", 
+                sub: "Tsián-á-ku", 
+                phonetic: "Tsián-á-ku", 
+                speech: "剪仔龜", 
+                description: "森林甲蟲界的強悍武士，雄蟲頭部有一對如同剪刀或雄鹿巨角般發達的大顎，用於爭奪樹液地盤與求偶打鬥。",
+                audioSegments: ["剪仔龜"]
+            },
+            en: { 
+                name: "Stag Beetle", 
+                sub: "剪仔龜", 
+                phonetic: "Stag Beetle", 
+                speech: "Stag Beetle", 
+                description: "A prominent beetle renowned for its formidable antler-like mandibles in males, used to wrestle rivals for feeding territory."
+            }
+        },
+        i_mosquito: {
+            tw: { 
+                name: "蠓仔 (蚊子)", 
+                sub: "Báng-á", 
+                phonetic: "Báng-á", 
+                speech: "蠓仔", 
+                description: "常見的雙翅目吸血昆蟲，雌蚊需要吸食溫血動物血液來促進卵巢發育，幼蟲「孑孓」生活在不流動的靜水容器中。",
+                audioSegments: ["蠓仔"]
+            },
+            en: { 
+                name: "Mosquito", 
+                sub: "蠓仔", 
+                phonetic: "Mosquito", 
+                speech: "Mosquito", 
+                description: "A slender flying insect with fragile legs and needle-like mouthparts. Female mosquitoes require blood meals to nurture developing eggs."
+            }
+        },
+        i_cricket: {
+            tw: { 
+                name: "蟋蟀仔 (蟋蟀)", 
+                sub: "Sih-sut-á", 
+                phonetic: "Sih-sut-á", 
+                speech: "蟋蟀仔", 
+                description: "秋夜田野間的著名鳴蟲，雄蟋蟀透過相互摩擦前翅特化的音銼與刮器發出清脆唧唧聲，具有強烈的地盤防禦性。",
+                audioSegments: ["蟋蟀仔"]
+            },
+            en: { 
+                name: "Field Cricket", 
+                sub: "蟋蟀仔", 
+                phonetic: "Cricket", 
+                speech: "Cricket", 
+                description: "A nocturnal insect renowned for its melodic chirping song produced by stridulation—rubbing its textured front wings together."
+            }
+        },
+        i_caterpillar: {
+            tw: { 
+                name: "刺毛蟲 (毛毛蟲)", 
+                sub: "Tshì-môo-thâng", 
+                phonetic: "Tshì-môo-thâng", 
+                speech: "刺毛蟲", 
+                description: "鱗翅目蝴蝶與飛蛾的幼蟲階段，身體表面長有細密絨毛或毒刺禦敵，食量驚人迅速生長，經過結繭化蛹完全變態羽化。",
+                audioSegments: ["刺毛蟲"]
+            },
+            en: { 
+                name: "Caterpillar", 
+                sub: "刺毛蟲", 
+                phonetic: "Caterpillar", 
+                speech: "Caterpillar", 
+                description: "The voracious larval stage of butterflies and moths, covered in protective setae, undergoing complete metamorphosis inside a pupa."
+            }
+        },
+        i_moth: {
+            tw: { 
+                name: "蛾仔 (飛蛾)", 
+                sub: "Ia̍h-á", 
+                phonetic: "Ia̍h-á", 
+                speech: "蛾仔", 
+                description: "夜行性為主的鱗翅目昆蟲，多數擁有羽毛狀或梳齒狀的敏銳觸角，停棲時翅膀多平鋪或呈屋脊狀收攏，具有強烈趨光性。",
+                audioSegments: ["蛾仔"]
+            },
+            en: { 
+                name: "Moth", 
+                sub: "蛾仔", 
+                phonetic: "Moth", 
+                speech: "Moth", 
+                description: "A diverse group of predominantly nocturnal lepidopterans, characterized by feathery antennae and wings folded flat or tent-like over the back."
+            }
+        },
+        i_termite: {
+            tw: { 
+                name: "大水蟻 (白蟻/飛蟻)", 
+                sub: "Tuā-tsuí-hiā", 
+                phonetic: "Tuā-tsuí-hiā", 
+                speech: "大水蟻", 
+                description: "白蟻族群中的有翅繁殖蟻。每逢夏季大雨來臨前氣壓低且濕度高的黃昏，會成千上萬集體離巢「分飛」求偶建立新王國。",
+                audioSegments: ["大水蟻"]
+            },
+            en: { 
+                name: "Flying Termite (Alate)", 
+                sub: "大水蟻", 
+                phonetic: "Termite Alate", 
+                speech: "Termite", 
+                description: "Winged reproductive termites that emerge in massive swarms on humid evenings before summer rainstorms to mate and form new colonies."
+            }
         }
     },
     geography: {
@@ -1572,6 +1674,12 @@ const taigiAudioMap = {
     "狗蟻": "4367(1)",       // 狗蟻 (káu-hiā ID 4367: 螞蟻)
     "虎頭蜂": "4651(1)",     // 虎頭蜂 (hóo-thâu-phang ID 4651: 大胡蜂)
     "杜伯仔": "3232(1)",     // 杜伯仔 (tōo-peh-á ID 3232: 螻蛄/肚伯仔)
+    "剪仔龜": "14261(1)",    // 剪仔龜 (tsián-á-ku ID 14261: 鍬形蟲)
+    "蠓仔": "13012(1)",      // 蠓仔 (báng-á ID 13012: 蚊子)
+    "蟋蟀仔": "12366(1)",    // 蟋蟀仔 (sih-sut-á ID 12366: 蟋蟀)
+    "刺毛蟲": "3617(1)",     // 刺毛蟲 (tshì-môo-thâng ID 3617: 毛毛蟲)
+    "蛾仔": "10004(1)",      // 蛾仔 (ia̍h-á ID 10004: 飛蛾)
+    "大水蟻": "27459(1)",    // 大水蟻 (tuā-tsuí-hiā ID 27459: 繁殖期白蟻飛蟻)
     
     // 地理相關
     "中央": "22306(1)", "山脈": "25998(1)", 
