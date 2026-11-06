@@ -2151,7 +2151,264 @@ const dataSource = {
                 speech: "Bicycle Saddle", 
                 description: "The ergonomic seat that supports the cyclist's weight, mounted atop the seatpost to provide comfort and efficient pedaling posture."
             }
+        },
+        // ===== 汽車內部與駕駛室配備 (Car Interior & Cockpit) =====
+        m_steering: {
+            tw: { 
+                name: "ha̋n-tóo-luh (方向盤)", 
+                sub: "Ha̋n-tóo-luh / Tshiú-puânn", 
+                phonetic: "Ha̋n-tóo-luh", 
+                speech: "ha̋n-tóo-luh", 
+                description: "駕駛操控汽車行駛方向的核心圓形盤體，借自日語「ハンドル(handoru)」。藉由轉向機柱帶動轉向齒輪與拉桿，精確控制前輪轉向角度。",
+                audioSegments: ["ha̋n-tóo-luh"]
+            },
+            en: { 
+                name: "Steering Wheel (Handle)", 
+                sub: "ha̋n-tóo-luh / 手盤", 
+                phonetic: "Steering Wheel", 
+                speech: "Steering Wheel", 
+                description: "The primary circular control manipulated by the driver to steer the automobile via the steering column and rack mechanism."
+            }
+        },
+        m_horn: {
+            tw: { 
+                name: "喇叭 (方向盤鳴笛)", 
+                sub: "Lá-pah", 
+                phonetic: "Lá-pah", 
+                speech: "喇叭", 
+                description: "設置於方向盤正中央的警示音鳴笛開關。按下即接通電路驅動電磁音響器，發出宏亮聲響警示周遭人車以確保行車安全。",
+                audioSegments: ["喇叭"]
+            },
+            en: { 
+                name: "Car Horn", 
+                sub: "喇叭", 
+                phonetic: "Car Horn", 
+                speech: "Car Horn", 
+                description: "The audible acoustic device positioned on the center hub of the steering wheel to alert nearby traffic."
+            }
+        },
+        m_dashboard: {
+            tw: { 
+                name: "磅錶 (儀錶板/車速錶)", 
+                sub: "Pōng-pió (Pió-pán)", 
+                phonetic: "Pōng-pió", 
+                speech: "磅錶", 
+                description: "正對駕駛員的行車資訊整合儀表板，配置時速表、轉速表、油量指示錶、水溫錶與多元故障檢測警示燈號，隨時反映車況。",
+                audioSegments: ["磅錶"]
+            },
+            en: { 
+                name: "Dashboard & Instrument Cluster", 
+                sub: "磅錶", 
+                phonetic: "Dashboard", 
+                speech: "Dashboard", 
+                description: "The console mounted ahead of the steering wheel, containing speedometers, tachometers, fuel gauges, and indicator lamps."
+            }
+        },
+        m_gearstick: {
+            tw: { 
+                name: "拍速 (排檔桿/變速桿)", 
+                sub: "Phah-sok (Tòng-kńg)", 
+                phonetic: "Phah-sok", 
+                speech: "拍速", 
+                description: "座艙中央排檔座上的變速控制桿，台語俗稱「拍速」（打檔）。駕駛手握排檔桿切換各前進擋位、倒退檔(R)或停車檔(P)。",
+                audioSegments: ["拍速"]
+            },
+            en: { 
+                name: "Gear Shift Lever (Gearstick)", 
+                sub: "拍速", 
+                phonetic: "Gearstick", 
+                speech: "Gearstick", 
+                description: "The hand-operated lever on the central console used to change gears in manual or automatic transmissions."
+            }
+        },
+        m_handbrake: {
+            tw: { 
+                name: "手擋 (手煞車/手剎車)", 
+                sub: "Tshiú-tòng", 
+                phonetic: "Tshiú-tòng", 
+                speech: "手擋", 
+                description: "排檔桿後方的機械拉柄式或電子駐車制動器。拉起時透過鋼索將後輪煞車來令片緊緊夾死，防止停妥車輛在斜坡上溜車。",
+                audioSegments: ["手擋"]
+            },
+            en: { 
+                name: "Handbrake (Parking Brake)", 
+                sub: "手擋", 
+                phonetic: "Handbrake", 
+                speech: "Handbrake", 
+                description: "A mechanical hand lever that tensions steel cables to lock the rear brakes and secure the parked automobile."
+            }
+        },
+        m_brake_pedal: {
+            tw: { 
+                name: "跤擋 (腳煞車踏板)", 
+                sub: "Kha-tòng", 
+                phonetic: "Kha-tòng", 
+                speech: "跤擋", 
+                description: "駕駛座底板居中的主煞車踏板，由駕駛右腳踩踏施力，帶動煞車倍力器推擠液壓油管，推動四輪碟煞卡鉗迅速夾緊煞停。",
+                audioSegments: ["跤擋"]
+            },
+            en: { 
+                name: "Foot Brake Pedal", 
+                sub: "跤擋", 
+                phonetic: "Brake Pedal", 
+                speech: "Brake Pedal", 
+                description: "The central foot pedal depressed to activate the hydraulic braking booster for stopping vehicular motion."
+            }
+        },
+        m_accelerator: {
+            tw: { 
+                name: "油門 (油門踏板)", 
+                sub: "Iû-mn̂g", 
+                phonetic: "Iû-mn̂g", 
+                speech: "油門", 
+                description: "駕駛踏板最右側的油門加速踏板，腳踩下時開大引擎節氣門並增加噴油量，讓引擎轉速高轉提速，使車輛向前衝刺馳騁。",
+                audioSegments: ["油門"]
+            },
+            en: { 
+                name: "Accelerator (Gas Pedal)", 
+                sub: "油門", 
+                phonetic: "Accelerator", 
+                speech: "Accelerator", 
+                description: "The rightmost pedal controlling the engine intake throttle valve to regulate power delivery and acceleration."
+            }
+        },
+        m_clutch: {
+            tw: { 
+                name: "khu-lá-tsih (離合器踏板)", 
+                sub: "Khu-lá-tsih", 
+                phonetic: "khu-lá-tsih", 
+                speech: "khu-lá-tsih", 
+                description: "手排車踏板最左側的離合器腳踏板，借自日語「クラッチ(kuratchi)」。左腳踩下時切斷引擎動力傳動，便於流暢變換擋位。",
+                audioSegments: ["khu-lá-tsih"]
+            },
+            en: { 
+                name: "Clutch Pedal", 
+                sub: "khu-lá-tsih", 
+                phonetic: "Clutch Pedal", 
+                speech: "Clutch Pedal", 
+                description: "The leftmost foot pedal on manual transmission cars used to disengage the clutch plate for gear shifting."
+            }
+        },
+        m_ac: {
+            tw: { 
+                name: "冷氣 (空調出風口)", 
+                sub: "Líng-khì", 
+                phonetic: "Líng-khì", 
+                speech: "冷氣", 
+                description: "座艙中控台與兩側的空調出風百葉窗，由壓縮機冷凝循環輸送除濕涼風，可微調扇葉角度營造均勻涼爽的車室氣流環境。",
+                audioSegments: ["冷氣"]
+            },
+            en: { 
+                name: "Air Conditioner & Vents", 
+                sub: "冷氣", 
+                phonetic: "Air Conditioner", 
+                speech: "Air Conditioner", 
+                description: "The climate control air vents delivering cooled or dehumidified airflow to maintain passenger cabin comfort."
+            }
+        },
+        m_seat: {
+            tw: { 
+                name: "椅仔 (駕駛座座椅)", 
+                sub: "Í-á (Tshia-í)", 
+                phonetic: "Í-á", 
+                speech: "椅仔", 
+                description: "符合人體工學的深包覆駕駛賽車座椅，提供腰椎靠背、頭枕與兩側肩部包覆支撐，並可多向調節前後距離與坐姿高低角度。",
+                audioSegments: ["椅仔"]
+            },
+            en: { 
+                name: "Driver's Bucket Seat", 
+                sub: "椅仔", 
+                phonetic: "Driver Seat", 
+                speech: "Driver Seat", 
+                description: "An ergonomic contour seat providing lumbar and lateral body support with multi-way adjustments."
+            }
+        },
+        m_seatbelt: {
+            tw: { 
+                name: "安全帶 (三點式安全帶)", 
+                sub: "An-tsuân-tuà", 
+                phonetic: "An-tsuân-tuà", 
+                speech: "安全帶", 
+                description: "保障車內乘客生命安全的第一防線。當遇到急遽煞車或激烈衝撞時內部慣性滾軸立即咬合鎖定，緊縛人體防止拋射受創。",
+                audioSegments: ["安全帶"]
+            },
+            en: { 
+                name: "Seat Belt (Safety Belt)", 
+                sub: "安全帶", 
+                phonetic: "Seat Belt", 
+                speech: "Seat Belt", 
+                description: "The indispensable 3-point restraint safety belt that locks under sudden deceleration to protect occupants."
+            }
+        },
+        m_door: {
+            tw: { 
+                name: "車門 (車門門板/開門把手)", 
+                sub: "Tshia-mn̂g", 
+                phonetic: "Tshia-mn̂g", 
+                speech: "車門", 
+                description: "座艙側邊出入車門，門內飾板整合車窗控制鍵、車門開關拉柄與儲物置杯槽，內部骨架置有高強度鋼樑抵禦側面撞擊。",
+                audioSegments: ["車門"]
+            },
+            en: { 
+                name: "Car Door & Inner Panel", 
+                sub: "車門", 
+                phonetic: "Car Door", 
+                speech: "Car Door", 
+                description: "The side vehicle door structure incorporating inner release handles, armrests, and high-strength side-impact crash beams."
+            }
+        },
+        m_window: {
+            tw: { 
+                name: "車窗 (窗仔/電動車窗)", 
+                sub: "Tshia-thang (Thang-á)", 
+                phonetic: "Tshia-thang", 
+                speech: "車窗", 
+                description: "車門兩側的安全強化隔熱玻璃窗，透過電動升降馬達按鍵靈活控制升降，具備通風防雨與視野穿透功能。",
+                audioSegments: ["車窗"]
+            },
+            en: { 
+                name: "Power Window (Side Glass)", 
+                sub: "車窗", 
+                phonetic: "Car Window", 
+                speech: "Car Window", 
+                description: "Side tempered window glass with electric motors and switches for ventilation and driving visibility."
+            }
+        },
+        m_windshield: {
+            tw: { 
+                name: "玻璃 (擋風玻璃)", 
+                sub: "Po-lê (Tòng-hong po-lê)", 
+                phonetic: "Po-lê", 
+                speech: "玻璃", 
+                description: "前擋風高強度雙層夾膠安全玻璃，破裂時黏附於中間PVB膠膜不飛散刺傷乘員，提供寬闊清晰的正面行車視野。",
+                audioSegments: ["玻璃"]
+            },
+            en: { 
+                name: "Windshield (Windscreen)", 
+                sub: "玻璃", 
+                phonetic: "Windshield", 
+                speech: "Windshield", 
+                description: "The front laminated safety glass offering aerodynamic protection and broad unobstructed visibility for safe driving."
+            }
+        },
+        m_rearview: {
+            tw: { 
+                name: "照鏡 (車內後照鏡)", 
+                sub: "Tsiò-kiànn (Hiō-tsiò-kiànn)", 
+                phonetic: "Tsiò-kiànn", 
+                speech: "照鏡", 
+                description: "懸掛於前擋風玻璃頂部中央的廣角後視鏡，可手動微調偏轉視角，協助駕駛不扭頭即可清晰觀察正後方來車動態與車距。",
+                audioSegments: ["照鏡"]
+            },
+            en: { 
+                name: "Rearview Mirror", 
+                sub: "照鏡", 
+                phonetic: "Rearview Mirror", 
+                speech: "Rearview Mirror", 
+                description: "The interior mirror mounted on the upper windshield giving drivers an unobstructed view of vehicular traffic behind."
+            }
         }
+
     }
 };
 
@@ -2159,6 +2416,25 @@ const dataSource = {
 // 2. ChhoeTaigi Audio Map (KipSutian database entries mappings)
 // ==========================================================================
 const taigiAudioMap = {
+    // 汽車內部設備與駕駛室 (Car Interior & Cockpit)
+    "ha̋n-tóo-luh": "20404(1)",
+    "手擋": "1155(1)",
+    "跤擋": "10127(1)",
+    "車擋": "3500(1)",
+    "拍速": "14093(1)",
+    "油門": "26198(1)",
+    "安全帶": "28624(1)",
+    "車門": "24478(1)",
+    "車窗": "25094(1)",
+    "窗仔": "8777(1)",
+    "冷氣": "2916(1)",
+    "khu-lá-tsih": "20440(1)",
+    "喇叭": "8189(1)",
+    "椅仔": "8492(1)",
+    "照鏡": "9731(1)",
+    "磅錶": "11267(1)",
+    "玻璃": "5284(1)",
+
     // 數字及常用基礎詞
     "一_quantity": "1(1)", "一_digit": "2(1)", "二": "44(1)", "三": "163(1)", "四": "1408(1)", 
     "五": "565(1)", "六": "578(1)", "七": "40(1)", "八": "49(1)", "九": "41(1)", "十": "54(1)",
@@ -2369,7 +2645,8 @@ const twHomophones = {
 const uiStrings = {
     ZH: {
         title: "六合一跨領域台語雙語學習 App",
-        subtitle: "生物人體、生活機械、地理與特有種特攻隊",
+        subtitle: "生物人體、生活機械、臺灣地理、野生動物與鳥類特攻隊",
+        tabBird: "🦅 臺灣鳥類",
         tabAnimal: "🐻 野生動物",
         tabInsect: "🦋 常見昆蟲",
         tabGeography: "🗺️ 臺灣地理",
@@ -2402,8 +2679,9 @@ const uiStrings = {
         achievementCompleted: "🏆 恭喜！你已經收集完全部特有種印章！台語特攻隊畢業囉！"
     },
     EN: {
-        title: "5-in-1 Bilingual Hokkien Learning",
-        subtitle: "Biology, Machinery, Geography & Endemic Wildlife",
+        title: "6-in-1 Bilingual Taiwanese Learning App",
+        subtitle: "Biology, Anatomy, Machinery, Geography, Wildlife & Birds",
+        tabBird: "🦅 Birds of Taiwan",
         tabAnimal: "🐻 Wildlife",
         tabInsect: "🦋 Insects",
         tabGeography: "🗺️ Geography",
@@ -2546,17 +2824,26 @@ function switchMachinerySub(subId) {
     
     document.getElementById("machinery-sub-bike").classList.remove("active");
     document.getElementById("machinery-sub-car").classList.remove("active");
+    const subInteriorBtn = document.getElementById("machinery-sub-interior");
+    if (subInteriorBtn) subInteriorBtn.classList.remove("active");
+    
+    document.getElementById("machinery-bike-area").classList.remove("active");
+    document.getElementById("machinery-car-area").classList.remove("active");
+    const interiorArea = document.getElementById("machinery-interior-area");
+    if (interiorArea) interiorArea.classList.remove("active");
     
     if (subId === "bike") {
         document.getElementById("machinery-sub-bike").classList.add("active");
         document.getElementById("machinery-bike-area").classList.add("active");
-        document.getElementById("machinery-car-area").classList.remove("active");
         selectedPart = "m_tire";
-    } else {
+    } else if (subId === "car") {
         document.getElementById("machinery-sub-car").classList.add("active");
-        document.getElementById("machinery-bike-area").classList.remove("active");
         document.getElementById("machinery-car-area").classList.add("active");
         selectedPart = "m_engine";
+    } else if (subId === "interior") {
+        if (subInteriorBtn) subInteriorBtn.classList.add("active");
+        if (interiorArea) interiorArea.classList.add("active");
+        selectedPart = "m_steering";
     }
     
     clearVisualHighlights();
@@ -2668,6 +2955,10 @@ function updateUI() {
     document.getElementById("tab-animal-btn").innerHTML = `
         <span class="tab-title">🐻 <span class="tab-text">${t.tabAnimal.substring(2)}</span></span>
         <span class="tab-sub">${romanizations.animal}</span>
+    `;
+    document.getElementById("tab-bird-btn").innerHTML = `
+        <span class="tab-title">🦅 <span class="tab-text">${t.tabBird.substring(2)}</span></span>
+        <span class="tab-sub">${romanizations.bird}</span>
     `;
     document.getElementById("tab-insect-btn").innerHTML = `
         <span class="tab-title">🦋 <span class="tab-text">${t.tabInsect.substring(2)}</span></span>
@@ -2991,8 +3282,12 @@ function generateQuizPool() {
         if (currentTab === "machinery") {
             const bikeIds = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"];
             const carIds = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
+            const interiorIds = ["m_steering", "m_horn", "m_dashboard", "m_gearstick", "m_handbrake", "m_brake_pedal", "m_accelerator", "m_clutch", "m_ac", "m_seat", "m_seatbelt", "m_door", "m_window", "m_windshield", "m_rearview"];
             
-            const targetIds = currentMachinerySub === "bike" ? bikeIds : carIds;
+            let targetIds = bikeIds;
+            if (currentMachinerySub === "car") targetIds = carIds;
+            else if (currentMachinerySub === "interior") targetIds = interiorIds;
+            
             const randomId = targetIds[Math.floor(Math.random() * targetIds.length)];
             pool.push(randomId);
         } else {
@@ -3034,9 +3329,13 @@ function loadQuizQuestion() {
     // Filter keys for machinery subcategories
     let filteredKeys = keys;
     if (currentTab === "machinery") {
-        filteredKeys = currentMachinerySub === "bike" 
-            ? ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"] 
-            : ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
+        if (currentMachinerySub === "bike") {
+            filteredKeys = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"];
+        } else if (currentMachinerySub === "car") {
+            filteredKeys = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
+        } else if (currentMachinerySub === "interior") {
+            filteredKeys = ["m_steering", "m_horn", "m_dashboard", "m_gearstick", "m_handbrake", "m_brake_pedal", "m_accelerator", "m_clutch", "m_ac", "m_seat", "m_seatbelt", "m_door", "m_window", "m_windshield", "m_rearview"];
+        }
     }
     
     while (options.length < Math.min(4, filteredKeys.length)) {
