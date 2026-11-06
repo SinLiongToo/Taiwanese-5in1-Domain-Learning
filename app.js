@@ -213,6 +213,108 @@ const dataSource = {
                 speech: "Bee", 
                 description: "A social insect that plays a crucial role in pollination and honey production. Communicates via the waggle dance."
             }
+        },
+        i_mantis: {
+            tw: { 
+                name: "草猴 (螳螂)", 
+                sub: "Tsháu-kâu", 
+                phonetic: "Tsháu-kâu", 
+                speech: "草猴", 
+                description: "擁有強大如鐮刀狀前足的捕食性昆蟲。擅長靜止偽裝成綠葉或枯枝埋伏，當獵物靠近時能以迅雷不及掩耳的速度出擊獵捕。",
+                audioSegments: ["草猴"]
+            },
+            en: { 
+                name: "Praying Mantis", 
+                sub: "草猴", 
+                phonetic: "Praying Mantis", 
+                speech: "Praying Mantis", 
+                description: "A predatory insect known for its prominent raptorial forelegs folded in a 'praying' stance, used to ambush other insects with lightning speed."
+            }
+        },
+        i_grasshopper: {
+            tw: { 
+                name: "草蜢仔 (草螟仔/蚱蜢)", 
+                sub: "Tsháu-meh-á", 
+                phonetic: "Tsháu-meh-á / Tsháu-mê-á", 
+                speech: "草蜢仔", 
+                description: "棲息在草叢田野間的草食性昆蟲，擁有一雙強而有力的後腿跳躍力驚人。臺灣經典民謠《草螟弄雞公》唱的正是牠輕巧活潑的模樣。",
+                audioSegments: ["草蜢仔"]
+            },
+            en: { 
+                name: "Grasshopper (Katydid)", 
+                sub: "草蜢仔", 
+                phonetic: "Grasshopper", 
+                speech: "Grasshopper", 
+                description: "An herbivorous insect equipped with powerful hind legs for jumping vast distances, famous in Taiwanese folk songs."
+            }
+        },
+        i_scarab: {
+            tw: { 
+                name: "金龜 (金龜子)", 
+                sub: "Kim-ku", 
+                phonetic: "Kim-ku", 
+                speech: "金龜", 
+                description: "甲蟲家族的一員，背部長著如寶石般金屬光澤的堅硬翅鞘。喜愛吸食花蜜、成熟果實與樹汁，幼蟲則生活於富含有機質的泥土中。",
+                audioSegments: ["金龜"]
+            },
+            en: { 
+                name: "Scarab Beetle (Jewel Beetle)", 
+                sub: "金龜", 
+                phonetic: "Scarab Beetle", 
+                speech: "Scarab Beetle", 
+                description: "A stout beetle celebrated for its iridescent metallic sheen, feeding on nectar, tree sap, and ripe fruit."
+            }
+        },
+        i_ant: {
+            tw: { 
+                name: "狗蟻 (螞蟻)", 
+                sub: "Káu-hiā", 
+                phonetic: "Káu-hiā", 
+                speech: "狗蟻", 
+                description: "高度社會化的微型昆蟲，蟻群分工極其嚴密，由蟻后、雄蟻與工蟻各司其職。能透過信息素觸角氣味溝通，共同搬運比自身重數十倍的食物。",
+                audioSegments: ["狗蟻"]
+            },
+            en: { 
+                name: "Ant", 
+                sub: "狗蟻", 
+                phonetic: "Ant", 
+                speech: "Ant", 
+                description: "Highly organized social insects living in complex colonies, communicating through chemical pheromone trails and cooperatively carrying heavy loads."
+            }
+        },
+        i_hornet: {
+            tw: { 
+                name: "虎頭蜂 (大胡蜂)", 
+                sub: "Hóo-thâu-phang", 
+                phonetic: "Hóo-thâu-phang", 
+                speech: "虎頭蜂", 
+                description: "大型掠食性蜂類，體型壯碩且腹部有鮮明警戒黑黃條紋。防禦心與護巢意識極強，築巢於樹梢或岩洞，是大自然中強悍的森林獵手。",
+                audioSegments: ["虎頭蜂"]
+            },
+            en: { 
+                name: "Hornet (Asian Giant Hornet)", 
+                sub: "虎頭蜂", 
+                phonetic: "Hornet", 
+                speech: "Hornet", 
+                description: "The largest eusocial wasps, formidable predators with distinct tiger-like stripes and potent venom used to defend their colonies."
+            }
+        },
+        i_mole_cricket: {
+            tw: { 
+                name: "杜伯仔 (肚伯仔/螻蛄)", 
+                sub: "Tōo-peh-á", 
+                phonetic: "Tōo-peh-á", 
+                speech: "杜伯仔", 
+                description: "生活在田間泥土下的地棲昆蟲，前腳特化成如圓鍬般的寬扁開掘足，擅長快速挖掘地道。「灌杜伯仔」是臺灣早年鄉間孩童最熱門的童年野趣。",
+                audioSegments: ["杜伯仔"]
+            },
+            en: { 
+                name: "Mole Cricket", 
+                sub: "杜伯仔", 
+                phonetic: "Mole Cricket", 
+                speech: "Mole Cricket", 
+                description: "A subterranean insect with powerful spade-like forelegs adapted for digging through soil, central to nostalgic Taiwanese childhood memories."
+            }
         }
     },
     geography: {
@@ -1464,6 +1566,12 @@ const taigiAudioMap = {
     "鹿角": "8106(1)", "仙": "1303(1)", // 鹿角 (lo̍k-kak ID 8106) + 仙 (sian ID 1303) -> 獨角仙
     "田嬰": "2017(1)",      // 田嬰 (tshên-enn ID 2017)
     "蜜": "10801(1)", "蜂": "9989(1)",
+    "草猴": "6589(1)",       // 草猴 (tsháu-kâu ID 6589: 螳螂)
+    "草蜢仔": "6605(1)",     // 草蜢仔 (tsháu-meh-á ID 6605: 蚱蜢/草螟)
+    "金龜": "4652(1)",       // 金龜 (kim-ku ID 4652: 金龜子)
+    "狗蟻": "4367(1)",       // 狗蟻 (káu-hiā ID 4367: 螞蟻)
+    "虎頭蜂": "4651(1)",     // 虎頭蜂 (hóo-thâu-phang ID 4651: 大胡蜂)
+    "杜伯仔": "3232(1)",     // 杜伯仔 (tōo-peh-á ID 3232: 螻蛄/肚伯仔)
     
     // 地理相關
     "中央": "22306(1)", "山脈": "25998(1)", 
