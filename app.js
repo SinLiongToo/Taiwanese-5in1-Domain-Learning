@@ -2153,6 +2153,211 @@ const dataSource = {
             }
         },
         // ===== 汽車內部與駕駛室配備 (Car Interior & Cockpit) =====
+        // ===== 新增跤踏車細部配備 (Expanded Bicycle Parts) =====
+        m_bike_wheel: {
+            tw: { 
+                name: "車輪 (輪仔/前輪後輪)", 
+                sub: "Tshia-lián / Lián-á", 
+                phonetic: "Tshia-lián", 
+                speech: "車輪", 
+                description: "腳踏車支撐車重並旋轉前進的雙輪總成，包含輪框、鋼絲幅條、軸承花鼓與外胎內胎，使踩踏旋轉平順低阻力向前滾動。",
+                audioSegments: ["車輪"]
+            },
+            en: { 
+                name: "Bicycle Wheel", 
+                sub: "車輪", 
+                phonetic: "Bicycle Wheel", 
+                speech: "Bicycle Wheel", 
+                description: "The complete circular wheel assembly comprising the rim, spokes, hub, and pneumatic tire enabling bicycle motion."
+            }
+        },
+        m_bike_frame: {
+            tw: { 
+                name: "車身 (車架/鐵身幾何骨架)", 
+                sub: "Tshia-sin (Tshia-kè)", 
+                phonetic: "Tshia-sin", 
+                speech: "車身", 
+                description: "自行車由上管、下管、立管與後三角焊接組成的高剛性幾何車架。承載騎士全身體重並連接車把手、座墊、輪組與傳動組件。",
+                audioSegments: ["車身"]
+            },
+            en: { 
+                name: "Bicycle Frame (Chassis)", 
+                sub: "車身", 
+                phonetic: "Bicycle Frame", 
+                speech: "Bicycle Frame", 
+                description: "The main structural triangle and stays of the bicycle that connects the wheels and supports the rider and components."
+            }
+        },
+        m_bike_rim: {
+            tw: { 
+                name: "輪框 (輪圈/鋁合金鐵框)", 
+                sub: "Lián-khing", 
+                phonetic: "Lián-khing", 
+                speech: "輪框", 
+                description: "車輪安裝輪胎的環狀金屬框圈，提供煞車邊摩擦制動並藉由鋼絲幅條維持正圓形剛性，確保行駛不晃動變形。",
+                audioSegments: ["輪框"]
+            },
+            en: { 
+                name: "Wheel Rim", 
+                sub: "輪框", 
+                phonetic: "Wheel Rim", 
+                speech: "Wheel Rim", 
+                description: "The outer metal hoop of a bicycle wheel that holds the tire and provides a braking surface for calipers."
+            }
+        },
+        m_bike_spoke: {
+            tw: { 
+                name: "鋼絲 (輪輻/輪絲)", 
+                sub: "Kǹg-si", 
+                phonetic: "Kǹg-si", 
+                speech: "鋼絲", 
+                description: "連接中心輪軸（花鼓）與外圍輪圈的高拉力不鏽鋼幅條，透過交錯編織張力吸收路面微幅震動並保持車輪均勻承重。",
+                audioSegments: ["鋼絲"]
+            },
+            en: { 
+                name: "Wheel Spokes", 
+                sub: "鋼絲", 
+                phonetic: "Spokes", 
+                speech: "Spokes", 
+                description: "The thin metal tensioned wire rods radiating from the central wheel hub to the outer rim to support vehicle loads."
+            }
+        },
+        m_bike_derailleur: {
+            tw: { 
+                name: "變速 (變速器/導輪齒盤組)", 
+                sub: "Piàn-sok (Piàn-sok-khì)", 
+                phonetic: "Piàn-sok", 
+                speech: "變速", 
+                description: "安裝於後輪軸心旁的後變速器與多層飛輪，透過撥動鏈條切換不同齒比大小齒輪，在平路衝刺或陡坡爬坡時調節踩踏省力節奏。",
+                audioSegments: ["變速"]
+            },
+            en: { 
+                name: "Derailleur (Gear Shifter & Cassette)", 
+                sub: "變速", 
+                phonetic: "Derailleur", 
+                speech: "Derailleur", 
+                description: "The variable-ratio gear shifting mechanism that moves the chain across sprockets on the rear wheel cassette."
+            }
+        },
+        m_bike_grip: {
+            tw: { 
+                name: "手扞仔 (把手/把套)", 
+                sub: "Tshiú-huānn-á", 
+                phonetic: "Tshiú-huānn-á", 
+                speech: "手扞仔", 
+                description: "腳踏車手把上供騎士雙手穩固握持的防滑握把套或纏繞手把帶，具備吸汗防滑與吸收手部路感震動的保護功能。",
+                audioSegments: ["手扞仔"]
+            },
+            en: { 
+                name: "Handlebar Grips (Bar Tape)", 
+                sub: "手扞仔", 
+                phonetic: "Handlebar Grips", 
+                speech: "Handlebar Grips", 
+                description: "The rubber grips or cork tape covering the handlebar ends to provide tactile grip and vibration damping."
+            }
+        },
+        m_bike_stand: {
+            tw: { 
+                name: "架仔 (支架/水壺架/腳架)", 
+                sub: "Kè-á", 
+                phonetic: "Kè-á", 
+                speech: "架仔", 
+                description: "安裝於車身下管上的便民水壺架或車尾側邊停車腳架，便利騎士長途騎乘隨手補充水分，或在路邊快速停放車輛。",
+                audioSegments: ["架仔"]
+            },
+            en: { 
+                name: "Bottle Cage / Kickstand", 
+                sub: "架仔", 
+                phonetic: "Bike Rack / Stand", 
+                speech: "Bike Rack", 
+                description: "The mounting bracket attached to bicycle tubes for holding water bottles or supporting the parked bicycle upright."
+            }
+        },
+        m_bike_pump: {
+            tw: { 
+                name: "灌風 (打氣嘴/打氣筒/風筒)", 
+                sub: "Kuàn hong / Hong-tâng", 
+                phonetic: "Kuàn hong", 
+                speech: "灌風", 
+                description: "自行車內胎輪圈上的充氣氣閥嘴與便攜充氣筒，提供騎士打氣加壓充填氣體，維持標準胎壓確保騎乘路感輕快順暢。",
+                audioSegments: ["灌風"]
+            },
+            en: { 
+                name: "Valve Stem & Bike Pump", 
+                sub: "灌風", 
+                phonetic: "Tire Valve & Pump", 
+                speech: "Tire Valve", 
+                description: "The one-way air valve stem and inflation pump used to maintain optimal pneumatic tire pressure."
+            }
+        },
+        m_bike_bell: {
+            tw: { 
+                name: "鈴仔 (車鈴/響鈴)", 
+                sub: "Lîng-á", 
+                phonetic: "Lîng-á", 
+                speech: "鈴仔", 
+                description: "安裝於車把手上的清脆金屬警示車鈴，用拇指輕撥彈簧擊錘撞擊銅蓋，發出「叮噹」悅耳響音提醒前方行人注意避讓。",
+                audioSegments: ["鈴仔"]
+            },
+            en: { 
+                name: "Bicycle Bell", 
+                sub: "鈴仔", 
+                phonetic: "Bicycle Bell", 
+                speech: "Bicycle Bell", 
+                description: "A handlebar-mounted percussive acoustic device rung with a thumb-operated hammer to warn pedestrians."
+            }
+        },
+        m_bike_light: {
+            tw: { 
+                name: "車燈 (電火/前車燈)", 
+                sub: "Tshia-ting (Tiān-hué)", 
+                phonetic: "Tshia-ting", 
+                speech: "車燈", 
+                description: "固定在車頭或座管上的高亮度LED照明車燈與警示尾燈，在夜間或天候昏暗時照亮前方路況，並提升對向來車辨識度。",
+                audioSegments: ["車燈"]
+            },
+            en: { 
+                name: "Bicycle Headlight & Tail Light", 
+                sub: "車燈", 
+                phonetic: "Bicycle Light", 
+                speech: "Bicycle Light", 
+                description: "Front and rear illuminating LED safety lamps to improve nighttime roadway vision and vehicular visibility."
+            }
+        },
+        m_bike_lock: {
+            tw: { 
+                name: "鎖頭 (車鎖/防盜鎖)", 
+                sub: "Só-thâu (Tshia-só)", 
+                phonetic: "Só-thâu", 
+                speech: "鎖頭", 
+                description: "保護腳踏車不被竊取的高強度鋼纜鎖或U型金屬硬鎖，將車輪與車架牢固固定在路邊欄杆或車柱上。",
+                audioSegments: ["鎖頭"]
+            },
+            en: { 
+                name: "Bicycle Lock", 
+                sub: "鎖頭", 
+                phonetic: "Bike Lock", 
+                speech: "Bike Lock", 
+                description: "A security locking mechanism used to secure the bicycle frame and wheels to stationary objects."
+            }
+        },
+        m_bike_basket: {
+            tw: { 
+                name: "籃仔 (車籃/前置物籃)", 
+                sub: "Nâ-á (Tshia-nâ)", 
+                phonetic: "Nâ-á", 
+                speech: "籃仔", 
+                description: "安裝於車把龍頭前方的藤編或鐵線置物籃，方便民眾或學生隨車放置書包、公事包、採買雜物或新鮮蔬果。",
+                audioSegments: ["籃仔"]
+            },
+            en: { 
+                name: "Front Bicycle Basket", 
+                sub: "籃仔", 
+                phonetic: "Bicycle Basket", 
+                speech: "Bicycle Basket", 
+                description: "A front-mounted open wire or wicker carrier basket attached to the handlebars for transporting parcels and goods."
+            }
+        },
         m_steering: {
             tw: { 
                 name: "ha̋n-tóo-luh (方向盤)", 
@@ -3280,7 +3485,7 @@ function generateQuizPool() {
     while (pool.length < 10) {
         // For subcategories in machinery, only query items belonging to that subcategory
         if (currentTab === "machinery") {
-            const bikeIds = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"];
+            const bikeIds = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle", "m_bike_wheel", "m_bike_frame", "m_bike_rim", "m_bike_spoke", "m_bike_derailleur", "m_bike_grip", "m_bike_stand", "m_bike_pump", "m_bike_bell", "m_bike_light", "m_bike_lock", "m_bike_basket"];
             const carIds = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
             const interiorIds = ["m_steering", "m_horn", "m_dashboard", "m_gearstick", "m_handbrake", "m_brake_pedal", "m_accelerator", "m_clutch", "m_ac", "m_seat", "m_seatbelt", "m_door", "m_window", "m_windshield", "m_rearview"];
             
@@ -3330,7 +3535,7 @@ function loadQuizQuestion() {
     let filteredKeys = keys;
     if (currentTab === "machinery") {
         if (currentMachinerySub === "bike") {
-            filteredKeys = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"];
+            filteredKeys = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle", "m_bike_wheel", "m_bike_frame", "m_bike_rim", "m_bike_spoke", "m_bike_derailleur", "m_bike_grip", "m_bike_stand", "m_bike_pump", "m_bike_bell", "m_bike_light", "m_bike_lock", "m_bike_basket"];
         } else if (currentMachinerySub === "car") {
             filteredKeys = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
         } else if (currentMachinerySub === "interior") {

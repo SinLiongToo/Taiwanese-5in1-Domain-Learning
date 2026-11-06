@@ -1115,7 +1115,7 @@
                         <button class="btn btn-secondary" id="machinery-sub-interior" onclick="switchMachinerySub('interior')"><i class="fa-solid fa-gauge-high"></i> 汽車內部結構</button>
                     </div>
 
-                                        <!-- Subcategory 1: Bicycle Visual -->
+                                                            <!-- Subcategory 1: Bicycle Visual -->
                     <div id="machinery-bike-area" class="machinery-panel active">
                         <div class="anatomy-container">
                             <div class="svg-container-map anatomy-map-card" style="max-width: 680px;">
@@ -1135,56 +1135,128 @@
 
                                     <!-- 1. 椅仔 (Í-á) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_saddle" onclick="handlePartClick('m_saddle')">
-                                        <path class="leader-line" d="M 225,63 L 260,63 L 260,52" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <path class="leader-line" d="M 215,63 L 260,52" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
                                         <circle class="hotspot-pulse" cx="260" cy="52" r="14" fill="#8b5cf6" opacity="0.4"/>
                                         <circle class="hotspot-core" cx="260" cy="52" r="6" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="150" y="25" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#bikePillShadow)"/>
-                                        <text class="badge-title" x="225" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">椅仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Í-á)</tspan></text>
+                                        <rect class="badge-bg" x="140" y="25" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="215" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">椅仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Í-á)</tspan></text>
                                     </g>
 
-                                    <!-- 2. 馬角仔 (Bé-kak-á) -->
+                                    <!-- 2. 車身 (Tshia-sin / 車架) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_frame" onclick="handlePartClick('m_bike_frame')">
+                                        <path class="leader-line" d="M 380,60 L 360,125" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="360" cy="125" r="14" fill="#0ea5e9" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="360" cy="125" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="305" y="38" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="380" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">車身 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(車架)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 馬角仔 (Bé-kak-á) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_handlebar" onclick="handlePartClick('m_handlebar')">
-                                        <path class="leader-line" d="M 545,44 L 482,44 L 482,115" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <path class="leader-line" d="M 545,44 L 482,115" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
                                         <circle class="hotspot-pulse" cx="482" cy="115" r="14" fill="#6366f1" opacity="0.4"/>
                                         <circle class="hotspot-core" cx="482" cy="115" r="6" fill="#6366f1" stroke="#fff" stroke-width="2"/>
                                         <rect class="badge-bg" x="545" y="25" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#6366f1" stroke-width="1.5" filter="url(#bikePillShadow)"/>
                                         <text class="badge-title" x="622" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">馬角仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Bé-kak-á)</tspan></text>
                                     </g>
 
-                                    <!-- 3. 手擋 (Tshiú-tòng) -->
+                                    <!-- 4. 手擋 (Tshiú-tòng / 煞車) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_brake" onclick="handlePartClick('m_brake')">
-                                        <path class="leader-line" d="M 545,134 L 496,134 L 496,141" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <path class="leader-line" d="M 545,94 L 496,141" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
                                         <circle class="hotspot-pulse" cx="496" cy="141" r="14" fill="#ef4444" opacity="0.4"/>
                                         <circle class="hotspot-core" cx="496" cy="141" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="545" y="115" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#bikePillShadow)"/>
-                                        <text class="badge-title" x="622" y="139" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手擋 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú-tòng)</tspan></text>
+                                        <rect class="badge-bg" x="545" y="75" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="99" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手擋 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tshiú-tòng)</tspan></text>
                                     </g>
 
-                                    <!-- 4. 外奶/內奶 (Guā-ling / Lāi-ling) -->
+                                    <!-- 5. 手扞仔 (Tshiú-huānn-á / 握把套) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_grip" onclick="handlePartClick('m_bike_grip')">
+                                        <path class="leader-line" d="M 545,144 L 510,115" fill="none" stroke="#ec4899" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="510" cy="115" r="14" fill="#ec4899" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="510" cy="115" r="6" fill="#ec4899" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="125" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#ec4899" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="149" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">手扞仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(握把)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 鋼絲 (Kǹg-si / 幅條) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_spoke" onclick="handlePartClick('m_bike_spoke')">
+                                        <path class="leader-line" d="M 545,195 L 575,220" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="575" cy="220" r="14" fill="#f97316" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="575" cy="220" r="6" fill="#f97316" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="175" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#f97316" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="199" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鋼絲 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(輪輻)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 車輪 (Tshia-lián / 輪仔) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_wheel" onclick="handlePartClick('m_bike_wheel')">
+                                        <path class="leader-line" d="M 545,245 L 535,270" fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="535" cy="270" r="15" fill="#14b8a6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="535" cy="270" r="6" fill="#14b8a6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="225" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#14b8a6" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="249" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">車輪 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(輪仔)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 輪框 (Lián-khing / 輪圈) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_rim" onclick="handlePartClick('m_bike_rim')">
+                                        <path class="leader-line" d="M 545,295 L 535,375" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="535" cy="375" r="14" fill="#3b82f6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="535" cy="375" r="6" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="545" y="275" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#3b82f6" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="622" y="299" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">輪框 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(輪圈)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 外奶/內奶 (Guā-ling / Lāi-ling) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_tire" onclick="handlePartClick('m_tire')">
-                                        <path class="leader-line" d="M 125,345 L 190,345 L 190,265" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="190" cy="265" r="16" fill="#f59e0b" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="190" cy="265" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="35" y="345" width="180" height="38" rx="19" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#bikePillShadow)"/>
-                                        <text class="badge-title" x="125" y="369" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">外奶/內奶 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Guā/Lāi)</tspan></text>
+                                        <path class="leader-line" d="M 115,245 L 100,270" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="100" cy="270" r="16" fill="#f59e0b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="100" cy="270" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="225" width="180" height="38" rx="19" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="115" y="249" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">外奶/內奶 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(輪胎)</tspan></text>
                                     </g>
 
-                                    <!-- 5. 跤踏仔 (Kha-ta̍h-á) -->
+                                    <!-- 10. 變速 (Piàn-sok / 後變速器) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_derailleur" onclick="handlePartClick('m_bike_derailleur')">
+                                        <path class="leader-line" d="M 110,300 L 185,295" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="185" cy="295" r="14" fill="#6366f1" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="185" cy="295" r="6" fill="#6366f1" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="280" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#6366f1" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="110" y="304" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">變速 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(變速器)</tspan></text>
+                                    </g>
+
+                                    <!-- 11. 灌風 (Kuàn hong / 氣嘴) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_pump" onclick="handlePartClick('m_bike_pump')">
+                                        <path class="leader-line" d="M 110,355 L 185,360" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="185" cy="360" r="14" fill="#06b6d4" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="185" cy="360" r="6" fill="#06b6d4" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="335" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#06b6d4" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="110" y="359" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">灌風 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(打氣嘴)</tspan></text>
+                                    </g>
+
+                                    <!-- 12. 架仔 (Kè-á / 水壺架) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="part-m_bike_stand" onclick="handlePartClick('m_bike_stand')">
+                                        <path class="leader-line" d="M 380,240 L 380,215" fill="none" stroke="#84cc16" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="380" cy="215" r="14" fill="#84cc16" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="380" cy="215" r="6" fill="#84cc16" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="305" y="240" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#84cc16" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="380" y="264" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">架仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(支架)</tspan></text>
+                                    </g>
+
+                                    <!-- 13. 跤踏仔 (Kha-ta̍h-á) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_pedal" onclick="handlePartClick('m_pedal')">
-                                        <path class="leader-line" d="M 337,345 L 375,345 L 375,285" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="375" cy="285" r="14" fill="#059669" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="375" cy="285" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <path class="leader-line" d="M 337,345 L 385,300" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="385" cy="300" r="14" fill="#059669" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="385" cy="300" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
                                         <rect class="badge-bg" x="260" y="345" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#bikePillShadow)"/>
                                         <text class="badge-title" x="337" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">跤踏仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ta̍h-á)</tspan></text>
                                     </g>
 
-                                    <!-- 6. 鏈仔 (Liān-á) -->
+                                    <!-- 14. 鏈仔 (Liān-á) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="part-m_chain" onclick="handlePartClick('m_chain')">
-                                        <path class="leader-line" d="M 555,345 L 346,345 L 346,275" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="346" cy="275" r="14" fill="#10b981" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="346" cy="275" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="480" y="345" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" filter="url(#bikePillShadow)"/>
-                                        <text class="badge-title" x="555" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鏈仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Liān-á)</tspan></text>
+                                        <path class="leader-line" d="M 505,345 L 265,345" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="265" cy="345" r="14" fill="#10b981" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="265" cy="345" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="430" y="345" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" filter="url(#bikePillShadow)"/>
+                                        <text class="badge-title" x="505" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">鏈仔 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Liān-á)</tspan></text>
                                     </g>
                                 </svg>
                             </div>
@@ -1192,23 +1264,59 @@
 
                         <!-- Card Grid for Bicycle components -->
                         <div class="grid-visual text-center" style="margin-top: 15px;">
+                            <div class="svg-card clickable-part" id="part-m_saddle" onclick="handlePartClick('m_saddle')">
+                                <span class="card-label">椅仔 (Í-á)</span>
+                            </div>
                             <div class="svg-card clickable-part" id="part-m_handlebar" onclick="handlePartClick('m_handlebar')">
                                 <span class="card-label">馬角仔 (Bé-kak-á)</span>
                             </div>
                             <div class="svg-card clickable-part" id="part-m_brake" onclick="handlePartClick('m_brake')">
                                 <span class="card-label">手擋 (Tshiú-tòng)</span>
                             </div>
-                            <div class="svg-card clickable-part" id="part-m_saddle" onclick="handlePartClick('m_saddle')">
-                                <span class="card-label">椅仔 (Í-á)</span>
+                            <div class="svg-card clickable-part" id="part-m_bike_grip" onclick="handlePartClick('m_bike_grip')">
+                                <span class="card-label">手扞仔 (Tshiú-huānn-á)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_frame" onclick="handlePartClick('m_bike_frame')">
+                                <span class="card-label">車身/車架 (Tshia-sin)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_wheel" onclick="handlePartClick('m_bike_wheel')">
+                                <span class="card-label">車輪/輪仔 (Tshia-lián)</span>
                             </div>
                             <div class="svg-card clickable-part" id="part-m_tire" onclick="handlePartClick('m_tire')">
-                                <span class="card-label">外奶/內奶 (Guā/Lāi)</span>
+                                <span class="card-label">外奶/內奶 (Guā/Lāi-ling)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_rim" onclick="handlePartClick('m_bike_rim')">
+                                <span class="card-label">輪框/輪圈 (Lián-khing)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_spoke" onclick="handlePartClick('m_bike_spoke')">
+                                <span class="card-label">鋼絲/幅條 (Kǹg-si)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_chain" onclick="handlePartClick('m_chain')">
+                                <span class="card-label">鏈仔 (Liān-á)</span>
                             </div>
                             <div class="svg-card clickable-part" id="part-m_pedal" onclick="handlePartClick('m_pedal')">
                                 <span class="card-label">跤踏仔 (Kha-ta̍h-á)</span>
                             </div>
-                            <div class="svg-card clickable-part" id="part-m_chain" onclick="handlePartClick('m_chain')">
-                                <span class="card-label">鏈仔 (Liān-á)</span>
+                            <div class="svg-card clickable-part" id="part-m_bike_derailleur" onclick="handlePartClick('m_bike_derailleur')">
+                                <span class="card-label">變速/變速器 (Piàn-sok)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_stand" onclick="handlePartClick('m_bike_stand')">
+                                <span class="card-label">架仔/水壺架 (Kè-á)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_pump" onclick="handlePartClick('m_bike_pump')">
+                                <span class="card-label">灌風/氣嘴 (Kuàn hong)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_bell" onclick="handlePartClick('m_bike_bell')">
+                                <span class="card-label">鈴仔/車鈴 (Lîng-á)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_light" onclick="handlePartClick('m_bike_light')">
+                                <span class="card-label">車燈/電火 (Tshia-ting)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_lock" onclick="handlePartClick('m_bike_lock')">
+                                <span class="card-label">鎖頭/防盜鎖 (Só-thâu)</span>
+                            </div>
+                            <div class="svg-card clickable-part" id="part-m_bike_basket" onclick="handlePartClick('m_bike_basket')">
+                                <span class="card-label">籃仔/車籃 (Nâ-á)</span>
                             </div>
                         </div>
                     </div>
