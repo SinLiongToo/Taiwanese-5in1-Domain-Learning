@@ -109,6 +109,210 @@ const dataSource = {
                 speech: "Formosan Blue Magpie", 
                 description: "A stunning bird species endemic to Taiwan, known for its long tail, bright blue body, and red bill."
             }
+        },
+        a_boar: {
+            tw: { 
+                name: "山豬 (臺灣野豬)", 
+                sub: "Suann-ti", 
+                phonetic: "Suann-ti", 
+                speech: "山豬", 
+                description: "臺灣特有亞種野豬，生性敏捷強悍。雄豬長有尖銳獠牙用以禦敵自衛與翻掘泥土尋找植物塊根。在原住民族傳統文化中，獵獲山豬是勇士無畏精神的至高象徵。",
+                audioSegments: ["山豬"]
+            },
+            en: { 
+                name: "Formosan Wild Boar", 
+                sub: "山豬", 
+                phonetic: "Formosan Wild Boar", 
+                speech: "Formosan Wild Boar", 
+                description: "An endemic subspecies of wild boar native to Taiwan's mountain forests. Tough and swift, males feature sharp tusks used for defense and foraging roots."
+            }
+        },
+        a_pangolin: {
+            tw: { 
+                name: "鯪鯉 (穿山甲)", 
+                sub: "Lâ-lí", 
+                phonetic: "Lâ-lí", 
+                speech: "鯪鯉", 
+                description: "臺灣特有亞種保育類哺乳動物。身披如瓦片般重疊的堅硬角質鱗片，遇危險時會迅速蜷縮成球狀。以長舌黏食白蟻與螞蟻，臺中南屯端午節有著名的「穿木屐贌鯪鯉」習俗。",
+                audioSegments: ["鯪鯉"]
+            },
+            en: { 
+                name: "Formosan Pangolin", 
+                sub: "鯪鯉 (穿山甲)", 
+                phonetic: "Formosan Pangolin", 
+                speech: "Formosan Pangolin", 
+                description: "An endangered scaly mammal endemic to Taiwan. It rolls into a tight ball when threatened and uses its long sticky tongue to consume ants and termites."
+            }
+        },
+        a_buffalo: {
+            tw: { 
+                name: "水牛 (臺灣水牛)", 
+                sub: "Tsuí-gû", 
+                phonetic: "Tsuí-gû", 
+                speech: "水牛", 
+                description: "早年臺灣農耕社會最重要的耕作夥伴，耐勞沉穩，性喜於水窪泥濘中滾泥（湳水）降溫防蚊。是刻苦耐勞、奮鬥不懈臺灣拓墾精神的代表象徵。",
+                audioSegments: ["水牛"]
+            },
+            en: { 
+                name: "Taiwan Water Buffalo", 
+                sub: "水牛", 
+                phonetic: "Taiwan Water Buffalo", 
+                speech: "Taiwan Water Buffalo", 
+                description: "The historical cornerstone of Taiwanese agriculture, known for its docility, steady strength, and fondness for wallowing in muddy waters to stay cool."
+            }
+        },
+        a_whale: {
+            tw: { 
+                name: "海翁 (鯨魚)", 
+                sub: "Hái-ang", 
+                phonetic: "Hái-ang", 
+                speech: "海翁", 
+                description: "海洋中體型最為龐大的哺乳動物。臺灣東部花蓮、臺東外海臨太平洋深海海溝，黑潮暖流常引來抹香鯨、座頭鯨等游弋躍水，古稱「海翁」寓意海洋巨獸。",
+                audioSegments: ["海翁"]
+            },
+            en: { 
+                name: "Whale", 
+                sub: "海翁 (鯨魚)", 
+                phonetic: "Whale", 
+                speech: "Whale", 
+                description: "The magnificent gentle giants of the ocean. The Kuroshio current off Taiwan's eastern coast creates rich feeding grounds frequented by sperm and humpback whales."
+            }
+        },
+        a_dolphin: {
+            tw: { 
+                name: "海豬 (海豚)", 
+                sub: "Hái-ti", 
+                phonetic: "Hái-ti", 
+                speech: "海豬", 
+                description: "智商極高、群居生活且生性活潑的中小型齒鯨。常在臺灣東部太平洋與西部海域如飛旋海豚、白海豚等躍出水面翻滾伴浪，臺灣傳統俗稱「海豬」或「海豬仔」。",
+                audioSegments: ["海豬"]
+            },
+            en: { 
+                name: "Dolphin (Spinner Dolphin)", 
+                sub: "海豬 (海豚)", 
+                phonetic: "Dolphin", 
+                speech: "Dolphin", 
+                description: "Highly intelligent and acrobatic marine mammals frequently seen riding bow waves and performing aerial spins off Taiwan's coastlines."
+            }
+        },
+        a_spoonbill: {
+            tw: { 
+                name: "烏面抐桮 (黑面琵鷺)", 
+                sub: "Oo-bīn-lā-pue", 
+                phonetic: "Oo-bīn-lā-pue", 
+                speech: "烏面抐桮", 
+                description: "全球瀕危稀有候鳥，每年秋冬橫越重洋遷徙至臺南曾文溪口七股濕地度冬。長喙如黑色飯匙（抐桮）扁平擴張，在淺水灘左右掃動覓食小魚小蝦。",
+                audioSegments: ["烏面抐桮"]
+            },
+            en: { 
+                name: "Black-faced Spoonbill", 
+                sub: "烏面抐桮", 
+                phonetic: "Black-faced Spoonbill", 
+                speech: "Black-faced Spoonbill", 
+                description: "A globally endangered migratory bird that winters in Tainan's Qigu wetlands, named for its distinctive black spatula-shaped bill used to sweep through tidal shallows."
+            }
+        },
+        a_owl: {
+            tw: { 
+                name: "貓頭鳥 (領角鴞/貓頭鷹)", 
+                sub: "Niau-thâu-tsiáu", 
+                phonetic: "Niau-thâu-tsiáu", 
+                speech: "貓頭鳥", 
+                description: "夜行性猛禽，羽毛鬆軟飛行幾近無聲，具備極強的夜視與聽覺定位能力。在臺灣淺山與都市綠帶常見領角鴞，臺語通稱「貓頭鳥」或「梟鳥」。",
+                audioSegments: ["貓頭鳥"]
+            },
+            en: { 
+                name: "Collared Scops Owl", 
+                sub: "貓頭鳥", 
+                phonetic: "Collared Scops Owl", 
+                speech: "Collared Scops Owl", 
+                description: "A nocturnal raptor with large amber eyes, ear tufts, and silent flight feathers, frequently found in Taiwan's lowland woods and urban parks."
+            }
+        },
+        a_flying_squirrel: {
+            tw: { 
+                name: "飛鼠 (大赤鼯鼠)", 
+                sub: "Pue-tshí", 
+                phonetic: "Pue-tshí", 
+                speech: "飛鼠", 
+                description: "臺灣中高海拔森林的夜行性哺乳類，前後肢間長有寬大皮膜。夜晚自樹冠高處一躍而下滑翔數十公尺穿梭林間，雙眼大而圓亮，叫聲悠長清脆。",
+                audioSegments: ["飛鼠"]
+            },
+            en: { 
+                name: "Red Giant Flying Squirrel", 
+                sub: "飛鼠", 
+                phonetic: "Flying Squirrel", 
+                speech: "Flying Squirrel", 
+                description: "A large nocturnal rodent native to Taiwan's mountain forests, gliding dozens of meters between canopy trees using skin membranes stretched between its limbs."
+            }
+        },
+        a_drongo: {
+            tw: { 
+                name: "烏鶖 (大卷尾)", 
+                sub: "Oo-tshiu", 
+                phonetic: "Oo-tshiu", 
+                speech: "烏鶖", 
+                description: "全身披著黑亮金屬光澤羽毛、尾羽深叉分開的臺灣常見留鳥。領域性與護巢心極強，繁殖季時常英勇俯衝驅趕接近巢位的大型猛禽甚至是行經路人。",
+                audioSegments: ["烏鶖"]
+            },
+            en: { 
+                name: "Black Drongo", 
+                sub: "烏鶖", 
+                phonetic: "Black Drongo", 
+                speech: "Black Drongo", 
+                description: "A glossy all-black bird with a distinctive forked tail, famous for its fearless territorial defense, swooping down to chase away hawks and intruders."
+            }
+        },
+        a_otter: {
+            tw: { 
+                name: "水獺 (歐亞水獺)", 
+                sub: "Tsuí-thuah", 
+                phonetic: "Tsuí-thuah", 
+                speech: "水獺", 
+                description: "珍貴的半水棲食肉目動物，流線型身軀長有緻密防水皮毛與發達腳蹼。曾廣布臺灣本島溪流，目前金門為其關鍵保育避難所，常於夜間溪流與水塘捕魚。",
+                audioSegments: ["水獺"]
+            },
+            en: { 
+                name: "Eurasian Otter", 
+                sub: "水獺", 
+                phonetic: "Eurasian Otter", 
+                speech: "Eurasian Otter", 
+                description: "A semi-aquatic predator with waterproof dense fur and webbed paws, thriving in pristine freshwater habitats and coastal streams."
+            }
+        },
+        a_serow: {
+            tw: { 
+                name: "山羊 (臺灣長鬃山羊)", 
+                sub: "Suann-iûnn", 
+                phonetic: "Suann-iûnn", 
+                speech: "山羊", 
+                description: "臺灣唯一野生牛科動物，不論雌雄頭上均有一對終生不脫落的圓錐狀犄角。蹄部肉墊富有彈性，能在險峻崩壁與裸露岩崖上如履平地靈活跳躍奔馳。",
+                audioSegments: ["山", "羊"]
+            },
+            en: { 
+                name: "Taiwan Serow", 
+                sub: "山羊", 
+                phonetic: "Taiwan Serow", 
+                speech: "Taiwan Serow", 
+                description: "Taiwan's only native bovid. Equipped with special elastic hoof pads, it climbs steep rocky cliffs and precipices with breathtaking agility."
+            }
+        },
+        a_sea_turtle: {
+            tw: { 
+                name: "海龜 (綠蠵龜)", 
+                sub: "Hái-ku", 
+                phonetic: "Hái-ku", 
+                speech: "海龜", 
+                description: "古老悠遊的海中爬蟲類，前肢特化為槳狀划水。小琉球與澎湖望安是其重要的覓食棲地與產卵勝地，在蔚藍礁岩海域中優雅啃食海草海藻。",
+                audioSegments: ["海岸", "龜"]
+            },
+            en: { 
+                name: "Green Sea Turtle", 
+                sub: "海龜", 
+                phonetic: "Green Sea Turtle", 
+                speech: "Green Sea Turtle", 
+                description: "An ancient marine reptile with paddle-like flippers, frequently observed foraging on seagrass and nesting on the sandy shores of Xiaoliuqiu and Penghu."
+            }
         }
     },
     insect: {
@@ -1660,6 +1864,20 @@ const taigiAudioMap = {
     "猴": "8571(1)", "仔": "1300(1)", 
     "鮭": "1837(1)", "魚": "8084(1)", 
     "長尾山娘": "29552(1)", "山娘": "531(1)",
+    
+    // 新增野生動物
+    "山豬": "532(1)",
+    "鯪鯉": "12973(1)",
+    "水牛": "873(1)",
+    "海翁": "6210(1)",
+    "海豬": "6236(1)",
+    "烏面抐桮": "6292(1)",
+    "貓頭鳥": "11977(1)",
+    "飛鼠": "5673(1)",
+    "烏鶖": "6352(1)",
+    "水獺": "1204(1)",
+    "羊": "2600(1)",
+    "龜": "12127(1)",
     
     // 昆蟲相關
     "尾蝶": "3121(1)", "蝴蝶": "11374(1)", 
