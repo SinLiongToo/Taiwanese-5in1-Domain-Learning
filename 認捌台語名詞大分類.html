@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>五合一跨領域台語雙語學習 App</title>
+    <title>六合一跨領域台語雙語學習 App</title>
     <!-- Fonts & Icons -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
             <div class="logo-area">
                 <div class="logo-icon"><i class="fa-solid fa-graduation-cap"></i></div>
                 <div>
-                    <h1 id="ui-title">五合一跨領域台語雙語學習 App</h1>
+                    <h1 id="ui-title">六合一跨領域台語雙語學習 App</h1>
                     <p id="ui-subtitle" class="subtitle">生物人體、生活機械、地理與特有種特攻隊</p>
                 </div>
             </div>
@@ -44,6 +44,10 @@
             <button class="tab-btn active" id="tab-animal-btn" onclick="switchTab('animal')">
                 <span class="tab-title">🐻 <span class="tab-text">野生動物</span></span>
                 <span class="tab-sub">Iá-sing tōng-bu̍t</span>
+            </button>
+            <button class="tab-btn" id="tab-bird-btn" onclick="switchTab('bird')">
+                <span class="tab-title">🦅 <span class="tab-text">臺灣鳥類</span></span>
+                <span class="tab-sub">Tâi-uân tsiáu-luī</span>
             </button>
             <button class="tab-btn" id="tab-insect-btn" onclick="switchTab('insect')">
                 <span class="tab-title">🦋 <span class="tab-text">常見昆蟲</span></span>
@@ -141,6 +145,84 @@
                         <div class="svg-card clickable-part" id="part-a_sea_turtle" onclick="handlePartClick('a_sea_turtle')">
                             <img src="images/sea_turtle.png" class="mini-image" alt="Green Sea Turtle">
                             <span class="card-label">海龜 (Hái-ku)</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 1.5 Bird SVG Visuals -->
+                <div id="visual-bird" class="visual-wrapper">
+                    <div class="grid-visual">
+                        <div class="svg-card clickable-part" id="part-b_magpie" onclick="handlePartClick('b_magpie')">
+                            <img src="images/blue_magpie.png" class="mini-image" alt="Taiwan Blue Magpie">
+                            <span class="card-label">長尾山娘 (Suann-niû)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_barbet" onclick="handlePartClick('b_barbet')">
+                            <img src="images/taiwan_barbet.png" class="mini-image" alt="Taiwan Barbet">
+                            <span class="card-label">花仔和尚 (五色鳥)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_bulbul" onclick="handlePartClick('b_bulbul')">
+                            <img src="images/light_vented_bulbul.png" class="mini-image" alt="Light-vented Bulbul">
+                            <span class="card-label">白頭鵠仔 (白頭翁)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_white_eye" onclick="handlePartClick('b_white_eye')">
+                            <img src="images/white_eye.png" class="mini-image" alt="Warbling White-eye">
+                            <span class="card-label">青苔仔 (綠繡眼)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_night_heron" onclick="handlePartClick('b_night_heron')">
+                            <img src="images/night_heron.png" class="mini-image" alt="Black-crowned Night Heron">
+                            <span class="card-label">暗光鳥 (夜鷺)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_egret" onclick="handlePartClick('b_egret')">
+                            <img src="images/little_egret.png" class="mini-image" alt="Little Egret">
+                            <span class="card-label">白翎鷥 (白鷺鷥)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_spoonbill" onclick="handlePartClick('b_spoonbill')">
+                            <img src="images/spoonbill.png" class="mini-image" alt="Black-faced Spoonbill">
+                            <span class="card-label">烏面抐桮 (Lā-pue)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_owl" onclick="handlePartClick('b_owl')">
+                            <img src="images/owl.png" class="mini-image" alt="Collared Scops Owl">
+                            <span class="card-label">貓頭鳥 (Niau-thâu)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_drongo" onclick="handlePartClick('b_drongo')">
+                            <img src="images/drongo.png" class="mini-image" alt="Black Drongo">
+                            <span class="card-label">烏鶖 (Oo-tshiu)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_kite" onclick="handlePartClick('b_kite')">
+                            <img src="images/black_kite.png" class="mini-image" alt="Black Kite">
+                            <span class="card-label">鴟鴞 (Bā-hio̍h)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_dove" onclick="handlePartClick('b_dove')">
+                            <img src="images/spotted_dove.png" class="mini-image" alt="Spotted Dove">
+                            <span class="card-label">斑鴿 (Pan-kah)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_myna" onclick="handlePartClick('b_myna')">
+                            <img src="images/crested_myna.png" class="mini-image" alt="Crested Myna">
+                            <span class="card-label">鵁鴒 (Ka-līng)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_swallow" onclick="handlePartClick('b_swallow')">
+                            <img src="images/barn_swallow.png" class="mini-image" alt="Barn Swallow">
+                            <span class="card-label">燕仔 (Ìnn-á)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_kingfisher" onclick="handlePartClick('b_kingfisher')">
+                            <img src="images/kingfisher.png" class="mini-image" alt="Common Kingfisher">
+                            <span class="card-label">釣魚翁 (翠鳥)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_shrike" onclick="handlePartClick('b_shrike')">
+                            <img src="images/brown_shrike.png" class="mini-image" alt="Brown Shrike">
+                            <span class="card-label">伯勞仔 (Pit-lô-á)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_partridge" onclick="handlePartClick('b_partridge')">
+                            <img src="images/bamboo_partridge.png" class="mini-image" alt="Taiwan Bamboo Partridge">
+                            <span class="card-label">竹雞仔 (Tik-ke-á)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_buzzard" onclick="handlePartClick('b_buzzard')">
+                            <img src="images/grey_faced_buzzard.png" class="mini-image" alt="Grey-faced Buzzard">
+                            <span class="card-label">南路鷹 (國慶鳥)</span>
+                        </div>
+                        <div class="svg-card clickable-part" id="part-b_sparrow" onclick="handlePartClick('b_sparrow')">
+                            <img src="images/tree_sparrow.png" class="mini-image" alt="Eurasian Tree Sparrow">
+                            <span class="card-label">厝角鳥仔 (麻雀)</span>
                         </div>
                     </div>
                 </div>
@@ -1322,7 +1404,7 @@
         </section>
         <!-- Educational Transparency Footer -->
         <footer class="footer card-blur" style="margin-top: 30px; padding: 22px; text-align: center; border-radius: var(--radius-lg); border: 1px solid var(--border-color); background: var(--bg-card);">
-            <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary);">五合一跨領域台語雙語學習 App · 認捌台語名詞大分類</p>
+            <p style="font-weight: 700; font-size: 0.95rem; margin-bottom: 6px; color: var(--text-primary);">六合一跨領域台語雙語學習 App · 認捌台語名詞大分類</p>
             <p style="font-size: 0.8rem; margin-bottom: 6px; color: var(--text-muted);">本系統採用中華民國教育部《臺灣台語常用詞辭典》官方真人發音音訊（KipSutianDataMirror 20261019-0109）與 Web Audio API / Web Speech API 擬真備援技術作為語音引擎。</p>
             <p style="font-size: 0.75rem; color: var(--text-muted); opacity: 0.85;"><i class="fa-solid fa-clock-rotate-left"></i> 最後更新日期 (Last Updated): 2026-10-30</p>
         </footer>

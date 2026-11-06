@@ -315,6 +315,314 @@ const dataSource = {
             }
         }
     },
+    bird: {
+        b_magpie: {
+            tw: {
+                name: "長尾山娘 (臺灣藍鵲)",
+                sub: "Tn̂g-bué-suann-niû",
+                phonetic: "Tn̂g-bué-suann-niû",
+                speech: "長尾山娘",
+                description: "臺灣特有種鳥類，羽色豔藍、嘴爪鮮紅，長長尾羽優雅飄逸。群居於低海拔闊葉林中，有極具社會性的「巢邊幫手」家族育雛行為。",
+                audioSegments: ["長尾山娘"]
+            },
+            en: {
+                name: "Taiwan Blue Magpie",
+                sub: "長尾山娘",
+                phonetic: "Blue Magpie",
+                speech: "Taiwan Blue Magpie",
+                description: "An endemic bird of Taiwan known for its striking royal blue plumage, bright crimson beak, and extraordinary communal helper breeding system."
+            }
+        },
+        b_barbet: {
+            tw: {
+                name: "花仔和尚 (五色鳥)",
+                sub: "Hue-á-huê-siūnn",
+                phonetic: "Hue-á-huê-siūnn",
+                speech: "花仔和尚",
+                description: "臺灣特有種鳥類（臺灣擬啄木）。全身翠綠並綴有黃、藍、紅、黑五彩斑紋，叫聲「叩、叩、叩」猶如和尚敲擊木魚，常在枯木上啄洞築巢。",
+                audioSegments: ["花仔和尚"]
+            },
+            en: {
+                name: "Taiwan Barbet (Five-colored Bird)",
+                sub: "花仔和尚",
+                phonetic: "Taiwan Barbet",
+                speech: "Taiwan Barbet",
+                description: "An endemic barbet adorned with vibrant green, blue, yellow, and red feathers. Its rhythmic hollow call earned it the nickname 'Flower Monk'."
+            }
+        },
+        b_bulbul: {
+            tw: {
+                name: "白頭鵠仔 (白頭翁)",
+                sub: "Pe̍h-thâu-khok-á",
+                phonetic: "Pe̍h-thâu-khok-á",
+                speech: "白頭鵠仔",
+                description: "臺灣「城市三俠」之一。頭頂後方長有一撮標誌性的白色羽毛，性情活潑外向，叫聲清脆嘹亮「巧口巧口」，常成群於庭院樹梢嬉戲啄食漿果。",
+                audioSegments: ["白頭鵠仔"]
+            },
+            en: {
+                name: "Light-vented Bulbul",
+                sub: "白頭鵠仔",
+                phonetic: "Light-vented Bulbul",
+                speech: "Light-vented Bulbul",
+                description: "One of Taiwan's most cheerful urban birds, recognized by the prominent white patch on the nape of its head and melodious bubbling song."
+            }
+        },
+        b_white_eye: {
+            tw: {
+                name: "青苔仔 (綠繡眼/青笛仔)",
+                sub: "Tshenn-tî-á (Tshenn-ti̍k-á)",
+                phonetic: "Tshenn-tî-á",
+                speech: "青苔仔",
+                description: "臺灣都市公園極常見的玲瓏小鳥，城市三俠之一。全身亮綠如青苔，眼周有一圈鮮明白色眼圈如戴眼鏡，體型輕巧，常倒掛於花枝吸食花蜜。",
+                audioSegments: ["青苔仔"]
+            },
+            en: {
+                name: "Warbling White-eye",
+                sub: "青苔仔",
+                phonetic: "White-eye",
+                speech: "Warbling White-eye",
+                description: "A dainty olive-green passerine distinguished by a conspicuous white ring around each eye, often seen hanging upside down sipping nectar from flowers."
+            }
+        },
+        b_night_heron: {
+            tw: {
+                name: "暗光鳥 (夜鷺)",
+                sub: "Àm-kong-tsiáu",
+                phonetic: "Àm-kong-tsiáu",
+                speech: "暗光鳥",
+                description: "臺灣溪畔與池塘常見的夜行性水鳥。頭頂深藍黑，後頸長有兩三根細長白飾羽，喜於黃昏夜間佇立水邊耐心伺機獵魚。臺語常借稱熬夜不睡的人為「暗光鳥」。",
+                audioSegments: ["暗光鳥"]
+            },
+            en: {
+                name: "Black-crowned Night Heron",
+                sub: "暗光鳥",
+                phonetic: "Night Heron",
+                speech: "Night Heron",
+                description: "A stocky nocturnal heron with crimson eyes and elegant white head plumes, famous in Taiwanese slang as a moniker for night owls."
+            }
+        },
+        b_egret: {
+            tw: {
+                name: "白翎鷥 (白鷺鷥)",
+                sub: "Pe̍h-līng-si",
+                phonetic: "Pe̍h-līng-si",
+                speech: "白翎鷥",
+                description: "臺灣農田濕地最具代表性的水鳥。全身羽毛雪白，黑嘴黑腳配黃腳掌。臺灣經典童謠「白翎鷥，車畚箕，車到溪仔墘」唱出牠與農村水田相伴的深厚情誼。",
+                audioSegments: ["白翎鷥"]
+            },
+            en: {
+                name: "Little Egret",
+                sub: "白翎鷥",
+                phonetic: "Little Egret",
+                speech: "Little Egret",
+                description: "A graceful pure-white wading bird with black legs and striking yellow feet, eternally celebrated in traditional Taiwanese nursery rhymes."
+            }
+        },
+        b_spoonbill: {
+            tw: {
+                name: "烏面抐桮 (黑面琵鷺)",
+                sub: "Oo-bīn-lā-pue",
+                phonetic: "Oo-bīn-lā-pue",
+                speech: "烏面抐桮",
+                description: "國際級瀕危珍稀候鳥。黑色的長喙扁平擴張如飯匙（抐桮），每年秋冬橫跨數千公里飛抵臺南七股濕地度冬，在淺水中左右掃動長喙捕捉魚蝦。",
+                audioSegments: ["烏面抐桮"]
+            },
+            en: {
+                name: "Black-faced Spoonbill",
+                sub: "烏面抐桮",
+                phonetic: "Black-faced Spoonbill",
+                speech: "Black-faced Spoonbill",
+                description: "A globally endangered migratory spoonbill that gathers each winter in southwestern Taiwan's coastal wetlands, sweeping its spatula-like bill."
+            }
+        },
+        b_owl: {
+            tw: {
+                name: "貓頭鳥 (領角鴞/貓頭鷹)",
+                sub: "Niau-thâu-tsiáu",
+                phonetic: "Niau-thâu-tsiáu",
+                speech: "貓頭鳥",
+                description: "臺灣低海拔淺山與公園校園常見的夜行性猛禽。頭頂有一對角狀耳羽，雙眼圓大呈琥珀色，羽毛鬆軟飛行無聲無息，夜間發出低沉「勿～勿～」鳴聲。",
+                audioSegments: ["貓頭鳥"]
+            },
+            en: {
+                name: "Collared Scops Owl",
+                sub: "貓頭鳥",
+                phonetic: "Collared Scops Owl",
+                speech: "Collared Scops Owl",
+                description: "A small nocturnal raptor featuring distinctive feathered ear tufts and large forward-facing amber eyes, nesting in tree cavities across Taiwan."
+            }
+        },
+        b_drongo: {
+            tw: {
+                name: "烏鶖 (大卷尾)",
+                sub: "Oo-tshiu",
+                phonetic: "Oo-tshiu",
+                speech: "烏鶖",
+                description: "全身黑亮、尾羽深分叉的強悍鳥類。領域性極強，飛行特技高超，常停在電線或牛背上偵察。繁殖季時極具護巢勇氣，敢向老鷹、烏鴉甚至行經路人俯衝示警。",
+                audioSegments: ["烏鶖"]
+            },
+            en: {
+                name: "Black Drongo",
+                sub: "烏鶖",
+                phonetic: "Black Drongo",
+                speech: "Black Drongo",
+                description: "An all-black predatory passerine with an iconic forked tail, famous for its aerial agility and fearless defense of its nesting territory against hawks."
+            }
+        },
+        b_kite: {
+            tw: {
+                name: "鴟鴞 (老鷹/黑鳶)",
+                sub: "Bā-hio̍h",
+                phonetic: "Bā-hio̍h",
+                speech: "鴟鴞",
+                description: "臺灣最具盛名的港灣猛禽。雙翼寬長，尾羽呈淺凹形如魚尾，善於利用熱氣流在基隆港或翡翠水庫上空盤旋巡弋，俯衝捕捉水面浮魚，臺灣傳統俗稱「鴟鴞」。",
+                audioSegments: ["鴟鴞"]
+            },
+            en: {
+                name: "Black Kite",
+                sub: "鴟鴞",
+                phonetic: "Black Kite",
+                speech: "Black Kite",
+                description: "A medium-sized bird of prey renowned for its forked tail and majestic soaring flights over northern Taiwan's harbors and mountain reservoirs."
+            }
+        },
+        b_dove: {
+            tw: {
+                name: "斑鴿 (斑鳩/珠頸斑鳩)",
+                sub: "Pan-kah",
+                phonetic: "Pan-kah",
+                speech: "斑鴿",
+                description: "臺灣鄉村與都市極親近人的鳩鴿科野鳥。頸部兩側至後頸有黑色如珠鍊般的白點花紋，性情溫和，常於草地上踱步啄食草籽，發出「咕咕～咕」溫柔鳴叫。",
+                audioSegments: ["斑鴿"]
+            },
+            en: {
+                name: "Spotted Dove",
+                sub: "斑鴿",
+                phonetic: "Spotted Dove",
+                speech: "Spotted Dove",
+                description: "A gentle wild pigeon native to Taiwan, adorned with a white-spotted black collar patch around its neck and known for its soft cooing call."
+            }
+        },
+        b_myna: {
+            tw: {
+                name: "鵁鴒 (臺灣八哥/冠八哥)",
+                sub: "Ka-līng",
+                phonetic: "Ka-līng",
+                speech: "鵁鴒",
+                description: "臺灣原生種二級保育類八哥。嘴喙為象牙白、額頭有豎立的冠羽，全身黑亮。生性聰明，能模仿各種聲音，民間俗語「鵁鴒順便空」比喻善用現成資源。",
+                audioSegments: ["鵁鴒"]
+            },
+            en: {
+                name: "Crested Myna (Taiwan Native Myna)",
+                sub: "鵁鴒",
+                phonetic: "Crested Myna",
+                speech: "Crested Myna",
+                description: "Taiwan's native protected myna, characterized by an ivory beak, frontal feather crest, and remarkable vocal mimicry abilities."
+            }
+        },
+        b_swallow: {
+            tw: {
+                name: "燕仔 (家燕)",
+                sub: "Ìnn-á",
+                phonetic: "Ìnn-á",
+                speech: "燕仔",
+                description: "每逢春暖花開時節造訪臺灣的候鳥。飛行極為輕盈迅捷，剪刀狀深叉尾羽，喜愛在民間傳統騎樓屋簷下銜泥築巢育雛，臺灣民間視燕子築巢為福氣吉祥的象徵。",
+                audioSegments: ["燕仔"]
+            },
+            en: {
+                name: "Barn Swallow",
+                sub: "燕仔",
+                phonetic: "Barn Swallow",
+                speech: "Barn Swallow",
+                description: "A swift migratory bird with a deeply forked tail, traditionally celebrated in Taiwanese culture as a bringer of good fortune when nesting under eaves."
+            }
+        },
+        b_kingfisher: {
+            tw: {
+                name: "釣魚翁 (翠鳥/魚狗)",
+                sub: "Tiò-hî-ang (Tiò-hû-ang)",
+                phonetic: "Tiò-hî-ang",
+                speech: "釣魚翁",
+                description: "棲息於清澈溪流與池塘邊的豔麗小水鳥。背部羽毛閃爍如綠寶石金屬光澤，長喙筆直如矛。常如老翁般靜立枝頭凝視水面，發現獵物瞬間如閃電般直扎水中抓魚。",
+                audioSegments: ["釣魚翁"]
+            },
+            en: {
+                name: "Common Kingfisher",
+                sub: "釣魚翁",
+                phonetic: "Kingfisher",
+                speech: "Common Kingfisher",
+                description: "A dazzling small bird with iridescent sapphire-blue back plumage and a dagger-like bill, diving vertically into waters to snatch small fish."
+            }
+        },
+        b_shrike: {
+            tw: {
+                name: "伯勞仔 (紅尾伯勞)",
+                sub: "Pit-lô-á",
+                phonetic: "Pit-lô-á",
+                speech: "伯勞仔",
+                description: "每年秋季乘落山風自北方南下過境恆春半島的著名候鳥。眼部有黑色眼罩如蒙面俠，嘴喙有鉤，生性兇猛，會將捕獲的蜥蜴或昆蟲插在荊棘枝刺上慢慢享用。",
+                audioSegments: ["伯勞仔"]
+            },
+            en: {
+                name: "Brown Shrike",
+                sub: "伯勞仔",
+                phonetic: "Brown Shrike",
+                speech: "Brown Shrike",
+                description: "A famous autumn migrant to southern Taiwan's Hengchun Peninsula, recognized by its dark bandit-mask eye stripe and habit of impaling prey on thorns."
+            }
+        },
+        b_partridge: {
+            tw: {
+                name: "竹雞仔 (臺灣竹雞)",
+                sub: "Tik-ke-á (Tik-kue-á)",
+                phonetic: "Tik-ke-á",
+                speech: "竹雞仔",
+                description: "臺灣特有種雉科鳥類。體態圓胖矮壯，善於在竹林落葉堆中快步奔走與沙浴。叫聲極其響亮多變，常發出「雞狗乖～雞狗乖～」高亢哨音與同伴呼應。",
+                audioSegments: ["竹雞仔"]
+            },
+            en: {
+                name: "Taiwan Bamboo Partridge",
+                sub: "竹雞仔",
+                phonetic: "Bamboo Partridge",
+                speech: "Taiwan Bamboo Partridge",
+                description: "A plump endemic gamebird scurrying through dense bamboo thickets and forest floors, celebrated for its loud, resonant territorial calls."
+            }
+        },
+        b_buzzard: {
+            tw: {
+                name: "南路鷹 (灰面鵟鷹/國慶鳥)",
+                sub: "Lâm-lōo-ing",
+                phonetic: "Lâm-lōo-ing",
+                speech: "南路鷹",
+                description: "每年雙十國慶前後大批過境八卦山與恆春半島的猛禽，俗稱「國慶鳥」。彰化俗諺「南路鷹，一萬死九千」道出早年濫捕，如今已成為臺灣生態保育與鷹季觀光焦點。",
+                audioSegments: ["南路鷹"]
+            },
+            en: {
+                name: "Grey-faced Buzzard (National Day Bird)",
+                sub: "南路鷹",
+                phonetic: "Grey-faced Buzzard",
+                speech: "Grey-faced Buzzard",
+                description: "A raptor that migrates through Taiwan in tens of thousands every October around National Day, soaring along the Baguashan and Kenting flyways."
+            }
+        },
+        b_sparrow: {
+            tw: {
+                name: "厝角鳥仔 (麻雀/粟鳥仔)",
+                sub: "Tshù-kak-tsiáu-á",
+                phonetic: "Tshù-kak-tsiáu-á",
+                speech: "厝角鳥仔",
+                description: "與臺灣人生活最緊密的農村與都市留鳥，城市三俠之一。體態小巧圓潤，臉頰兩側有標誌性黑斑，生性機警好動，常在稻田、騎樓或屋角雀躍跳躍、嘰嘰喳喳。",
+                audioSegments: ["厝角鳥仔"]
+            },
+            en: {
+                name: "Eurasian Tree Sparrow",
+                sub: "厝角鳥仔",
+                phonetic: "Tree Sparrow",
+                speech: "Tree Sparrow",
+                description: "The most ubiquitous and familiar companion bird across Taiwan's towns and villages, identifiable by the distinctive black patch on each cheek."
+            }
+        },
+    },
     insect: {
         i_butterfly: {
             tw: { 
@@ -1879,6 +2187,23 @@ const taigiAudioMap = {
     "山羊": "25441(1)",
     "海龜": "23394(1)",
     
+    // 臺灣鳥類專屬教育部正音
+    "花仔和尚": "27448(1)",
+    "白頭鵠仔": "2016(1)",
+    "青苔仔": "27536(1)",
+    "暗光鳥": "9585(1)",
+    "白翎鷥": "1949(1)",
+    "鴟鴞": "7881(1)",
+    "斑鴿": "8472(1)",
+    "鵁鴒": "12470(1)",
+    "燕仔": "11783(1)",
+    "釣魚翁": "8056(1)",
+    "伯勞仔": "2922(1)",
+    "竹雞仔": "2815(1)",
+    "南路鷹": "4745(1)",
+    "厝角鳥仔": "5822(1)",
+    "鳥類": "8085(1)",
+    
     // 昆蟲相關
     "尾蝶": "3121(1)", "蝴蝶": "11374(1)", 
     "火金姑": "1247(1)",    // 火金蛄 (hué-kim-koo ID 1247 一字不缺)
@@ -2043,7 +2368,7 @@ const twHomophones = {
 // UI Localization dictionary (Bilingual support)
 const uiStrings = {
     ZH: {
-        title: "五合一跨領域台語雙語學習 App",
+        title: "六合一跨領域台語雙語學習 App",
         subtitle: "生物人體、生活機械、地理與特有種特攻隊",
         tabAnimal: "🐻 野生動物",
         tabInsect: "🦋 常見昆蟲",
@@ -2194,6 +2519,7 @@ function switchTab(tabId) {
     let audioSeg = "";
     let fallback = "";
     if (tabId === "animal") { audioSeg = "動物"; fallback = "動物"; }
+    else if (tabId === "bird") { audioSeg = "鳥類"; fallback = "鳥類"; }
     else if (tabId === "insect") { audioSeg = "昆蟲"; fallback = "昆蟲"; }
     else if (tabId === "geography") { audioSeg = "地理"; fallback = "地理"; }
     else if (tabId === "body") { audioSeg = "人體"; fallback = "人體"; }
@@ -2332,6 +2658,7 @@ function updateUI() {
     // Tab labels
     const romanizations = {
         animal: "Iá-sing tōng-bu̍t",
+        bird: "Tâi-uân tsiáu-luī",
         insect: "Siông-kìan khun-thiông",
         geography: "Tâi-uân tē-lí",
         body: "Jîn-thé kiat-kòo",
