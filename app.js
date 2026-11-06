@@ -1350,6 +1350,91 @@ const dataSource = {
                 speech: "Battery", 
                 description: "A rechargeable battery that supplies electrical current to the starting motor to ignite the vehicle's chemical engine."
             }
+        },
+        m_transmission: {
+            tw: { 
+                name: "變速箱 (齒輪變速)", 
+                sub: "Piàn-sok-siunn", 
+                phonetic: "Piàn-sok-siunn", 
+                speech: "變速箱", 
+                description: "位於引擎後方的動力傳遞中樞，內置多組不同齒比的齒輪組與同步器，依車速與負載切換前進檔、倒檔或空檔，調整輸出扭力與轉速。",
+                audioSegments: ["變速", "箱"]
+            },
+            en: { 
+                name: "Transmission (Gearbox)", 
+                sub: "變速箱", 
+                phonetic: "Transmission", 
+                speech: "Transmission", 
+                description: "The mechanical transmission system that provides controlled application of power via multiple gear ratios between the engine and drive wheels."
+            }
+        },
+        m_car_brake: {
+            tw: { 
+                name: "車擋 / 碟煞 (煞車制動)", 
+                sub: "Tshia-tòng (Tap-sat)", 
+                phonetic: "Tshia-tòng", 
+                speech: "車擋", 
+                description: "車輛關鍵制動機構。由煞車踏板連動油壓總泵，推動紅色煞車卡鉗夾緊通風打孔碟盤，產生巨大摩擦阻力將行駛動能轉化為熱能降速停下。",
+                audioSegments: ["車擋"]
+            },
+            en: { 
+                name: "Disc Brake (Brake Caliper & Rotor)", 
+                sub: "車擋 / 碟煞", 
+                phonetic: "Disc Brake", 
+                speech: "Disc Brake", 
+                description: "A brake mechanism using hydraulic calipers to squeeze pairs of pads against a ventilated disc rotor, creating friction to slow wheel rotation."
+            }
+        },
+        m_chassis: {
+            tw: { 
+                name: "底盤 / 車架 (鋼樑骨架)", 
+                sub: "Té-puânn / Tshia-kè", 
+                phonetic: "Té-puânn", 
+                speech: "底盤", 
+                description: "支撐全車重量與剛性的鋼質骨架平台，整合引擎、變速箱、前後懸吊系統與傳動軸，負責吸收路面衝擊力道與維繫撞擊安全結構防護。",
+                audioSegments: ["底盤"]
+            },
+            en: { 
+                name: "Vehicle Chassis (Frame)", 
+                sub: "底盤 / 車架", 
+                phonetic: "Chassis", 
+                speech: "Chassis", 
+                description: "The structural backbone and load-bearing framework of an automobile, mounting the powertrain, suspension system, and wheels."
+            }
+        },
+        m_pedal: {
+            tw: { 
+                name: "跤踏仔 (腳踏板)", 
+                sub: "Kha-ta̍h-á", 
+                phonetic: "Kha-ta̍h-á", 
+                speech: "跤踏仔", 
+                description: "安裝於自行車曲柄兩端的踏腳旋轉板，由騎士雙腳施力踩踏驅動大齒盤旋轉，內裝精密滾珠軸承讓踩踏旋轉動作滑順省力。",
+                audioSegments: ["跤踏仔"]
+            },
+            en: { 
+                name: "Bicycle Pedals", 
+                sub: "跤踏仔", 
+                phonetic: "Bicycle Pedals", 
+                speech: "Bicycle Pedals", 
+                description: "The foot-operated components attached to cranks that a rider pushes to rotate the chainring and propel the bicycle forward."
+            }
+        },
+        m_saddle: {
+            tw: { 
+                name: "椅仔 (自行車座墊)", 
+                sub: "Í-á (Tshia-í)", 
+                phonetic: "Í-á", 
+                speech: "椅仔", 
+                description: "支撐騎士大部分體重的自行車鞍座，具備人體工學曲線、高彈性發泡襯墊與減震弓導軌，確保長途騎乘的舒適支撐度與骨盆穩定。",
+                audioSegments: ["椅仔"]
+            },
+            en: { 
+                name: "Bicycle Saddle (Seat)", 
+                sub: "椅仔", 
+                phonetic: "Bicycle Saddle", 
+                speech: "Bicycle Saddle", 
+                description: "The ergonomic seat that supports the cyclist's weight, mounted atop the seatpost to provide comfort and efficient pedaling posture."
+            }
         }
     }
 };
@@ -1423,6 +1508,13 @@ const taigiAudioMap = {
     "排氣": "22804(1)", "管": "10686(1)", // 排氣 (pâi-khì) + 管 (kńg) -> 排氣管
     "電": "10283(1)", "瓶": "7628(1)",    // 電 (tiān) + 瓶 (pân) -> 電瓶
     "鐵馬": "13148(1)", "汽車": "22244(1)",
+    "變速": "26778(1)", "箱": "11250(1)", // 變速 (piàn-sok) + 箱 (siunn) -> 變速箱
+    "車擋": "3500(1)", // 車擋 (tshia-tòng: 汽車/自行車煞車制動)
+    "底盤": "24237(1)", // 底盤 (té-puânn: 車身底盤骨架)
+    "跤踏仔": "10125(1)", // 跤踏仔 (kha-ta̍h-á: 踏板)
+    "椅仔": "8492(1)", // 椅仔 (í-á: 坐墊)
+    "車輪": "3498(1)", // 車輪 (tshia-lián)
+
     
 
     // === 擴充地理 (離島、海域、名勝、水體、古蹟) ===
@@ -2136,8 +2228,8 @@ function generateQuizPool() {
     while (pool.length < 10) {
         // For subcategories in machinery, only query items belonging to that subcategory
         if (currentTab === "machinery") {
-            const bikeIds = ["m_tire", "m_chain", "m_brake", "m_handlebar"];
-            const carIds = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery"];
+            const bikeIds = ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"];
+            const carIds = ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
             
             const targetIds = currentMachinerySub === "bike" ? bikeIds : carIds;
             const randomId = targetIds[Math.floor(Math.random() * targetIds.length)];
@@ -2182,8 +2274,8 @@ function loadQuizQuestion() {
     let filteredKeys = keys;
     if (currentTab === "machinery") {
         filteredKeys = currentMachinerySub === "bike" 
-            ? ["m_tire", "m_chain", "m_brake", "m_handlebar"] 
-            : ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery"];
+            ? ["m_tire", "m_chain", "m_brake", "m_handlebar", "m_pedal", "m_saddle"] 
+            : ["m_engine", "m_sparkplug", "m_shock", "m_exhaust", "m_battery", "m_transmission", "m_car_brake", "m_chassis"];
     }
     
     while (options.length < Math.min(4, filteredKeys.length)) {
