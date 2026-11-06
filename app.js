@@ -7,14 +7,14 @@ if (/\bLine\//i.test(navigator.userAgent) && !/[?&]openExternalBrowser=1/.test(l
 // 1. Unified 5-in-1 Domain Database (Hanji, POJ, English, Audio IDs)
 // ==========================================================================
 const dataSource = {
-    animal: {
+        animal: {
         a_bear: {
             tw: { 
-                name: "烏熊", 
+                name: "烏熊 (臺灣黑熊)", 
                 sub: "Oo-hîm", 
                 phonetic: "Tâi-oân oo-hîm", 
                 speech: "烏熊", 
-                description: "臺灣特有亞種黑熊，胸前有獨特的白色 V 字形斑紋，是臺灣最具代表性的保育類野生動物。",
+                description: "臺灣特有亞種黑熊，胸前有獨特的白色 V 字形斑紋，體型碩大且嗅覺敏銳，是臺灣森林生態系最頂級最具代表性的保育類野生動物。",
                 audioSegments: ["烏_sandhi", "熊"]
             },
             en: { 
@@ -31,7 +31,7 @@ const dataSource = {
                 sub: "Muî-hue-lo̍k", 
                 phonetic: "Tâi-uân muî-hue-lo̍k", 
                 speech: "梅花鹿", 
-                description: "臺灣特有亞種，身上有漂亮的梅花斑點。曾在野外絕跡，現已於墾丁國家公園與綠島復育成功。",
+                description: "臺灣特有亞種，身上披有如梅花般的白色美麗斑點。曾在野外野性滅絕，經多年墾丁與綠島復育，現已重新奔馳於臺灣綠野。",
                 audioSegments: ["梅花", "鹿"]
             },
             en: { 
@@ -39,7 +39,7 @@ const dataSource = {
                 sub: "梅花鹿", 
                 phonetic: "Formosan Sika Deer", 
                 speech: "Formosan Sika Deer", 
-                description: "A deer subspecies endemic to Taiwan, famous for its white spots resembling plum blossoms."
+                description: "A deer subspecies endemic to Taiwan, famous for its spotted coat resembling blossoming plum petals."
             }
         },
         a_leopard: {
@@ -48,7 +48,7 @@ const dataSource = {
                 sub: "Tsio̍h-hóo / Suann-niau", 
                 phonetic: "Tsio̍h-hóo (Suann-niau)", 
                 speech: "山貓", 
-                description: "臺灣僅存的貓科野生動物，額頭有兩條明顯的白色條紋，屬於瀕臨絕種的國家一級保育類。",
+                description: "臺灣現存唯一的原生貓科野生動物，雙眼兩側有兩道清晰白條紋、耳後有顯眼黑底白斑，是苗栗與中臺灣淺山丘陵的保育旗艦物種。",
                 audioSegments: ["山貓"]
             },
             en: { 
@@ -56,58 +56,58 @@ const dataSource = {
                 sub: "石虎 (山貓)", 
                 phonetic: "Leopard Cat", 
                 speech: "Leopard Cat", 
-                description: "Taiwan's last remaining native wild cat. It is an endangered species with beautiful spotted patterns like a leopard."
+                description: "Taiwan's last surviving native wild felid, distinguished by facial white stripes and distinctive white spots behind its ears."
             }
         },
         a_monkey: {
             tw: { 
-                name: "臺灣獼猴 (猴仔)", 
-                sub: "Tâi-uân kâu (Kâu-á)", 
-                phonetic: "Tâi-uân kâu (Kâu-á)", 
-                speech: "猴仔", 
-                description: "臺灣特有的唯二靈長類動物（另一為人類），群居在山林中，聰明好動，雙頰有儲存食物的頰囊。",
-                audioSegments: ["猴", "仔"]
+                name: "臺灣猴 (臺灣獼猴)", 
+                sub: "Tâi-uân-kâu", 
+                phonetic: "Tâi-uân-kâu", 
+                speech: "臺灣猴", 
+                description: "臺灣特有種靈長類動物，身披灰褐色厚毛，臉頰有頰囊可暫存果實種子，群居生活於全臺低海拔到高海拔闊葉林與岩壁間。",
+                audioSegments: ["臺灣", "猴"]
             },
             en: { 
-                name: "Formosan Rock Macaque", 
-                sub: "臺灣獼猴", 
+                name: "Formosan Macaque", 
+                sub: "臺灣猴", 
                 phonetic: "Formosan Rock Macaque", 
                 speech: "Formosan Rock Macaque", 
-                description: "A macaque species endemic to Taiwan, living in mountainous forests. Highly social and intelligent."
+                description: "An endemic primate species widely distributed across Taiwan's forests, living in structured social troops."
             }
         },
         a_salmon: {
             tw: { 
-                name: "鮭魚 (櫻花鉤吻鮭)", 
-                sub: "Kue-hî", 
-                phonetic: "Kue-hî", 
-                speech: "鮭魚", 
-                description: "冰河時期遺留下來的「國寶魚」，是陸封型的鮭魚，棲息於大甲溪上游七家灣溪的清冷溪水中。",
-                audioSegments: ["鮭", "魚"]
+                name: "臺灣鮭魚 (櫻花鉤吻鮭)", 
+                sub: "Tâi-uân kuê-hî", 
+                phonetic: "Tâi-uân kuê-hî", 
+                speech: "臺灣鮭魚", 
+                description: "冰河時期孑遺國寶魚，棲息於臺中雪霸國家公園高山清澈低溫的七家灣溪上游，是臺灣生態演化史的重要見證物種。",
+                audioSegments: ["臺灣", "鮭", "魚"]
             },
             en: { 
                 name: "Formosan Landlocked Salmon", 
-                sub: "鮭魚", 
-                phonetic: "Formosan Landlocked Salmon", 
-                speech: "Formosan Landlocked Salmon", 
-                description: "A precious glacial relic salmon species landlocked in high-altitude streams of Taiwan."
+                sub: "臺灣鮭魚", 
+                phonetic: "Formosan Salmon", 
+                speech: "Formosan Salmon", 
+                description: "A precious glacial relict freshwater salmon thriving strictly in the cold, pristine alpine headwaters of the Dajia River basin."
             }
         },
-        a_magpie: {
+        a_muntjac: {
             tw: { 
-                name: "臺灣藍鵲 (長尾山娘)", 
-                sub: "Tn̂g-bué-suann-niû", 
-                phonetic: "Tn̂g-bué-suann-niû (Suann-niû)", 
-                speech: "長尾山娘", 
-                description: "臺灣特有種鳥類，擁有豔藍的身軀、鮮紅的嘴與長尾巴。習慣群體活動，有特殊的「巢邊幫手」家族育雛行為。",
-                audioSegments: ["長尾山娘"]
+                name: "羌 (臺灣山羌)", 
+                sub: "Kiunn (Suann-khiunn)", 
+                phonetic: "Kiunn", 
+                speech: "羌", 
+                description: "臺灣特有亞種小型鹿科動物，體披黃褐色短毛，雄羌頭頂生有短角且具長犬齒。常於林間發出如狗吠般的宏亮警戒鳴叫叫聲。",
+                audioSegments: ["羌"]
             },
             en: { 
-                name: "Formosan Blue Magpie", 
-                sub: "長尾山娘", 
-                phonetic: "Formosan Blue Magpie", 
-                speech: "Formosan Blue Magpie", 
-                description: "A stunning bird species endemic to Taiwan, known for its long tail, bright blue body, and red bill."
+                name: "Formosan Reeve's Muntjac", 
+                sub: "羌 (山羌)", 
+                phonetic: "Formosan Muntjac", 
+                speech: "Formosan Muntjac", 
+                description: "An endemic small cervid inhabiting dense forests, known as the 'barking deer' due to its characteristic alarm call."
             }
         },
         a_boar: {
@@ -116,32 +116,32 @@ const dataSource = {
                 sub: "Suann-ti", 
                 phonetic: "Suann-ti", 
                 speech: "山豬", 
-                description: "臺灣特有亞種野豬，生性敏捷強悍。雄豬長有尖銳獠牙用以禦敵自衛與翻掘泥土尋找植物塊根。在原住民族傳統文化中，獵獲山豬是勇士無畏精神的至高象徵。",
+                description: "臺灣山林最具生命力的雜食哺乳動物，全身覆蓋粗硬黑褐色鬃毛，雄豬擁有銳利向上彎曲的獠牙，力大無窮擅長掘土覓食。",
                 audioSegments: ["山豬"]
             },
             en: { 
                 name: "Formosan Wild Boar", 
                 sub: "山豬", 
-                phonetic: "Formosan Wild Boar", 
-                speech: "Formosan Wild Boar", 
-                description: "An endemic subspecies of wild boar native to Taiwan's mountain forests. Tough and swift, males feature sharp tusks used for defense and foraging roots."
+                phonetic: "Wild Boar", 
+                speech: "Wild Boar", 
+                description: "A powerful endemic subspecies of wild pig roaming Taiwan's mountain forests, armed with prominent tusks and resilient foraging ability."
             }
         },
         a_pangolin: {
             tw: { 
                 name: "鯪鯉 (穿山甲)", 
-                sub: "Lâ-lí", 
+                sub: "Lâ-lí / Lâi-lí", 
                 phonetic: "Lâ-lí", 
                 speech: "鯪鯉", 
-                description: "臺灣特有亞種保育類哺乳動物。身披如瓦片般重疊的堅硬角質鱗片，遇危險時會迅速蜷縮成球狀。以長舌黏食白蟻與螞蟻，臺中南屯端午節有著名的「穿木屐贌鯪鯉」習俗。",
+                description: "臺灣特有亞種鱗甲目動物，身披堅硬角質鱗片，無牙齒而有細長黏性舌頭專吃螞蟻與白蟻，遇敵害時能迅速蜷縮成堅硬球狀防禦。",
                 audioSegments: ["鯪鯉"]
             },
             en: { 
                 name: "Formosan Pangolin", 
-                sub: "鯪鯉 (穿山甲)", 
-                phonetic: "Formosan Pangolin", 
-                speech: "Formosan Pangolin", 
-                description: "An endangered scaly mammal endemic to Taiwan. It rolls into a tight ball when threatened and uses its long sticky tongue to consume ants and termites."
+                sub: "鯪鯉", 
+                phonetic: "Pangolin", 
+                speech: "Pangolin", 
+                description: "A unique scaly mammal that rolls into a tight ball when threatened and uses its long sticky tongue to feast on ants and termites."
             }
         },
         a_buffalo: {
@@ -150,15 +150,15 @@ const dataSource = {
                 sub: "Tsuí-gû", 
                 phonetic: "Tsuí-gû", 
                 speech: "水牛", 
-                description: "早年臺灣農耕社會最重要的耕作夥伴，耐勞沉穩，性喜於水窪泥濘中滾泥（湳水）降溫防蚊。是刻苦耐勞、奮鬥不懈臺灣拓墾精神的代表象徵。",
+                description: "早期臺灣農耕開拓最忠實的夥伴，性情溫馴耐勞，皮厚毛稀喜愛泡在水塘泥淖中消暑散熱防蚊蟲，象徵臺灣人堅毅純樸的精神。",
                 audioSegments: ["水牛"]
             },
             en: { 
                 name: "Taiwan Water Buffalo", 
                 sub: "水牛", 
-                phonetic: "Taiwan Water Buffalo", 
-                speech: "Taiwan Water Buffalo", 
-                description: "The historical cornerstone of Taiwanese agriculture, known for its docility, steady strength, and fondness for wallowing in muddy waters to stay cool."
+                phonetic: "Water Buffalo", 
+                speech: "Water Buffalo", 
+                description: "Historically the primary draft animal in Taiwanese agriculture, celebrated for diligence, gentle nature, and love of mud wallows."
             }
         },
         a_whale: {
@@ -167,100 +167,100 @@ const dataSource = {
                 sub: "Hái-ang", 
                 phonetic: "Hái-ang", 
                 speech: "海翁", 
-                description: "海洋中體型最為龐大的哺乳動物。臺灣東部花蓮、臺東外海臨太平洋深海海溝，黑潮暖流常引來抹香鯨、座頭鯨等游弋躍水，古稱「海翁」寓意海洋巨獸。",
+                description: "海洋中體型最為龐大的哺乳動物。臺灣東部花蓮、臺東與宜蘭外海黑潮洋流常有抹香鯨、大翅鯨與領航鯨壯麗躍出水面噴水換氣。",
                 audioSegments: ["海翁"]
             },
             en: { 
                 name: "Whale", 
-                sub: "海翁 (鯨魚)", 
+                sub: "海翁", 
                 phonetic: "Whale", 
                 speech: "Whale", 
-                description: "The magnificent gentle giants of the ocean. The Kuroshio current off Taiwan's eastern coast creates rich feeding grounds frequented by sperm and humpback whales."
+                description: "Majestic marine giants frequently sighted along Taiwan's eastern Kuroshio Current, including sperm whales and humpbacks."
             }
         },
         a_dolphin: {
             tw: { 
-                name: "海豬 (海豚)", 
+                name: "海豬 (海豚/白海豚)", 
                 sub: "Hái-ti", 
                 phonetic: "Hái-ti", 
                 speech: "海豬", 
-                description: "智商極高、群居生活且生性活潑的中小型齒鯨。常在臺灣東部太平洋與西部海域如飛旋海豚、白海豚等躍出水面翻滾伴浪，臺灣傳統俗稱「海豬」或「海豬仔」。",
+                description: "高智商齒鯨類海洋哺乳動物。臺灣西部沿海有瀕危極珍貴的「臺灣白海豚（媽祖魚）」，東部外海則常有飛旋海豚成群躍浪翻滾旋轉。",
                 audioSegments: ["海豬"]
             },
             en: { 
-                name: "Dolphin (Spinner Dolphin)", 
-                sub: "海豬 (海豚)", 
+                name: "Dolphin (Indo-Pacific Humpback Dolphin)", 
+                sub: "海豬", 
                 phonetic: "Dolphin", 
                 speech: "Dolphin", 
-                description: "Highly intelligent and acrobatic marine mammals frequently seen riding bow waves and performing aerial spins off Taiwan's coastlines."
+                description: "Intelligent cetaceans including the critically endangered pinkish Taiwan white dolphin along the west coast and acrobatic spinner dolphins in the east."
             }
         },
-        a_spoonbill: {
+        a_hundred_pace_snake: {
             tw: { 
-                name: "烏面抐桮 (黑面琵鷺)", 
-                sub: "Oo-bīn-lā-pue", 
-                phonetic: "Oo-bīn-lā-pue", 
-                speech: "烏面抐桮", 
-                description: "全球瀕危稀有候鳥，每年秋冬橫越重洋遷徙至臺南曾文溪口七股濕地度冬。長喙如黑色飯匙（抐桮）扁平擴張，在淺水灘左右掃動覓食小魚小蝦。",
-                audioSegments: ["烏面抐桮"]
+                name: "百步蛇", 
+                sub: "Pah-pōo-tsuâ", 
+                phonetic: "Pah-pōo-tsuâ", 
+                speech: "百步蛇", 
+                description: "臺灣最負盛名的劇毒蝰蛇科毒蛇，頭部呈鮮明三角形、吻端翹起，身上有菱形暗褐色斑紋。在排灣族與魯凱族傳統文化中被尊為神聖守護者。",
+                audioSegments: ["百步蛇"]
             },
             en: { 
-                name: "Black-faced Spoonbill", 
-                sub: "烏面抐桮", 
-                phonetic: "Black-faced Spoonbill", 
-                speech: "Black-faced Spoonbill", 
-                description: "A globally endangered migratory bird that winters in Tainan's Qigu wetlands, named for its distinctive black spatula-shaped bill used to sweep through tidal shallows."
+                name: "Hundred-Pace Pit Viper", 
+                sub: "百步蛇", 
+                phonetic: "Hundred-Pace Viper", 
+                speech: "Hundred-Pace Viper", 
+                description: "A prominent venomous pit viper in southern and eastern Taiwan forests, revered as a sacred guardian ancestral spirit in Paiwan indigenous culture."
             }
         },
-        a_owl: {
+        a_civet: {
             tw: { 
-                name: "貓頭鳥 (領角鴞/貓頭鷹)", 
-                sub: "Niau-thâu-tsiáu", 
-                phonetic: "Niau-thâu-tsiáu", 
-                speech: "貓頭鳥", 
-                description: "夜行性猛禽，羽毛鬆軟飛行幾近無聲，具備極強的夜視與聽覺定位能力。在臺灣淺山與都市綠帶常見領角鴞，臺語通稱「貓頭鳥」或「梟鳥」。",
-                audioSegments: ["貓頭鳥"]
+                name: "果子猫 (白鼻心/果子狸)", 
+                sub: "Kué-tsí-bâ (Pe̍h-phīnn-sim)", 
+                phonetic: "Kué-tsí-bâ", 
+                speech: "果子猫", 
+                description: "臺灣特有亞種靈貓科夜行動物，鼻樑正中央貫穿一條筆直白斑直達頭頂，善於攀樹採食野果，常出沒於臺灣低中海拔闊葉森林與果園。",
+                audioSegments: ["果子猫"]
             },
             en: { 
-                name: "Collared Scops Owl", 
-                sub: "貓頭鳥", 
-                phonetic: "Collared Scops Owl", 
-                speech: "Collared Scops Owl", 
-                description: "A nocturnal raptor with large amber eyes, ear tufts, and silent flight feathers, frequently found in Taiwan's lowland woods and urban parks."
+                name: "Formosan Masked Palm Civet", 
+                sub: "果子猫 (白鼻心)", 
+                phonetic: "Masked Palm Civet", 
+                speech: "Masked Palm Civet", 
+                description: "An arboreal nocturnal mammal recognizable by the distinct white stripe extending from its snout over the forehead, feeding on forest fruits."
             }
         },
         a_flying_squirrel: {
             tw: { 
-                name: "飛鼠 (大赤鼯鼠)", 
-                sub: "Pue-tshí", 
+                name: "飛鼠 (白面鼯鼠)", 
+                sub: "Pue-tshí / Pe̍h-bīn pue-tshí", 
                 phonetic: "Pue-tshí", 
                 speech: "飛鼠", 
-                description: "臺灣中高海拔森林的夜行性哺乳類，前後肢間長有寬大皮膜。夜晚自樹冠高處一躍而下滑翔數十公尺穿梭林間，雙眼大而圓亮，叫聲悠長清脆。",
+                description: "臺灣特有亞種夜行性滑翔哺乳動物，臉部純白圓潤，前後肢間連有發達皮膜，夜晚能從樹冠高處展膜優雅滑翔數十公尺遠。",
                 audioSegments: ["飛鼠"]
             },
             en: { 
-                name: "Red Giant Flying Squirrel", 
+                name: "Formosan White-faced Flying Squirrel", 
                 sub: "飛鼠", 
                 phonetic: "Flying Squirrel", 
                 speech: "Flying Squirrel", 
-                description: "A large nocturnal rodent native to Taiwan's mountain forests, gliding dozens of meters between canopy trees using skin membranes stretched between its limbs."
+                description: "A nocturnal gliding rodent with a snowy-white face that glides gracefully between high mountain canopy trees using its skin membrane."
             }
         },
-        a_drongo: {
+        a_frog: {
             tw: { 
-                name: "烏鶖 (大卷尾)", 
-                sub: "Oo-tshiu", 
-                phonetic: "Oo-tshiu", 
-                speech: "烏鶖", 
-                description: "全身披著黑亮金屬光澤羽毛、尾羽深叉分開的臺灣常見留鳥。領域性與護巢心極強，繁殖季時常英勇俯衝驅趕接近巢位的大型猛禽甚至是行經路人。",
-                audioSegments: ["烏鶖"]
+                name: "水雞 (青蛙/臺灣樹蛙)", 
+                sub: "Tsuí-ke (Tsiunn-koo)", 
+                phonetic: "Tsuí-ke", 
+                speech: "水雞", 
+                description: "生活於臺灣溪流、水田與森林潮濕環境的兩棲動物，指端特化吸盤善於吸附攀爬葉面，夏夜齊聚鳴叫如交響樂，是優良水質的重要環境指標。",
+                audioSegments: ["水雞"]
             },
             en: { 
-                name: "Black Drongo", 
-                sub: "烏鶖", 
-                phonetic: "Black Drongo", 
-                speech: "Black Drongo", 
-                description: "A glossy all-black bird with a distinctive forked tail, famous for its fearless territorial defense, swooping down to chase away hawks and intruders."
+                name: "Frog (Formosan Tree Frog)", 
+                sub: "水雞", 
+                phonetic: "Tree Frog", 
+                speech: "Frog", 
+                description: "Amphibians thriving in Taiwan's wetlands and misty mountain streams, singing melodic mating choruses on summer nights."
             }
         },
         a_otter: {
@@ -269,7 +269,7 @@ const dataSource = {
                 sub: "Tsuí-thuah", 
                 phonetic: "Tsuí-thuah", 
                 speech: "水獺", 
-                description: "珍貴的半水棲食肉目動物，流線型身軀長有緻密防水皮毛與發達腳蹼。曾廣布臺灣本島溪流，目前金門為其關鍵保育避難所，常於夜間溪流與水塘捕魚。",
+                description: "保育等級最高的一級瀕絕水棲哺乳動物，臺灣本島已絕跡，現僅存於金門清澈河流水系與海灣，游泳敏捷善捕魚蝦。",
                 audioSegments: ["水獺"]
             },
             en: { 
@@ -277,16 +277,16 @@ const dataSource = {
                 sub: "水獺", 
                 phonetic: "Eurasian Otter", 
                 speech: "Eurasian Otter", 
-                description: "A semi-aquatic predator with waterproof dense fur and webbed paws, thriving in pristine freshwater habitats and coastal streams."
+                description: "A critically endangered semi-aquatic mammal surviving uniquely in Kinmen's river channels and coastal habitats."
             }
         },
         a_serow: {
             tw: { 
                 name: "山羊 (臺灣長鬃山羊)", 
                 sub: "Suann-iûnn", 
-                phonetic: "Suann-iûnn", 
+                phonetic: "Tâi-uân tshiâng-tsong suann-iûnn", 
                 speech: "山羊", 
-                description: "臺灣唯一野生牛科動物，不論雌雄頭上均有一對終生不脫落的圓錐狀犄角。蹄部肉墊富有彈性，能在險峻崩壁與裸露岩崖上如履平地靈活跳躍奔馳。",
+                description: "臺灣唯一的原生牛科草食野生動物，蹄部肉墊發達抓地力極強，善於在玉山與中央山脈近乎垂直的崩壁碎石險峰間飛躍奔馳。",
                 audioSegments: ["山羊"]
             },
             en: { 
@@ -294,7 +294,7 @@ const dataSource = {
                 sub: "山羊", 
                 phonetic: "Taiwan Serow", 
                 speech: "Taiwan Serow", 
-                description: "Taiwan's only native bovid. Equipped with special elastic hoof pads, it climbs steep rocky cliffs and precipices with breathtaking agility."
+                description: "Taiwan's sole native bovid, possessing exceptional hoof grip that allows it to scale sheer cliffs in the central mountain highlands."
             }
         },
         a_sea_turtle: {
@@ -303,15 +303,117 @@ const dataSource = {
                 sub: "Hái-ku", 
                 phonetic: "Hái-ku", 
                 speech: "海龜", 
-                description: "古老悠遊的海中爬蟲類，前肢特化為槳狀划水。小琉球與澎湖望安是其重要的覓食棲地與產卵勝地，在蔚藍礁岩海域中優雅啃食海草海藻。",
+                description: "悠游於熱帶與亞熱帶大洋的大型海洋爬蟲類。小琉球、澎湖望安與墾丁是臺灣最重要的海龜覓食與登陸產卵保育天堂。",
                 audioSegments: ["海龜"]
             },
             en: { 
                 name: "Green Sea Turtle", 
                 sub: "海龜", 
-                phonetic: "Green Sea Turtle", 
-                speech: "Green Sea Turtle", 
-                description: "An ancient marine reptile with paddle-like flippers, frequently observed foraging on seagrass and nesting on the sandy shores of Xiaoliuqiu and Penghu."
+                phonetic: "Sea Turtle", 
+                speech: "Sea Turtle", 
+                description: "Majestic marine turtles grazing on seagrass and nesting on protected beaches around Xiaoliuqiu and Penghu Islands."
+            }
+        },
+        a_squirrel: {
+            tw: { 
+                name: "膨鼠 (赤腹松鼠)", 
+                sub: "Phòng-tshí", 
+                phonetic: "Phòng-tshí", 
+                speech: "膨鼠", 
+                description: "臺灣森林與都會公園最常見的特有亞種松鼠，腹部呈紅褐色，蓬鬆長尾巴極具辨識度，在樹梢間蹦跳自如採食堅果與嫩芽。",
+                audioSegments: ["膨鼠"]
+            },
+            en: { 
+                name: "Red-bellied Tree Squirrel", 
+                sub: "膨鼠", 
+                phonetic: "Pallas's Squirrel", 
+                speech: "Pallas Squirrel", 
+                description: "An endemic subspecies with a chestnut-red belly and a bushy tail, agilely leaping through tree branches in forests and city parks."
+            }
+        },
+        a_krait: {
+            tw: { 
+                name: "雨傘節", 
+                sub: "Hōo-suànn-tsat", 
+                phonetic: "Hōo-suànn-tsat", 
+                speech: "雨傘節", 
+                description: "臺灣六大毒蛇之一，身軀布滿黑白相間的環紋，宛如老式油紙雨傘的黑白傘骨節段。具強烈神經性毒素，性情內向羞怯隱蔽。",
+                audioSegments: ["雨傘節"]
+            },
+            en: { 
+                name: "Many-banded Krait", 
+                sub: "雨傘節", 
+                phonetic: "Banded Krait", 
+                speech: "Many-banded Krait", 
+                description: "One of Taiwan's six major venomous snakes, patterned with distinct alternating black and white bands resembling an umbrella frame."
+            }
+        },
+        a_crab: {
+            tw: { 
+                name: "毛蟹 (臺灣扁絨螯蟹)", 
+                sub: "Môo-hē", 
+                phonetic: "Môo-hē", 
+                speech: "毛蟹", 
+                description: "臺灣原生重要淡水降海產卵螃蟹，雙螯密生濃密絨毛，生長於未受污染的純淨溪流中，秋天隨流水洄游至河口繁衍下一代。",
+                audioSegments: ["毛蟹"]
+            },
+            en: { 
+                name: "Taiwan Mitten Crab", 
+                sub: "毛蟹", 
+                phonetic: "Mitten Crab", 
+                speech: "Mitten Crab", 
+                description: "A native freshwater crab species living in unpolluted rivers, recognizable by dense furry mittens on its claws."
+            }
+        },
+        a_softshell_turtle: {
+            tw: { 
+                name: "鱉 (甲魚/水魚)", 
+                sub: "Pih", 
+                phonetic: "Pih", 
+                speech: "鱉", 
+                description: "棲息於淡水湖沼池塘底層的淡水爬行動物，背甲覆蓋柔軟革質皮膜無堅硬骨質角板，吻端如小象鼻伸出水面呼吸，動作敏捷潛水耐力長。",
+                audioSegments: ["鱉"]
+            },
+            en: { 
+                name: "Chinese Softshell Turtle", 
+                sub: "鱉", 
+                phonetic: "Softshell Turtle", 
+                speech: "Softshell Turtle", 
+                description: "A freshwater turtle featuring a leathery flexible carapace and an elongated snorkel-like snout adapted for muddy river bottoms."
+            }
+        },
+        a_grouper: {
+            tw: { 
+                name: "鮢鱖 (龍膽石斑/石斑魚)", 
+                sub: "Tsu-kuè", 
+                phonetic: "Tsu-kuè", 
+                speech: "鮢鱖", 
+                description: "珊瑚礁魚類中體型最為魁梧的「石斑之王」，最大體長可達 2.7 公尺。臺灣擁有領先全球的石斑魚人工繁養殖技術，馳名國際。",
+                audioSegments: ["鮢鱖"]
+            },
+            en: { 
+                name: "Giant Grouper (King of Groupers)", 
+                sub: "鮢鱖", 
+                phonetic: "Giant Grouper", 
+                speech: "Giant Grouper", 
+                description: "The largest reef-dwelling fish species in the Indo-Pacific, celebrated in Taiwan for advanced aquaculture techniques."
+            }
+        },
+        a_milkfish: {
+            tw: { 
+                name: "虱目魚 (麻豆魚/國寶魚)", 
+                sub: "Sat-ba̍k-hî", 
+                phonetic: "Sat-ba̍k-hî", 
+                speech: "虱目魚", 
+                description: "南臺灣歷史逾四百年的代表性養殖水產，體表銀亮、肉質鮮美細嫩，傳說鄭成功來臺時品嚐激賞，為臺南庶民飲食文化不可或缺的核心。",
+                audioSegments: ["虱目魚"]
+            },
+            en: { 
+                name: "Milkfish", 
+                sub: "虱目魚", 
+                phonetic: "Milkfish", 
+                speech: "Milkfish", 
+                description: "The quintessential marine fish of southern Taiwan with over 400 years of cultivation history and cultural heritage in Tainan gastronomy."
             }
         }
     },
@@ -1375,6 +1477,110 @@ const dataSource = {
                 phonetic: "Alishan Sacred Cypress", 
                 speech: "Alishan Sacred Tree", 
                 description: "Ancient Formosan cypress trees standing for millennia in the mist-shrouded high mountains of Alishan."
+            }
+        }
+,
+        // 新增知名都會與水庫 (Expanded Urban & Water Geography)
+        g_tainan: {
+            tw: { 
+                name: "臺南古都 (府城)", 
+                sub: "Tâi-lâm Kóo-too", 
+                phonetic: "Tâi-lâm", 
+                speech: "臺南", 
+                description: "臺灣歷史文化的起源起點，曾為全島政治經濟中心長達兩百餘年，保留孔廟、赤崁樓、安平古堡等無數一級古蹟與豐盛美食小吃。",
+                audioSegments: ["臺南"]
+            },
+            en: { 
+                name: "Tainan Historic Capital", 
+                sub: "臺南", 
+                phonetic: "Tainan", 
+                speech: "Tainan", 
+                description: "Taiwan's ancient cultural capital for over two centuries, rich with centuries-old temples, fortresses, and culinary heritage."
+            }
+        },
+        g_kaohsiung: {
+            tw: { 
+                name: "高雄港都", 
+                sub: "Ko-hiông Káng-too", 
+                phonetic: "Ko-hiông", 
+                speech: "高雄", 
+                description: "臺灣第一大國際商港與南方工業重鎮，面臨臺灣海峽，擁有美麗的愛河、駁二特區、旗津半島與繁榮熱絡的遠洋航運。",
+                audioSegments: ["高雄"]
+            },
+            en: { 
+                name: "Port of Kaohsiung", 
+                sub: "高雄", 
+                phonetic: "Kaohsiung", 
+                speech: "Kaohsiung", 
+                description: "Taiwan's primary international maritime trading port and largest southern metropolis facing the Taiwan Strait."
+            }
+        },
+        g_taipei: {
+            tw: { 
+                name: "臺北盆地", 
+                sub: "Tâi-pak Phûn-tē", 
+                phonetic: "Tâi-pak", 
+                speech: "臺北", 
+                description: "北臺灣最大的河谷陷落盆地，四周由大屯火山群、雪山山脈尾稜環繞，淡水河流貫其間，是臺灣當前政治、經濟與交通心臟地帶。",
+                audioSegments: ["臺北"]
+            },
+            en: { 
+                name: "Taipei Basin", 
+                sub: "臺北", 
+                phonetic: "Taipei", 
+                speech: "Taipei", 
+                description: "The major metropolitan basin in northern Taiwan surrounded by mountains, serving as the modern nation's capital hub."
+            }
+        },
+        g_taichung: {
+            tw: { 
+                name: "臺中盆地", 
+                sub: "Tâi-tiong Phûn-tē", 
+                phonetic: "Tâi-tiong", 
+                speech: "臺中", 
+                description: "中臺灣核心平原盆地，氣候四季溫暖宜人，西鄰大肚台地、東接中央山脈山麓，大甲溪與大肚溪滋養廣大沃野。",
+                audioSegments: ["臺中"]
+            },
+            en: { 
+                name: "Taichung Basin", 
+                sub: "臺中", 
+                phonetic: "Taichung", 
+                speech: "Taichung", 
+                description: "The fertile central Taiwan basin with pleasant climate, acting as the industrial and cultural nexus of central Taiwan."
+            }
+        },
+        g_yilan: {
+            tw: { 
+                name: "宜蘭平原 (蘭陽平原)", 
+                sub: "Gî-lân Pênn-guân", 
+                phonetic: "Gî-lân", 
+                speech: "宜蘭", 
+                description: "依山傍海的三角洲沖積平原，面向太平洋與龜山島遙遙相對。冬山河水利發達、溫泉清澈甘純，素有「好山好水」美稱。",
+                audioSegments: ["宜蘭"]
+            },
+            en: { 
+                name: "Yilan Plain (Lanyang Plain)", 
+                sub: "宜蘭", 
+                phonetic: "Yilan", 
+                speech: "Yilan", 
+                description: "An alluvial delta plain facing the Pacific Ocean and Guishan Island, celebrated for pristine water springs and landscapes."
+            }
+        },
+        g_zengwen_reservoir: {
+            tw: { 
+                name: "曾文水庫", 
+                sub: "Tsan-bûn Tsuí-khòo", 
+                phonetic: "Tsan-bûn Tsuí-khòo", 
+                speech: "水庫", 
+                description: "全臺灣蓄水量最大、湖面面積最廣的水庫，橫跨嘉義與臺南山區，兼具水力發電、防洪調節與供應南臺灣百萬民生工業用水功能。",
+                audioSegments: ["水庫"]
+            },
+            en: { 
+                name: "Zengwen Reservoir", 
+                sub: "曾文水庫", 
+                phonetic: "Zengwen Reservoir", 
+                speech: "Zengwen Reservoir", 
+                description: "The largest water storage reservoir in Taiwan by volume, playing a vital role in flood mitigation and regional water supply."
             }
         }
 
@@ -2621,6 +2827,26 @@ const dataSource = {
 // 2. ChhoeTaigi Audio Map (KipSutian database entries mappings)
 // ==========================================================================
 const taigiAudioMap = {
+    // 野生動物 (Pure Non-Bird Wildlife) & 臺灣地理 (Expanded Geography)
+    "羌": "4416(1)",
+    "百步蛇": "2662(1)",
+    "果子猫": "4197(1)",
+    "水雞": "1192(1)",
+    "膨鼠": "11877(1)",
+    "雨傘節": "4613(1)",
+    "毛蟹": "1197(1)",
+    "鱉": "13254(1)",
+    "鮢鱖": "14514(1)",
+    "虱目魚": "4529(1)",
+    "臺北": "20637(1)",
+    "臺中": "20668(1)",
+    "臺南": "20696(1)",
+    "高雄": "20704(1)",
+    "宜蘭": "20770(1)",
+    "花蓮": "20790(1)",
+    "臺東": "20818(1)",
+    "水庫": "1014(1)",
+
     // 汽車內部設備與駕駛室 (Car Interior & Cockpit)
     "ha̋n-tóo-luh": "20404(1)",
     "手擋": "1155(1)",
