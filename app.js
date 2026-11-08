@@ -1949,11 +1949,11 @@ const dataSource = {
         b_esophagus: {
             tw: { 
                 name: "食道", 
-                sub: "Chia̍h-tō", 
-                phonetic: "Chia̍h-tō (Si̍t-tō)", 
+                sub: "Si̍t-tō", 
+                phonetic: "Si̍t-tō", 
                 speech: "食道", 
                 description: "位於氣管後方的長條形平滑肌肉管道，在吞嚥時藉由協調的波浪狀肌肉蠕動，迅速將食團從咽喉推進至胃中。",
-                audioSegments: ["食", "道"]
+                audioSegments: ["食_sit", "道"]
             },
             en: { 
                 name: "Esophagus (Gullet)", 
@@ -3018,6 +3018,18 @@ const taigiAudioMap = {
     "頷頸": "12082(1)",
     "氣管": "28748(1)",
     "食": "5570(1)",
+    "食_sit": "10440(1)", // 食道 si̍t-tō: literary si̍t, borrows audio of 實 si̍t
+    // bicycle parts (MOE KipSutian headwords, verified 2026-11-08)
+    "車身": "23215(1)",
+    "輪框": "11498(1)",
+    "鋼絲": "26693(1)",
+    "手扞仔": "909(1)",
+    "架仔": "5083(1)",
+    "灌風": "13101(1)",
+    "鈴仔": "10262(1)",
+    "車燈": "25096(1)",
+    "鎖頭": "12727(1)",
+    "籃仔": "12990(1)",
     "道": "10153(1)",
     "膽": "12294(1)",
     "脾": "8900(1)",
