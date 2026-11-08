@@ -4097,6 +4097,10 @@ const DIAGRAM_CONFIG = {
         mode: "rows", img: [720, 420],
         anchors: { m_rearview: [125, 25], m_window: [45, 55], m_door: [125, 88], m_handbrake: [232, 305], m_seatbelt: [213, 352], m_windshield: [330, 22], m_steering: [325, 175], m_horn: [382, 213], m_dashboard: [480, 145], m_gearstick: [265, 236], m_ac: [573, 213], m_clutch: [458, 268], m_brake_pedal: [492, 262], m_accelerator: [517, 273], m_seat: [350, 370] }
     }
+    ,"bicycle-svg": {
+        mode: "rows", img: [1376, 768],
+        anchors: { m_saddle: [495, 72], m_bike_frame: [720, 215], m_handlebar: [925, 128], m_brake: [1078, 165], m_bike_grip: [995, 118], m_bike_spoke: [1150, 420], m_bike_wheel: [1040, 510], m_bike_rim: [1230, 505], m_tire: [128, 500], m_bike_derailleur: [335, 530], m_bike_pump: [352, 688], m_bike_stand: [742, 385], m_pedal: [762, 550], m_chain: [470, 628] }
+    }
 };
 
 // Camera presets: c = image pixel moved to the frame centre (null = whole image), s = magnification.
@@ -4448,6 +4452,7 @@ function initDiagramEngine() {
     renderZoomDomain("body", false);
     renderDiagram("car-mechanics-svg", null, null, false);
     renderDiagram("car-interior-svg", null, null, false);
+    renderDiagram("bicycle-svg", null, null, false);
     let wasCompact = isCompactDiagram(), resizeTimer = null;
     window.addEventListener("resize", () => {
         clearTimeout(resizeTimer);
@@ -4458,6 +4463,7 @@ function initDiagramEngine() {
             renderZoomDomain("body", false);
             renderDiagram("car-mechanics-svg", null, null, false);
             renderDiagram("car-interior-svg", null, null, false);
+            renderDiagram("bicycle-svg", null, null, false);
         }, 150);
     });
 }
