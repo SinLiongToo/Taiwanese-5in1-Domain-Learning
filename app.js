@@ -1997,6 +1997,23 @@ const dataSource = {
                 description: "The largest lymphatic organ, filtering blood to destroy old red blood cells and holding reserves of immune cells."
             }
         },
+        b_pancreas: {
+            tw: {
+                name: "腰尺 (胰臟)",
+                sub: "Io-tshioh",
+                phonetic: "Io-tshioh",
+                speech: "腰尺",
+                description: "囥佇胃後壁、十二指腸邊仔的淡黃色長條器官，會分泌消化液共食物消化，閣會分泌胰島素調節血糖。豬的胰臟嘛叫做腰尺。",
+                audioSegments: ["腰尺"]
+            },
+            en: {
+                name: "Pancreas",
+                sub: "腰尺",
+                phonetic: "Pancreas",
+                speech: "Pancreas",
+                description: "A pale-yellow gland behind the stomach that releases digestive juices into the duodenum and insulin into the blood to control blood sugar."
+            }
+        },
         b_bladder: {
             tw: { 
                 name: "膀胱 (尿袋)", 
@@ -3030,6 +3047,7 @@ const taigiAudioMap = {
     "車燈": "25096(1)",
     "鎖頭": "12727(1)",
     "籃仔": "12990(1)",
+    "腰尺": "9881(1)", // io-tshioh 胰臟 (MOE 9881)
     "道": "10153(1)",
     "膽": "12294(1)",
     "脾": "8900(1)",
@@ -4099,7 +4117,7 @@ const DIAGRAM_CONFIG = {
     },
     "human-body-svg": {
         mode: "columns", layerId: "body-image-layer", img: [848, 1264],
-        anchors: { b_brain: [424, 96], b_forehead: [424, 124], b_eyebrow: [400, 135], b_eyes: [448, 146], b_ear: [370, 165], b_nose: [424, 165], b_teeth: [413, 191], b_tongue: [435, 191], b_chin: [424, 215], b_neck: [398, 248], b_trachea: [424, 274], b_esophagus: [431, 304], b_lung: [374, 347], b_heart: [441, 374], b_liver: [376, 458], b_gallbladder: [378, 493], b_stomach: [463, 456], b_spleen: [498, 469], b_kidney: [476, 510], b_intestines: [420, 569], b_bladder: [426, 656], b_shoulder: [289, 300], b_elbow: [259, 489], b_hand: [217, 684], b_fingers: [198, 734], b_skin: [561, 419], b_bone: [370, 819], b_knee: [365, 906], b_ankle: [370, 1149], b_foot: [359, 1203], b_sole: [489, 1225] }
+        anchors: { b_brain: [424, 96], b_forehead: [424, 124], b_eyebrow: [400, 135], b_eyes: [448, 146], b_ear: [370, 165], b_nose: [424, 165], b_teeth: [413, 191], b_tongue: [435, 191], b_chin: [424, 215], b_neck: [398, 248], b_trachea: [424, 274], b_esophagus: [431, 304], b_lung: [374, 347], b_heart: [441, 374], b_liver: [376, 458], b_gallbladder: [378, 493], b_stomach: [463, 456], b_spleen: [498, 469], b_pancreas: [445, 490], b_kidney: [476, 510], b_intestines: [420, 569], b_bladder: [426, 656], b_shoulder: [289, 300], b_elbow: [259, 489], b_hand: [217, 684], b_fingers: [198, 734], b_skin: [561, 419], b_bone: [370, 819], b_knee: [365, 906], b_ankle: [370, 1149], b_foot: [359, 1203], b_sole: [489, 1225] }
     },
     "car-mechanics-svg": {
         mode: "rows", img: [1376, 768],
@@ -4577,7 +4595,7 @@ function autoZoomForQuiz(domain, itemKey) {
         }
     } else if (domain === "body") {
         const headKeys = ["b_forehead", "b_eyebrow", "b_teeth", "b_tongue", "b_chin", "b_neck", "b_eyes", "b_nose", "b_ear", "b_brain"];
-        const visceraKeys = ["b_heart", "b_lung", "b_trachea", "b_esophagus", "b_stomach", "b_liver", "b_gallbladder", "b_spleen", "b_kidney", "b_intestines", "b_bladder"];
+        const visceraKeys = ["b_heart", "b_lung", "b_trachea", "b_esophagus", "b_stomach", "b_liver", "b_gallbladder", "b_spleen", "b_pancreas", "b_kidney", "b_intestines", "b_bladder"];
         const limbKeys = ["b_shoulder", "b_elbow", "b_hand", "b_fingers", "b_skin", "b_bone", "b_knee", "b_ankle", "b_sole", "b_foot"];
         if (headKeys.includes(itemKey)) {
             switchBodyZoomView("head", false);
