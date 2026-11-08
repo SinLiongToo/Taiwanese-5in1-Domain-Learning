@@ -1455,10 +1455,10 @@
                     <div id="machinery-car-area" class="machinery-panel">
                         <div class="anatomy-container">
                             <div class="svg-container-map anatomy-map-card" style="max-width: 680px;">
-                                <svg id="car-mechanics-svg" viewBox="0 0 720 420" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                                <svg id="car-mechanics-svg" viewBox="0 0 720 500" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <clipPath id="car-img-clip">
-                                            <rect x="20" y="20" width="680" height="380" rx="14" ry="14"/>
+                                            <rect x="20" y="60" width="680" height="380" rx="14" ry="14"/>
                                         </clipPath>
                                         <filter id="carPillShadow" x="-20%" y="-20%" width="140%" height="140%">
                                             <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
@@ -1466,77 +1466,77 @@
                                     </defs>
 
                                     <!-- Central Car/Motor Technical Cutaway Illustration -->
-                                    <image href="images/car_mechanics.jpg" x="20" y="20" width="680" height="380" clip-path="url(#car-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
-                                    <rect x="20" y="20" width="680" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
+                                    <image href="images/car_mechanics.jpg" x="20" y="60" width="680" height="380" clip-path="url(#car-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                    <rect x="20" y="60" width="680" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
-                                    <!-- 1. 火星塞 (Hué-tshenn-sai) -->
+                                                                        <!-- 1. 火星塞 (Hué-tshenn-sai) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_sparkplug" onclick="handlePartClick('m_sparkplug')">
-                                        <path class="leader-line" d="M 178,63 L 178,88" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="178" cy="88" r="14" fill="#f59e0b" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="178" cy="88" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <path class="leader-line" d="M 160,63 L 179,88" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="179" cy="88" r="14" fill="#f59e0b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="179" cy="88" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
                                         <rect class="badge-bg" x="30" y="25" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#carPillShadow)"/>
                                         <text class="badge-title" x="110" y="49" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">火星塞 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Tshenn-sai)</tspan></text>
                                     </g>
 
                                     <!-- 2. 變速箱 (Piàn-sok-siunn) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_transmission" onclick="handlePartClick('m_transmission')">
-                                        <path class="leader-line" d="M 355,63 L 355,235" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="355" cy="235" r="14" fill="#8b5cf6" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="355" cy="235" r="6" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="255" y="25" width="165" height="38" rx="19" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="337" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">變速箱 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Piàn-sok)</tspan></text>
+                                        <path class="leader-line" d="M 322,63 L 336,250" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="336" cy="250" r="14" fill="#8b5cf6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="336" cy="250" r="6" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="240" y="25" width="165" height="38" rx="19" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="322" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">變速箱 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Piàn-sok)</tspan></text>
                                     </g>
 
                                     <!-- 3. 排氣管 (Pâi-khì-kńg) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_exhaust" onclick="handlePartClick('m_exhaust')">
-                                        <path class="leader-line" d="M 530,44 L 525,44 L 525,98" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="525" cy="98" r="14" fill="#64748b" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="525" cy="98" r="6" fill="#64748b" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="530" y="25" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#64748b" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="610" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">排氣管 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pâi-khì)</tspan></text>
+                                        <path class="leader-line" d="M 540,63 L 529,107" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="529" cy="107" r="14" fill="#64748b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="529" cy="107" r="6" fill="#64748b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="525" y="25" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#64748b" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="605" y="49" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">排氣管 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pâi-khì)</tspan></text>
                                     </g>
 
                                     <!-- 4. 電瓶 (Tiān-pân) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_battery" onclick="handlePartClick('m_battery')">
-                                        <path class="leader-line" d="M 545,204 L 555,204 L 555,158" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="555" cy="158" r="14" fill="#2563eb" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="555" cy="158" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="545" y="185" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="620" y="209" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">電瓶 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiān-pân)</tspan></text>
+                                        <path class="leader-line" d="M 555,154 L 551,166" fill="none" stroke="#2563eb" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="551" cy="166" r="14" fill="#2563eb" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="551" cy="166" r="6" fill="#2563eb" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="555" y="135" width="140" height="38" rx="19" fill="var(--bg-card)" stroke="#2563eb" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="625" y="159" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">電瓶 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Tiān-pân)</tspan></text>
                                     </g>
 
                                     <!-- 5. 底盤 / 車架 (Té-puânn) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_chassis" onclick="handlePartClick('m_chassis')">
-                                        <path class="leader-line" d="M 545,284 L 665,284 L 665,255" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="665" cy="255" r="14" fill="#059669" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="665" cy="255" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="545" y="265" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="620" y="289" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">底盤/車架 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Té-puânn)</tspan></text>
+                                        <path class="leader-line" d="M 625,233 L 650,235" fill="none" stroke="#059669" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="650" cy="235" r="14" fill="#059669" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="650" cy="235" r="6" fill="#059669" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="555" y="195" width="145" height="38" rx="19" fill="var(--bg-card)" stroke="#059669" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="627" y="219" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">底盤/車架 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Té-puânn)</tspan></text>
                                     </g>
 
                                     <!-- 6. 引擎 (Ián-jín) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_engine" onclick="handlePartClick('m_engine')">
-                                        <path class="leader-line" d="M 150,345 L 150,245" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="150" cy="245" r="16" fill="#ef4444" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="150" cy="245" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="30" y="345" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="110" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">引擎 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ián-jín)</tspan></text>
+                                        <path class="leader-line" d="M 160,345 L 186,250" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="186" cy="250" r="16" fill="#ef4444" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="186" cy="250" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="30" y="345" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="105" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">引擎 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Ián-jín)</tspan></text>
                                     </g>
 
                                     <!-- 7. 避震器 (Pī-tsìn-khì) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_shock" onclick="handlePartClick('m_shock')">
-                                        <path class="leader-line" d="M 430,345 L 472,345 L 472,215" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="472" cy="215" r="14" fill="#dc2626" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="472" cy="215" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="330" y="345" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#carPillShadow)"/>
-                                        <text class="badge-title" x="410" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">避震器 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pī-tsìn)</tspan></text>
+                                        <path class="leader-line" d="M 420,345 L 470,203" fill="none" stroke="#dc2626" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="470" cy="203" r="14" fill="#dc2626" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="470" cy="203" r="6" fill="#dc2626" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="325" y="345" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#dc2626" stroke-width="1.5" filter="url(#carPillShadow)"/>
+                                        <text class="badge-title" x="400" y="369" text-anchor="middle" font-size="13" font-weight="bold" fill="var(--text-main)">避震器 <tspan font-size="11" font-weight="normal" fill="var(--text-muted)">(Pī-tsìn)</tspan></text>
                                     </g>
 
                                     <!-- 8. 車擋 / 碟煞 (Tshia-tòng) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_car_brake" onclick="handlePartClick('m_car_brake')">
-                                        <path class="leader-line" d="M 605,345 L 605,295" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="605" cy="295" r="14" fill="#ea580c" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="605" cy="295" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
+                                        <path class="leader-line" d="M 603,345 L 603,277" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="603" cy="277" r="14" fill="#ea580c" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="603" cy="277" r="6" fill="#ea580c" stroke="#fff" stroke-width="2"/>
                                         <rect class="badge-bg" x="530" y="345" width="165" height="38" rx="19" fill="var(--bg-card)" stroke="#ea580c" stroke-width="1.5" filter="url(#carPillShadow)"/>
                                         <text class="badge-title" x="612" y="369" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">車擋/碟煞 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Tshia-tòng)</tspan></text>
                                     </g>
@@ -1577,10 +1577,10 @@
                     <div id="machinery-interior-area" class="machinery-panel">
                         <div class="anatomy-container">
                             <div class="svg-container-map anatomy-map-card" style="max-width: 680px;">
-                                <svg id="car-interior-svg" viewBox="0 0 720 420" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
+                                <svg id="car-interior-svg" viewBox="0 0 720 500" class="anatomy-svg" xmlns="http://www.w3.org/2000/svg">
                                     <defs>
                                         <clipPath id="interior-img-clip">
-                                            <rect x="20" y="20" width="680" height="380" rx="14" ry="14"/>
+                                            <rect x="34" y="60" width="652" height="380" rx="14" ry="14"/>
                                         </clipPath>
                                         <filter id="interiorPillShadow" x="-20%" y="-20%" width="140%" height="140%">
                                             <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.2"/>
@@ -1588,137 +1588,147 @@
                                     </defs>
 
                                     <!-- Central Car Cockpit Illustration -->
-                                    <image href="images/car_interior.jpg" x="20" y="20" width="680" height="380" clip-path="url(#interior-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
-                                    <rect x="20" y="20" width="680" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
+                                    <image href="images/car_interior.jpg" x="34" y="60" width="652" height="380" clip-path="url(#interior-img-clip)" preserveAspectRatio="xMidYMid meet" style="pointer-events: none;"/>
+                                    <rect x="34" y="60" width="652" height="380" rx="14" ry="14" fill="none" stroke="var(--border-color, #cbd5e1)" stroke-width="1.5" style="pointer-events: none;"/>
 
-                                    <!-- 1. ha̋n-tóo-luh (方向盤) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_steering" onclick="handlePartClick('m_steering')">
-                                        <path class="leader-line" d="M 310,127 L 395,175" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="395" cy="175" r="14" fill="#6366f1" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="395" cy="175" r="6" fill="#6366f1" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="210" y="105" width="200" height="38" rx="19" fill="var(--bg-card)" stroke="#6366f1" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="310" y="129" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">ha̋n-tóo-luh <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(方向盤)</tspan></text>
-                                    </g>
-
-                                    <!-- 2. 喇叭 (Lá-pah) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_horn" onclick="handlePartClick('m_horn')">
-                                        <path class="leader-line" d="M 290,177 L 380,218" fill="none" stroke="#ec4899" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="380" cy="218" r="14" fill="#ec4899" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="380" cy="218" r="6" fill="#ec4899" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="200" y="155" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#ec4899" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="280" y="179" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">喇叭 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(Lá-pah)</tspan></text>
-                                    </g>
-
-                                    <!-- 3. 磅錶 (Pōng-pió / 儀錶板) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_dashboard" onclick="handlePartClick('m_dashboard')">
-                                        <path class="leader-line" d="M 545,95 L 485,155" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="485" cy="155" r="14" fill="#0ea5e9" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="485" cy="155" r="6" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="465" y="75" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="550" y="99" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">磅錶 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(儀錶板)</tspan></text>
-                                    </g>
-
-                                    <!-- 4. 拍速 (Phah-sok / 排檔桿) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_gearstick" onclick="handlePartClick('m_gearstick')">
-                                        <path class="leader-line" d="M 230,227 L 270,245" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="270" cy="245" r="14" fill="#10b981" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="270" cy="245" r="6" fill="#10b981" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="140" y="205" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="225" y="229" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">拍速 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(排檔桿)</tspan></text>
-                                    </g>
-
-                                    <!-- 5. 手擋 (Tshiú-tòng / 手煞車) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_handbrake" onclick="handlePartClick('m_handbrake')">
-                                        <path class="leader-line" d="M 125,275 L 220,315" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="220" cy="315" r="14" fill="#f59e0b" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="220" cy="315" r="6" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="40" y="255" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="125" y="279" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">手擋 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(手煞車)</tspan></text>
-                                    </g>
-
-                                    <!-- 6. 跤擋 (Kha-tòng / 腳煞車踏板) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_brake_pedal" onclick="handlePartClick('m_brake_pedal')">
-                                        <path class="leader-line" d="M 520,345 L 485,255" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="485" cy="255" r="14" fill="#ef4444" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="485" cy="255" r="6" fill="#ef4444" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="445" y="340" width="165" height="38" rx="19" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="527" y="364" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">跤擋 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(腳煞車)</tspan></text>
-                                    </g>
-
-                                    <!-- 7. 油門 (Iû-mn̂g / 油門踏板) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_accelerator" onclick="handlePartClick('m_accelerator')">
-                                        <path class="leader-line" d="M 575,280 L 520,265" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="520" cy="265" r="14" fill="#8b5cf6" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="520" cy="265" r="6" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="540" y="270" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="615" y="294" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">油門 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(踏板)</tspan></text>
-                                    </g>
-
-                                    <!-- 8. 冷氣 (Líng-khì / 空調出風口) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_ac" onclick="handlePartClick('m_ac')">
-                                        <path class="leader-line" d="M 590,165 L 570,215" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="570" cy="215" r="14" fill="#06b6d4" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="570" cy="215" r="6" fill="#06b6d4" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="515" y="145" width="165" height="38" rx="19" fill="var(--bg-card)" stroke="#06b6d4" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="597" y="169" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">冷氣 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(出風口)</tspan></text>
-                                    </g>
-
-                                    <!-- 9. 椅仔 (Í-á / 駕駛座座椅) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_seat" onclick="handlePartClick('m_seat')">
-                                        <path class="leader-line" d="M 330,360 L 380,340" fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="380" cy="340" r="14" fill="#14b8a6" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="380" cy="340" r="6" fill="#14b8a6" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="245" y="345" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#14b8a6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="325" y="369" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">椅仔 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(車椅)</tspan></text>
-                                    </g>
-
-                                    <!-- 10. 安全帶 (An-tsuân-tuà) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_seatbelt" onclick="handlePartClick('m_seatbelt')">
-                                        <path class="leader-line" d="M 115,335 L 140,330" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="140" cy="330" r="14" fill="#f97316" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="140" cy="330" r="6" fill="#f97316" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="35" y="320" width="155" height="38" rx="19" fill="var(--bg-card)" stroke="#f97316" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="112" y="344" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">安全帶 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(扣環)</tspan></text>
-                                    </g>
-
-                                    <!-- 11. 車門 (Tshia-mn̂g) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_door" onclick="handlePartClick('m_door')">
-                                        <path class="leader-line" d="M 110,165 L 140,180" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="140" cy="180" r="14" fill="#64748b" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="140" cy="180" r="6" fill="#64748b" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="35" y="150" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#64748b" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="110" y="174" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">車門 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(門板)</tspan></text>
-                                    </g>
-
-                                    <!-- 12. 車窗 (Tshia-thang / 窗仔) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_window" onclick="handlePartClick('m_window')">
-                                        <path class="leader-line" d="M 110,75 L 130,70" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="130" cy="70" r="14" fill="#3b82f6" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="130" cy="70" r="6" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="35" y="60" width="150" height="38" rx="19" fill="var(--bg-card)" stroke="#3b82f6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="110" y="84" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">車窗 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(窗仔)</tspan></text>
-                                    </g>
-
-                                    <!-- 13. 玻璃 (Po-lê / 擋風玻璃) -->
-                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_windshield" onclick="handlePartClick('m_windshield')">
-                                        <path class="leader-line" d="M 330,42 L 340,55" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="340" cy="55" r="14" fill="#0284c7" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="340" cy="55" r="6" fill="#0284c7" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="245" y="25" width="170" height="38" rx="19" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="330" y="49" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">玻璃 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(擋風玻璃)</tspan></text>
-                                    </g>
-
-                                    <!-- 14. 照鏡 (Tsiò-kiànn / 後照鏡) -->
+                                                                        <!-- 1. 照鏡 (Tsiò-kiànn / 後照鏡) -->
                                     <g class="clickable-part geo-part-node body-part-node" id="car-part-m_rearview" onclick="handlePartClick('m_rearview')">
-                                        <path class="leader-line" d="M 120,40 L 220,35" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
-                                        <circle class="hotspot-pulse" cx="220" cy="35" r="14" fill="#a855f7" opacity="0.4"/>
-                                        <circle class="hotspot-core" cx="220" cy="35" r="6" fill="#a855f7" stroke="#fff" stroke-width="2"/>
-                                        <rect class="badge-bg" x="40" y="25" width="160" height="38" rx="19" fill="var(--bg-card)" stroke="#a855f7" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
-                                        <text class="badge-title" x="120" y="49" text-anchor="middle" font-size="12.5" font-weight="bold" fill="var(--text-main)">照鏡 <tspan font-size="10.5" font-weight="normal" fill="var(--text-muted)">(後照鏡)</tspan></text>
+                                        <path class="leader-line" d="M 160,42 L 156,61" fill="none" stroke="#a855f7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="156" cy="61" r="12" fill="#a855f7" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="156" cy="61" r="5" fill="#a855f7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="25" width="135" height="34" rx="17" fill="var(--bg-card)" stroke="#a855f7" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="92" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">照鏡 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(後照鏡)</tspan></text>
+                                    </g>
+
+                                    <!-- 2. 車窗 (Tshia-thang / 窗仔) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_window" onclick="handlePartClick('m_window')">
+                                        <path class="leader-line" d="M 155,89 L 129,106" fill="none" stroke="#3b82f6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="129" cy="106" r="12" fill="#3b82f6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="129" cy="106" r="5" fill="#3b82f6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="72" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#3b82f6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="90" y="94" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">車窗 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(窗仔)</tspan></text>
+                                    </g>
+
+                                    <!-- 3. 車門 (Tshia-mn̂g) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_door" onclick="handlePartClick('m_door')">
+                                        <path class="leader-line" d="M 155,162 L 156,178" fill="none" stroke="#64748b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="156" cy="178" r="12" fill="#64748b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="156" cy="178" r="5" fill="#64748b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="145" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#64748b" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="90" y="167" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">車門 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(門板)</tspan></text>
+                                    </g>
+
+                                    <!-- 4. 手擋 (Tshiú-tòng / 手煞車) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_handbrake" onclick="handlePartClick('m_handbrake')">
+                                        <path class="leader-line" d="M 160,287 L 244,302" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="244" cy="302" r="12" fill="#f59e0b" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="244" cy="302" r="5" fill="#f59e0b" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="270" width="135" height="34" rx="17" fill="var(--bg-card)" stroke="#f59e0b" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="92" y="292" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">手擋 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(手煞車)</tspan></text>
+                                    </g>
+
+                                    <!-- 5. 安全帶 (An-tsuân-tuà / 扣環) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_seatbelt" onclick="handlePartClick('m_seatbelt')">
+                                        <path class="leader-line" d="M 160,362 L 229,339" fill="none" stroke="#f97316" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="229" cy="339" r="12" fill="#f97316" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="229" cy="339" r="5" fill="#f97316" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="25" y="345" width="135" height="34" rx="17" fill="var(--bg-card)" stroke="#f97316" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="92" y="367" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">安全帶 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(扣環)</tspan></text>
+                                    </g>
+
+                                    <!-- 6. 玻璃 (Po-lê / 擋風玻璃) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_windshield" onclick="handlePartClick('m_windshield')">
+                                        <path class="leader-line" d="M 280,59 L 280,35" fill="none" stroke="#0284c7" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="280" cy="35" r="12" fill="#0284c7" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="280" cy="35" r="5" fill="#0284c7" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="175" y="25" width="135" height="34" rx="17" fill="var(--bg-card)" stroke="#0284c7" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="242" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">玻璃 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(擋風玻璃)</tspan></text>
+                                    </g>
+
+                                    <!-- 7. 方向盤 (ha̋n-tóo-luh) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_steering" onclick="handlePartClick('m_steering')">
+                                        <path class="leader-line" d="M 396,59 L 396,115" fill="none" stroke="#6366f1" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="396" cy="115" r="12" fill="#6366f1" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="396" cy="115" r="5" fill="#6366f1" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="325" y="25" width="160" height="34" rx="17" fill="var(--bg-card)" stroke="#6366f1" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="405" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">方向盤 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(Ha̋n-tóo-luh)</tspan></text>
+                                    </g>
+
+                                    <!-- 8. 磅錶 (Pōng-pió / 儀錶板) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_dashboard" onclick="handlePartClick('m_dashboard')">
+                                        <path class="leader-line" d="M 535,59 L 482,151" fill="none" stroke="#0ea5e9" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="482" cy="151" r="12" fill="#0ea5e9" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="482" cy="151" r="5" fill="#0ea5e9" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="505" y="25" width="140" height="34" rx="17" fill="var(--bg-card)" stroke="#0ea5e9" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="575" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">磅錶 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(儀錶板)</tspan></text>
+                                    </g>
+
+                                    <!-- 9. 喇叭 (Lá-pah) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_horn" onclick="handlePartClick('m_horn')">
+                                        <path class="leader-line" d="M 310,152 L 379,212" fill="none" stroke="#ec4899" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="379" cy="212" r="12" fill="#ec4899" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="379" cy="212" r="5" fill="#ec4899" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="180" y="135" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#ec4899" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="245" y="157" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">喇叭 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(Lá-pah)</tspan></text>
+                                    </g>
+
+                                    <!-- 10. 拍速 (Phah-sok / 排檔桿) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_gearstick" onclick="handlePartClick('m_gearstick')">
+                                        <path class="leader-line" d="M 315,212 L 276,239" fill="none" stroke="#10b981" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="276" cy="239" r="12" fill="#10b981" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="276" cy="239" r="5" fill="#10b981" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="180" y="195" width="135" height="34" rx="17" fill="var(--bg-card)" stroke="#10b981" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="247" y="217" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">拍速 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(排檔桿)</tspan></text>
+                                    </g>
+
+                                    <!-- 11. 冷氣 (Líng-khì / 出風口) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_ac" onclick="handlePartClick('m_ac')">
+                                        <path class="leader-line" d="M 590,169 L 568,214" fill="none" stroke="#06b6d4" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="568" cy="214" r="12" fill="#06b6d4" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="568" cy="214" r="5" fill="#06b6d4" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="560" y="135" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#06b6d4" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="625" y="157" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">冷氣 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(出風口)</tspan></text>
+                                    </g>
+
+                                    <!-- 12. 油門 (Iû-mn̂g / 踏板) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_accelerator" onclick="handlePartClick('m_accelerator')">
+                                        <path class="leader-line" d="M 560,212 L 509,269" fill="none" stroke="#8b5cf6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="509" cy="269" r="12" fill="#8b5cf6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="509" cy="269" r="5" fill="#8b5cf6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="560" y="195" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#8b5cf6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="625" y="217" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">油門 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(踏板)</tspan></text>
+                                    </g>
+
+                                    <!-- 13. 跤擋 (Kha-tòng / 腳煞車) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_brake_pedal" onclick="handlePartClick('m_brake_pedal')">
+                                        <path class="leader-line" d="M 560,272 L 491,260" fill="none" stroke="#ef4444" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="491" cy="260" r="12" fill="#ef4444" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="491" cy="260" r="5" fill="#ef4444" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="560" y="255" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#ef4444" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="625" y="277" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">跤擋 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(腳煞車)</tspan></text>
+                                    </g>
+
+                                    <!-- 14. 離合器 (Khu-lá-tsih / 踏板) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_clutch" onclick="handlePartClick('m_clutch')">
+                                        <path class="leader-line" d="M 560,332 L 473,255" fill="none" stroke="#d97706" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="473" cy="255" r="12" fill="#d97706" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="473" cy="255" r="5" fill="#d97706" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="560" y="315" width="145" height="34" rx="17" fill="var(--bg-card)" stroke="#d97706" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="632" y="337" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">離合器 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(Khu-lá-tsih)</tspan></text>
+                                    </g>
+
+                                    <!-- 15. 椅仔 (Í-á / 車椅) -->
+                                    <g class="clickable-part geo-part-node body-part-node" id="car-part-m_seat" onclick="handlePartClick('m_seat')">
+                                        <path class="leader-line" d="M 405,355 L 387,346" fill="none" stroke="#14b8a6" stroke-width="2" stroke-dasharray="4,3"/>
+                                        <circle class="hotspot-pulse" cx="387" cy="346" r="12" fill="#14b8a6" opacity="0.4"/>
+                                        <circle class="hotspot-core" cx="387" cy="346" r="5" fill="#14b8a6" stroke="#fff" stroke-width="2"/>
+                                        <rect class="badge-bg" x="340" y="355" width="130" height="34" rx="17" fill="var(--bg-card)" stroke="#14b8a6" stroke-width="1.5" filter="url(#interiorPillShadow)"/>
+                                        <text class="badge-title" x="405" y="377" text-anchor="middle" font-size="12" font-weight="bold" fill="var(--text-main)">椅仔 <tspan font-size="10" font-weight="normal" fill="var(--text-muted)">(車椅)</tspan></text>
                                     </g>
                                 </svg>
                             </div>
                         </div>
+                        <p class="diagram-caption">📷 這張相片是右駕車（駕駛座佇正手爿）；臺灣的車是左駕，毋過踏板順序仝款：倒爿離合器、中央跤擋、正爿油門。</p>
 
                         <!-- Card Grid for Car Interior components -->
                         <div class="grid-visual text-center" style="margin-top: 15px;">

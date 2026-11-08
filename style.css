@@ -431,6 +431,14 @@ svg text {
 
 .visual-wrapper.active {
     display: flex;
+    flex-direction: column;   /* toolbar → diagram → card grid, stacked (was a squeezed row) */
+    gap: 16px;
+}
+
+.visual-wrapper > *,
+.machinery-panel > .anatomy-container {
+    width: 100%;
+    min-width: 0;
 }
 
 /* ==========================================================================
@@ -648,8 +656,22 @@ svg text {
     transition: fill 0.2s ease, stroke 0.2s ease, stroke-width 0.2s ease;
 }
 
-[data-theme="dark"] .body-part-node .badge-bg, .geo-part-node .badge-bg {
+/* Both selectors must be scoped to dark mode; the old rule left `.geo-part-node .badge-bg`
+   unscoped, so every map/car badge was dark navy with dark text in light mode (unreadable). */
+[data-theme="dark"] .body-part-node .badge-bg,
+[data-theme="dark"] .geo-part-node .badge-bg {
     fill: #1e293b;
+}
+
+/* Diagram layout engine (app.js §9) positions badges/lines itself */
+.body-part-node .badge-bg, .geo-part-node .badge-bg { stroke-width: 1.6px; }
+.body-part-node .hotspot-core, .geo-part-node .hotspot-core { transition: none; }
+.diagram-caption {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    text-align: center;
+    margin: 6px 4px 0;
+    line-height: 1.5;
 }
 
 .body-part-node .badge-title, .geo-part-node .badge-title {

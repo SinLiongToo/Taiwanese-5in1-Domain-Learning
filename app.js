@@ -2804,19 +2804,19 @@ const dataSource = {
         },
         m_rearview: {
             tw: { 
-                name: "照鏡 (車內後照鏡)", 
+                name: "照鏡 (照後鏡/後視鏡)", 
                 sub: "Tsiò-kiànn (Hiō-tsiò-kiànn)", 
                 phonetic: "Tsiò-kiànn", 
                 speech: "照鏡", 
-                description: "懸掛於前擋風玻璃頂部中央的廣角後視鏡，可手動微調偏轉視角，協助駕駛不扭頭即可清晰觀察正後方來車動態與車距。",
+                description: "汽車的照鏡有車外兩爿門邊的「照後鏡」（圖中車窗外彼粒）佮擋風玻璃頂中央的車內後照鏡，協助駕駛毋免越頭就看會著後壁佮兩爿的來車。",
                 audioSegments: ["照鏡"]
             },
             en: { 
-                name: "Rearview Mirror", 
+                name: "Rear-view / Side Mirror", 
                 sub: "照鏡", 
                 phonetic: "Rearview Mirror", 
                 speech: "Rearview Mirror", 
-                description: "The interior mirror mounted on the upper windshield giving drivers an unobstructed view of vehicular traffic behind."
+                description: "Cars have two door (side) mirrors - the one seen through the window in this photo - plus an interior mirror at the top of the windshield, so drivers can see traffic behind without turning around."
             }
         }
 
@@ -3198,6 +3198,7 @@ window.onload = () => {
     renderStampsAlbum();
     updateHeaderDate();
     initCanvasZoomInteractions();
+    initDiagramEngine();
 };
 
 // ==========================================================================
@@ -4070,34 +4071,403 @@ function toggleLanguage() {
 let currentGeoZoom = "overview";   // "overview" | "islands" | "landmarks"
 let currentBodyZoom = "overview";  // "overview" | "head" | "viscera" | "limbs"
 
-const zoomTransforms = {
-    geography: {
-        overview: "scale(1.0) translate(0px, 0px)",
-        islands: "scale(1.35) translate(-10px, 15px)",
-        landmarks: "scale(1.4) translate(-12px, -8px)"
+// --------------------------------------------------------------------------
+// Diagram layout engine
+// Every hotspot is stored ONCE as a pixel position on the source image
+// (DIAGRAM_CONFIG[..].anchors). On every view change / zoom step the engine
+// projects those anchors through the current camera, moves the dots, orders
+// the label badges by height (so leader lines don't cross) and redraws the
+// lines. Dots therefore stay on their real place in every view and zoom level.
+// To move a dot: change its [x, y] pixel position on the image below.
+// --------------------------------------------------------------------------
+const DIAGRAM_CONFIG = {
+    "taiwan-map-svg": {
+        mode: "columns", layerId: "geo-image-layer", img: [848, 1264],
+        anchors: { r_tamsui: [607, 74], l_taiwan_strait: [163, 369], l_penghu: [76, 625], r_zhuoshui: [294, 549], l_sunmoonlake: [485, 521], m_alishan: [439, 643], r_zengwen: [254, 808], m_xueshan: [544, 358], l_taroko: [663, 434], m_central: [554, 576], l_east_rift: [613, 641], m_coastal: [657, 669], m_yushan: [504, 660], r_gaoping: [315, 945], g_green_island: [654, 947], g_orchid_island: [672, 1162], g_guishan_island: [787, 193], g_pacific_ocean: [761, 652], g_yehliu: [689, 59], g_eluanbi: [450, 1212], g_dajia_river: [391, 380], g_lukang: [309, 463], g_anping_fort: [211, 830], g_keelung_port: [720, 91], g_xiuguluan_river: [657, 693], g_alishan_tree: [437, 643] }
     },
-    body: {
-        overview: "scale(1.0) translate(0px, 0px)",
-        head: "scale(1.9) translate(0px, 135px)",
-        viscera: "scale(1.65) translate(0px, 20px)",
-        limbs: "scale(1.4) translate(0px, -20px)"
+    "human-body-svg": {
+        mode: "columns", layerId: "body-image-layer", img: [848, 1264],
+        anchors: { b_brain: [424, 96], b_forehead: [424, 124], b_eyebrow: [400, 135], b_eyes: [448, 146], b_ear: [370, 165], b_nose: [424, 165], b_teeth: [413, 191], b_tongue: [435, 191], b_chin: [424, 215], b_neck: [398, 248], b_trachea: [424, 274], b_esophagus: [431, 304], b_lung: [374, 347], b_heart: [441, 374], b_liver: [376, 458], b_gallbladder: [378, 493], b_stomach: [463, 456], b_spleen: [498, 469], b_kidney: [476, 510], b_intestines: [420, 569], b_bladder: [426, 656], b_shoulder: [289, 300], b_elbow: [259, 489], b_hand: [217, 684], b_fingers: [198, 734], b_skin: [561, 419], b_bone: [370, 819], b_knee: [365, 906], b_ankle: [370, 1149], b_foot: [359, 1203], b_sole: [489, 1225] }
+    },
+    "car-mechanics-svg": {
+        mode: "rows", img: [1376, 768],
+        anchors: { m_sparkplug: [318, 125], m_engine: [300, 405], m_transmission: [680, 420], m_exhaust: [1040, 160], m_shock: [915, 350], m_battery: [1070, 290], m_chassis: [1295, 490], m_car_brake: [1195, 555] }
+    },
+    "car-interior-svg": {
+        mode: "rows", img: [720, 420],
+        anchors: { m_rearview: [125, 25], m_window: [45, 55], m_door: [125, 88], m_handbrake: [232, 305], m_seatbelt: [213, 352], m_windshield: [330, 22], m_steering: [325, 175], m_horn: [382, 213], m_dashboard: [480, 145], m_gearstick: [265, 236], m_ac: [573, 213], m_clutch: [458, 268], m_brake_pedal: [492, 262], m_accelerator: [517, 273], m_seat: [350, 370] }
     }
 };
+
+// Camera presets: c = image pixel moved to the frame centre (null = whole image), s = magnification.
+const zoomViews = {
+    geography: {
+        overview: { c: null, s: 1 },
+        islands: { c: null, s: 1 },        // the islands sit on every edge of the map, so keep all of Taiwan in view
+        landmarks: { c: [467, 463], s: 1.45 }
+    },
+    body: {
+        overview: { c: null, s: 1 },
+        head: { c: [424, 200], s: 3.3 },
+        viscera: { c: [428, 467], s: 2.2 },
+        limbs: { c: [381, 762], s: 1.25 }
+    }
+};
+const ZOOM_DOMAIN_SVG = { geography: "taiwan-map-svg", body: "human-body-svg" };
 
 const canvasZoomLevels = {
     geography: 1.0,
     body: 1.0
 };
 
+const diagramCamera = {};      // svgId -> {k, cx, cy} currently shown (cx, cy in SVG units)
+const diagramAnim = {};        // svgId -> requestAnimationFrame id
+let measureCtx = null;
+
+function diagramFrame(svg) {
+    // Rectangle the image is actually drawn in (honours preserveAspectRatio="meet")
+    const img = svg.querySelector("image");
+    const cfg = DIAGRAM_CONFIG[svg.id];
+    const bx = +img.getAttribute("x"), by = +img.getAttribute("y");
+    const bw = +img.getAttribute("width"), bh = +img.getAttribute("height");
+    const sc = Math.min(bw / cfg.img[0], bh / cfg.img[1]);
+    const w = cfg.img[0] * sc, h = cfg.img[1] * sc;
+    const x = bx + (bw - w) / 2, y = by + (bh - h) / 2;
+    return { x, y, w, h, sc, x1: x + w, y1: y + h, ox: x + w / 2, oy: y + h / 2 };
+}
+
+function anchorToBase(svg, partId) {
+    const a = DIAGRAM_CONFIG[svg.id].anchors[partId];
+    if (!a) return null;
+    const f = diagramFrame(svg);
+    return [f.x + a[0] * f.sc, f.y + a[1] * f.sc];
+}
+
+function cameraFor(svg, domain, viewId) {
+    const f = diagramFrame(svg);
+    const v = (domain && zoomViews[domain][viewId]) || { c: null, s: 1 };
+    const z = domain ? canvasZoomLevels[domain] : 1;
+    const c = v.c ? [f.x + v.c[0] * f.sc, f.y + v.c[1] * f.sc] : [f.ox, f.oy];
+    return { k: v.s * z, cx: c[0], cy: c[1] };
+}
+
+function projectPoint(svg, p, cam) {
+    const f = diagramFrame(svg);
+    return [f.ox + cam.k * (p[0] - cam.cx), f.oy + cam.k * (p[1] - cam.cy)];
+}
+
+function measureText(str, px, bold) {
+    if (!measureCtx) measureCtx = document.createElement("canvas").getContext("2d");
+    const family = getComputedStyle(document.body).fontFamily || "sans-serif";
+    measureCtx.font = `${bold ? "bold " : ""}${px}px ${family}`;
+    return measureCtx.measureText(str).width;
+}
+
+function shortRoman(sub) {
+    return (sub || "").split(/\s+\/\s+|\s*\(/)[0].trim();
+}
+
+// Phones: the 720-unit diagram is drawn ~350px wide, so 13-unit text would be ~6px.
+// There we show bigger Hàn-jī-only badges (romanisation stays in the cards / detail panel).
+function isCompactDiagram() {
+    return window.innerWidth <= 600;
+}
+
+function prepareBadge(node, mode) {
+    const compact = isCompactDiagram();
+    if (node._prepared === (compact ? "compact" : "full")) return;
+    const text = node.querySelector(".badge-title");
+    if (!node._partId) {
+        const tspan = text.querySelector("tspan");
+        let han = "";
+        text.childNodes.forEach(n => { if (n.nodeType === 3) han += n.textContent; });
+        let roman = tspan ? tspan.textContent.trim().replace(/^\(|\)$/g, "") : "";
+        const partId = node.id.replace(/^(car-)?part-/, "");
+        if (mode === "rows") {
+            // Car badges: Hàn-jī on line 1, romanisation from the data on line 2
+            const d = dataSource.machinery && dataSource.machinery[partId];
+            if (d && d.tw && d.tw.sub) roman = shortRoman(d.tw.sub);
+        }
+        node._han = han.trim();
+        node._roman = roman;
+        node._partId = partId;
+    }
+    const han = node._han, roman = node._roman;
+    node._prepared = compact ? "compact" : "full";
+    text.textContent = "";
+    if (compact) {
+        const fs = mode === "rows" ? 19 : 21;
+        text.appendChild(document.createTextNode(han));
+        text.setAttribute("font-size", fs);
+        node._w = Math.ceil(measureText(han, fs, true)) + 20;
+        node._h = mode === "rows" ? 34 : 38;
+        node._fs = fs;
+        return;
+    }
+    node._fs = 13;
+    const sz = mode === "rows" ? 10.5 : 11;
+    text.appendChild(document.createTextNode(han + (mode === "rows" ? "" : " ")));
+    const t = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+    t.setAttribute("font-size", sz);
+    t.setAttribute("font-weight", "normal");
+    t.setAttribute("fill", "var(--text-muted)");
+    t.textContent = mode === "rows" ? roman : `(${roman})`;
+    text.appendChild(t);
+    text.setAttribute("font-size", "13");
+    if (mode === "rows") {
+        node._w = Math.ceil(Math.max(measureText(han, 13, true), measureText(roman, sz, false))) + 22;
+        node._h = 38;
+    } else {
+        node._w = Math.ceil(measureText(han + " ", 13, true) + measureText(`(${roman})`, sz, false)) + 26;
+        node._h = 34;
+    }
+}
+
+// 1-D spreading: keep items in order, close to where they want to be, inside [lo, hi], never overlapping.
+function spreadIntervals(items, lo, hi, gap) {
+    for (let i = 0; i < items.length; i++) {
+        const prev = items[i - 1];
+        items[i].pos = Math.max(items[i].want, lo, prev ? prev.pos + prev.size + gap : lo);
+    }
+    for (let i = items.length - 1; i >= 0; i--) {
+        const next = items[i + 1];
+        items[i].pos = Math.min(items[i].pos, next ? next.pos - gap - items[i].size : hi - items[i].size);
+    }
+    for (let i = 0; i < items.length; i++) {
+        const prev = items[i - 1];
+        items[i].pos = Math.max(items[i].pos, lo, prev ? prev.pos + prev.size + gap : lo);
+    }
+}
+
+function segmentsCross(a, b, c, d) {
+    const o = (p, q, r) => Math.sign((q[0] - p[0]) * (r[1] - p[1]) - (q[1] - p[1]) * (r[0] - p[0]));
+    return o(a, b, c) * o(a, b, d) < 0 && o(c, d, a) * o(c, d, b) < 0;
+}
+
+// Spread, then swap neighbours whose leader lines cross and spread again.
+function spreadUncrossed(list, lo, hi, gap, startOf) {
+    spreadIntervals(list, lo, hi, gap);
+    for (let pass = 0; pass < list.length * 2; pass++) {
+        let swapped = false;
+        for (let i = 0; i < list.length - 1; i++) {
+            const a = list[i], b = list[i + 1];
+            if (segmentsCross(startOf(a), a.p, startOf(b), b.p)) {
+                list[i] = b; list[i + 1] = a;
+                spreadIntervals(list, lo, hi, gap);
+                swapped = true;
+            }
+        }
+        if (!swapped) break;
+    }
+}
+
+function activeDiagramNodes(svg) {
+    let scope = svg;
+    if (svg.id === "taiwan-map-svg") scope = document.getElementById(`geo-layer-${currentGeoZoom}`) || svg;
+    if (svg.id === "human-body-svg") scope = document.getElementById(`body-layer-${currentBodyZoom}`) || svg;
+    return Array.from(scope.querySelectorAll("g.clickable-part"));
+}
+
+function layoutBadges(svg, cam) {
+    const cfg = DIAGRAM_CONFIG[svg.id];
+    const f = diagramFrame(svg);
+    const vb = svg.viewBox.baseVal;
+    const items = [];
+    activeDiagramNodes(svg).forEach(node => {
+        prepareBadge(node, cfg.mode);
+        const base = anchorToBase(svg, node._partId);
+        if (!base) return;
+        const p = projectPoint(svg, base, cam);
+        const inside = p[0] >= f.x + 4 && p[0] <= f.x1 - 4 && p[1] >= f.y + 4 && p[1] <= f.y1 - 4;
+        node.style.display = inside ? "" : "none";   // zoomed out of the frame → hide its badge too
+        if (inside) items.push({ node, p, w: node._w, h: node._h });
+    });
+
+    const gap = 6;
+    if (cfg.mode === "columns") {
+        const lo = 6, hi = vb.height - 6;
+        const cap = Math.floor((hi - lo + gap) / (items[0] ? items[0].h + gap : 40));
+        const left = items.filter(it => it.p[0] < f.ox).sort((a, b) => a.p[0] - b.p[0]);
+        const right = items.filter(it => it.p[0] >= f.ox).sort((a, b) => a.p[0] - b.p[0]);
+        while (left.length > cap) right.unshift(left.pop());
+        while (right.length > cap) left.push(right.shift());
+        // keep both columns roughly balanced so neither side gets crowded
+        while (left.length - right.length > 2) right.unshift(left.pop());
+        while (right.length - left.length > 2) left.push(right.shift());
+        [[left, true], [right, false]].forEach(([col, isLeft]) => {
+            col.forEach(it => { it.size = it.h; it.want = it.p[1] - it.h / 2; });
+            col.sort((a, b) => a.want - b.want);
+            const colX = it => isLeft ? Math.max(4, f.x - 10 - it.w) : Math.min(vb.width - 4 - it.w, f.x1 + 10);
+            spreadUncrossed(col, lo, hi, gap, it => [isLeft ? colX(it) + it.w : colX(it), it.pos + it.h / 2]);
+            col.forEach(it => {
+                const x = colX(it);
+                placeBadge(it.node, x, it.pos, it.w, it.h, "columns");
+                it.node._lineStart = isLeft ? [x + it.w, it.pos + it.h / 2] : [x, it.pos + it.h / 2];
+                it.node._lineElbowX = isLeft ? Math.max(x + it.w, f.x) : Math.min(x, f.x1);
+            });
+        });
+    } else {
+        const lo = 6, hi = vb.width - 6;
+        const fits = row => row.reduce((s, it) => s + it.w, 0) + gap * Math.max(0, row.length - 1) <= hi - lo;
+        let top = items.filter(it => it.p[1] < f.oy);
+        let bottom = items.filter(it => it.p[1] >= f.oy);
+        const nearestMid = row => row.slice().sort((a, b) => Math.abs(a.p[1] - f.oy) - Math.abs(b.p[1] - f.oy))[0];
+        while (!fits(top) && fits(bottom.concat([nearestMid(top)]))) {
+            const mv = nearestMid(top); top = top.filter(i => i !== mv); bottom.push(mv);
+        }
+        while (!fits(bottom) && fits(top.concat([nearestMid(bottom)]))) {
+            const mv = nearestMid(bottom); bottom = bottom.filter(i => i !== mv); top.push(mv);
+        }
+        [[top, true], [bottom, false]].forEach(([row, isTop]) => {
+            row.forEach(it => { it.size = it.w; it.want = it.p[0] - it.w / 2; });
+            row.sort((a, b) => a.want - b.want);
+            const rowY = it => isTop ? Math.max(4, f.y - 12 - it.h) : Math.min(vb.height - 4 - it.h, f.y1 + 12);
+            spreadUncrossed(row, lo, hi, gap, it => [it.pos + it.w / 2, isTop ? rowY(it) + it.h : rowY(it)]);
+            row.forEach(it => {
+                const y = rowY(it);
+                placeBadge(it.node, it.pos, y, it.w, it.h, "rows");
+                it.node._lineStart = [it.pos + it.w / 2, isTop ? y + it.h : y];
+                it.node._lineElbowX = null;
+            });
+        });
+    }
+}
+
+function placeBadge(node, x, y, w, h, mode) {
+    const rect = node.querySelector(".badge-bg");
+    const text = node.querySelector(".badge-title");
+    rect.setAttribute("x", x.toFixed(1));
+    rect.setAttribute("y", y.toFixed(1));
+    rect.setAttribute("width", w);
+    rect.setAttribute("height", h);
+    rect.setAttribute("rx", h / 2);
+    rect.setAttribute("ry", h / 2);
+    const cx = (x + w / 2).toFixed(1);
+    text.setAttribute("x", cx);
+    const tspan = text.querySelector("tspan");
+    if (!tspan) {   // compact (phone) badge: one centred line
+        text.setAttribute("y", (y + h / 2 + node._fs * 0.36).toFixed(1));
+    } else if (mode === "rows") {
+        text.setAttribute("y", (y + 16).toFixed(1));
+        tspan.setAttribute("x", cx);
+        tspan.setAttribute("dy", "14");
+    } else {
+        text.setAttribute("y", (y + h / 2 + 4.5).toFixed(1));
+    }
+}
+
+function drawLeaderLines(svg, cam) {
+    activeDiagramNodes(svg).forEach(node => {
+        if (node.style.display === "none" || !node._lineStart) return;
+        const base = anchorToBase(svg, node._partId);
+        if (!base) return;
+        const p = projectPoint(svg, base, cam);
+        node.querySelectorAll(".hotspot-pulse, .hotspot-core").forEach(c => {
+            c.setAttribute("cx", p[0].toFixed(1));
+            c.setAttribute("cy", p[1].toFixed(1));
+        });
+        const [sx, sy] = node._lineStart;
+        const line = node.querySelector(".leader-line");
+        const d = node._lineElbowX !== null
+            ? `M ${sx.toFixed(1)},${sy.toFixed(1)} L ${node._lineElbowX.toFixed(1)},${sy.toFixed(1)} L ${p[0].toFixed(1)},${p[1].toFixed(1)}`
+            : `M ${sx.toFixed(1)},${sy.toFixed(1)} L ${p[0].toFixed(1)},${p[1].toFixed(1)}`;
+        if (line) line.setAttribute("d", d);
+    });
+}
+
+function applyImageCamera(svg, cam) {
+    const cfg = DIAGRAM_CONFIG[svg.id];
+    if (!cfg.layerId) return;
+    const layer = document.getElementById(cfg.layerId);
+    if (!layer) return;
+    const f = diagramFrame(svg);
+    layer.style.transition = "none";
+    layer.style.transformOrigin = "0 0";
+    layer.style.transform = `matrix(${cam.k},0,0,${cam.k},${f.ox - cam.k * cam.cx},${f.oy - cam.k * cam.cy})`;
+}
+
+function ensureFrameClip(svg) {
+    // A zoomed image must stay inside its rounded frame instead of spilling under the labels.
+    const cfg = DIAGRAM_CONFIG[svg.id];
+    if (!cfg.layerId || document.getElementById(`${svg.id}-frame-clip`)) return;
+    const layer = document.getElementById(cfg.layerId);
+    if (!layer) return;
+    const f = diagramFrame(svg);
+    const ns = "http://www.w3.org/2000/svg";
+    const clip = document.createElementNS(ns, "clipPath");
+    clip.id = `${svg.id}-frame-clip`;
+    const r = document.createElementNS(ns, "rect");
+    [["x", f.x], ["y", f.y], ["width", f.w], ["height", f.h], ["rx", 16], ["ry", 16]].forEach(([k, v]) => r.setAttribute(k, v));
+    clip.appendChild(r);
+    (svg.querySelector("defs") || svg).appendChild(clip);
+    const wrap = document.createElementNS(ns, "g");
+    wrap.setAttribute("clip-path", `url(#${clip.id})`);
+    layer.parentNode.insertBefore(wrap, layer);
+    wrap.appendChild(layer);
+}
+
+function renderDiagram(svgId, domain, viewId, animate) {
+    const svg = document.getElementById(svgId);
+    if (!svg || !DIAGRAM_CONFIG[svgId]) return;
+    ensureFrameClip(svg);
+    const target = cameraFor(svg, domain, viewId);
+    layoutBadges(svg, target);
+    cancelAnimationFrame(diagramAnim[svgId]);
+    const from = diagramCamera[svgId];
+    const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!animate || !from || reduce) {
+        diagramCamera[svgId] = target;
+        applyImageCamera(svg, target);
+        drawLeaderLines(svg, target);
+        return;
+    }
+    const t0 = performance.now(), dur = 550;
+    const step = now => {
+        const t = Math.min(1, (now - t0) / dur);
+        const e = 1 - Math.pow(1 - t, 3);
+        const cam = {
+            k: from.k + (target.k - from.k) * e,
+            cx: from.cx + (target.cx - from.cx) * e,
+            cy: from.cy + (target.cy - from.cy) * e
+        };
+        diagramCamera[svgId] = cam;
+        applyImageCamera(svg, cam);
+        drawLeaderLines(svg, cam);
+        if (t < 1) diagramAnim[svgId] = requestAnimationFrame(step);
+    };
+    diagramAnim[svgId] = requestAnimationFrame(step);
+}
+
+function renderZoomDomain(domain, animate = true) {
+    const viewId = domain === "geography" ? currentGeoZoom : currentBodyZoom;
+    renderDiagram(ZOOM_DOMAIN_SVG[domain], domain, viewId, animate);
+}
+
+function initDiagramEngine() {
+    renderZoomDomain("geography", false);
+    renderZoomDomain("body", false);
+    renderDiagram("car-mechanics-svg", null, null, false);
+    renderDiagram("car-interior-svg", null, null, false);
+    let wasCompact = isCompactDiagram(), resizeTimer = null;
+    window.addEventListener("resize", () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            if (isCompactDiagram() === wasCompact) return;
+            wasCompact = isCompactDiagram();
+            renderZoomDomain("geography", false);
+            renderZoomDomain("body", false);
+            renderDiagram("car-mechanics-svg", null, null, false);
+            renderDiagram("car-interior-svg", null, null, false);
+        }, 150);
+    });
+}
+
 function switchGeoZoomView(viewId, autoPlay = true) {
     currentGeoZoom = viewId;
-    
-    // Update toolbar preset buttons
     document.querySelectorAll("#geo-zoom-toolbar .zoom-preset-btn").forEach(btn => btn.classList.remove("active"));
     const activeBtn = document.getElementById(`geo-preset-${viewId}`);
     if (activeBtn) activeBtn.classList.add("active");
-    
-    // Switch active SVG layers with smooth opacity
+
     document.querySelectorAll(".geo-zoom-layer").forEach(layer => {
         layer.style.display = "none";
         layer.classList.remove("active");
@@ -4107,16 +4477,11 @@ function switchGeoZoomView(viewId, autoPlay = true) {
         targetLayer.style.display = "block";
         setTimeout(() => targetLayer.classList.add("active"), 10);
     }
-    
-    // Animate central SVG map image
-    const imgLayer = document.getElementById("geo-image-layer");
-    if (imgLayer) {
-        imgLayer.style.transform = zoomTransforms.geography[viewId] || "scale(1.0) translate(0px, 0px)";
-    }
+
     canvasZoomLevels.geography = 1.0;
     updateZoomBadge("geography");
-    
-    // Select first part of this view
+    renderZoomDomain("geography");
+
     const layerParts = targetLayer ? Array.from(targetLayer.querySelectorAll(".clickable-part")).map(el => el.id.replace("part-", "")) : [];
     if (layerParts.length > 0) {
         selectedPart = layerParts[0];
@@ -4129,13 +4494,10 @@ function switchGeoZoomView(viewId, autoPlay = true) {
 
 function switchBodyZoomView(viewId, autoPlay = true) {
     currentBodyZoom = viewId;
-    
-    // Update toolbar preset buttons
     document.querySelectorAll("#body-zoom-toolbar .zoom-preset-btn").forEach(btn => btn.classList.remove("active"));
     const activeBtn = document.getElementById(`body-preset-${viewId}`);
     if (activeBtn) activeBtn.classList.add("active");
-    
-    // Switch active SVG layers with smooth opacity
+
     document.querySelectorAll(".body-zoom-layer").forEach(layer => {
         layer.style.display = "none";
         layer.classList.remove("active");
@@ -4145,16 +4507,11 @@ function switchBodyZoomView(viewId, autoPlay = true) {
         targetLayer.style.display = "block";
         setTimeout(() => targetLayer.classList.add("active"), 10);
     }
-    
-    // Animate central anatomical model image
-    const imgLayer = document.getElementById("body-image-layer");
-    if (imgLayer) {
-        imgLayer.style.transform = zoomTransforms.body[viewId] || "scale(1.0) translate(0px, 0px)";
-    }
+
     canvasZoomLevels.body = 1.0;
     updateZoomBadge("body");
-    
-    // Select first part of this view
+    renderZoomDomain("body");
+
     const layerParts = targetLayer ? Array.from(targetLayer.querySelectorAll(".clickable-part")).map(el => el.id.replace("part-", "")) : [];
     if (layerParts.length > 0) {
         selectedPart = layerParts[0];
@@ -4169,26 +4526,14 @@ function stepZoom(domain, delta) {
     const minScale = 0.8;
     const maxScale = 2.5;
     canvasZoomLevels[domain] = Math.min(maxScale, Math.max(minScale, +(canvasZoomLevels[domain] + delta).toFixed(2)));
-    
-    const layerId = domain === "geography" ? "geo-image-layer" : "body-image-layer";
-    const imgLayer = document.getElementById(layerId);
-    if (imgLayer) {
-        const currentView = domain === "geography" ? currentGeoZoom : currentBodyZoom;
-        const baseTransform = zoomTransforms[domain][currentView] || "scale(1.0) translate(0px, 0px)";
-        imgLayer.style.transform = `${baseTransform} scale(${canvasZoomLevels[domain]})`;
-    }
     updateZoomBadge(domain);
+    renderZoomDomain(domain);
 }
 
 function resetCanvasZoom(domain) {
     canvasZoomLevels[domain] = 1.0;
-    const layerId = domain === "geography" ? "geo-image-layer" : "body-image-layer";
-    const imgLayer = document.getElementById(layerId);
-    if (imgLayer) {
-        const currentView = domain === "geography" ? currentGeoZoom : currentBodyZoom;
-        imgLayer.style.transform = zoomTransforms[domain][currentView] || "scale(1.0) translate(0px, 0px)";
-    }
     updateZoomBadge(domain);
+    renderZoomDomain(domain);
 }
 
 function updateZoomBadge(domain) {
